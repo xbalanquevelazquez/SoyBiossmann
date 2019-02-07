@@ -1,0 +1,238 @@
+header{background:transparent url('../img/back-header.gif') repeat-x center bottom;border-bottom:2px solid #3b3f4b;}
+
+#mainContainer{min-width: 1366px;}
+
+
+.biossHeader,
+#main,
+.biossFooter{max-width: 1366px;margin:0 auto;}
+.break{clear:both;display:block;}
+.biossHeader{padding: .3rem 1rem .2rem;}
+.biossHeader .navbar-nav li{margin-top:10px;}
+.biossHeader .navbar-brand{margin-right:2rem;}
+.biossFooter{background: #33363d url('../img/logo-biossmann-footer.png') no-repeat right 2.5rem top 1.5rem;border-top:4px solid #a1bd32;}
+.biossFooter .plecas{border-top:22px solid #191e27;border-bottom:9px solid #33363d;}
+.biossFooter nav{padding:1.5rem 2.5rem;}
+.biossFooter nav ul{margin:0;padding:0;list-style: none;}
+.biossFooter nav li{display:inline-block;margin-right: 1rem;}
+.biossFooter nav li a{font-size:.9rem;color:#86888e;}
+.biossFooter nav li a.resaltar{color:#FFF;}
+.biossFooter nav li a:hover{color:#3CC;}
+
+.navbar-expand-lg .navbar-nav li{
+	 margin-right: 2.8rem;
+}
+.navbar-expand-lg .navbar-nav .nav-link{
+   
+    padding-left: .5rem;
+    font-size:1.1rem;
+}
+.material{
+    background: #FFF;
+    border-radius: 1px;
+    box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+.inline{display:inline-block;}
+.bordeGris{border:1px solid #cac9c9;}
+.gutter{
+  margin-right:0.5%;
+  margin-left:0.5%;
+}
+.gutter:first-child{margin-right:0.5%;margin-left:0;}
+.gutter:last-child{margin-left:0.5%;margin-right:0;}
+.renglonGutter{width: 100%;height: 12px;display:block;}
+
+/*COLORES*/
+.bg-azulgris{background: #3b3f4b;}
+.texto-azulgris{color: #3b3f4b;}
+
+.bg-azulcielo{background: #15aabf;}
+.texto-azulcielo{color: #15aabf;}
+
+.bg-blanco{background: #FFF;}
+.texto-blanco{color: #FFF;}
+
+.bg-verdeagua{background: #3CC;}
+.texto-verdeagua{color: #3CC;}
+
+.bg-grismedio{background: #848484;}
+.texto-grismedio{color: #848484;}
+
+.bg-grisclaro{background: #bababa;}
+.texto-grisclaro{color: #bababa;}
+
+.bg-gris13{background: #e5e5e5;}
+.texto-gris13{color: #e5e5e5;}
+
+.bg-verde{background: #99cc33;}
+.texto-verde{color: #99cc33;}
+
+.bg-verdeaguaclaro{background: #e4faf0;}
+.texto-verdeaguaclaro{color: #e4faf0;}
+
+.hidden{display:none;}
+
+#directorio{padding:.2rem .7rem  .5rem;vertical-align: top;}
+#directorio label{font-size:.8rem;margin:0 0 .4rem;line-height: 1em;}
+#directorio input{background: #f0efef;border:1px solid #cfd1d1;border-radius: 0;font-size:.85rem; padding:.32rem .6rem;width: 50%;margin-right: 1rem;}
+#directorio button{padding:.1rem 1.75rem;margin-right: .3rem;}
+
+.barraTitulo{padding:.5rem .7rem;font-family: "ExoDos";}
+.ico{background-repeat: no-repeat;background-position: center center;}
+.barraTitulo.ico-valentia{background-image: url('../img/ico-valentia.png');background-position: right .5rem center;}
+.barraTitulo.ico-compromiso{background-image: url('../img/ico-compromiso.png');background-position: right .5rem center;}
+.barraTitulo.ico-prosperidad{background-image: url('../img/ico-prosperidad.png');background-position: right .5rem center;}
+.barraTitulo.ico-pasion{background-image: url('../img/ico-pasion.png');background-position: right .5rem center;}
+
+.innerContent{padding:.5rem;}
+
+.optionsButtons{margin: 0;padding: 0;list-style: none;font-size:.95rem;padding:.4rem .2rem;}
+.optionsButtons li a{border:1px solid #a5a5a5;border-radius: 3px;background: white url('../img/grad-btn-gris.png') repeat-x center bottom;padding:.2rem .6rem;display:block;color: #3b3f4b;margin-bottom:.5rem;}
+.optionsButtons li a:hover{background:#f1f0f0 url('../img/grad-btn-gris-hover.png') repeat-x center top;}
+
+.optionsButtons.btnsBlancos li a{background:#FFF}
+.optionsButtons.btnsBlancos li a:hover{background:#33CCCC;color:#FFF;}
+
+
+.encuestaHome{font-size:.9rem;}
+.encuestaHome.innerContent{padding:.9rem;}
+.encuestaHome .opciones{margin-left:.2rem;}
+.encuestaHome textarea{width: 100%;margin-bottom:.5rem;}
+.encuestaHome button{font-size:.85rem;}
+
+.material.btn{border-radius: .25rem;}
+
+.mainSections{font-family: "ExoDos";}
+.strong{font-weight: bold;}
+/*************BANNER*************/
+/********************************/
+#contenedorBanners{height: 313px;
+    overflow: hidden;
+    position: relative;
+    /*width: 729px;*/
+}
+#contenedorBanners .apuntador{position: absolute;z-index: 8;bottom: 0px;background-color:rgba(0,0,0,0.5);width: 100%;padding:.3rem .6rem;}
+#contenedorBanners .apuntador ul{margin: 0;padding: 0;list-style: none;line-height: .9;}
+#contenedorBanners .apuntador ul li{display: inline-block;margin: 0 3px;line-height: 0;}
+#contenedorBanners .apuntador a{display:block;width: 15px;height: 15px;border-radius: 10px;background-color: rgba(206,231,2,0.4);border:1px solid #FFF;}
+#contenedorBanners .apuntador a:hover{background: #f90}
+#contenedorBanners .banner{height: 300px;position: absolute;/*width: 730px;*/left: 0px;}
+#contenedorBanners .banner .img{background: #FFF;}
+#contenedorBanners .banner .texto{font-size: 1.2em;color:#FFF;font-weight: 700;font-family: "ExoDos";padding: 20px;text-align: left;height: 100px;}
+#contenedorBanners .banner .texto span{font-weight: 200;font-size: .75em;color:rgba(255,255,255,0.75);}
+#contenedorBanners button{position:absolute;z-index: 900;}
+#contenedorBanners button.positionLeft{left:2rem;}
+#contenedorBanners button.positionCenter{left:50%;}
+#contenedorBanners button.positionRight{right:2rem;}
+#contenedorBanners button.positionTop{top:2rem;}
+#contenedorBanners button.positionMiddle{top:50%;}
+#contenedorBanners button.positionBottom{bottom:3rem;}
+
+/*ANCHOS DE COLUMNAS*/
+.ancho-100,.columnaA{width: 100%;}
+.ancho-50,.columnaB{width: 49.5%;}
+.ancho-33,.columnaC{width: 32.6%;}
+
+.ancho-56,.columnaD{width: 56%;}
+.ancho-26,.columnaE{width: 26%;}
+.ancho-16,.columnaF{width: 16%;}
+.ancho-1,.columnaGutter{width: 1%;}
+.ancho-18,.columnaG{width: 18%;}
+.ancho-73,.columnaH{width: 73%;}
+
+
+
+
+/*BANNERS MAIN SECTION*/
+.mainSections .material a {
+    font-size: 1.5rem;
+    color: #3b3f4b;
+    display: block;
+    vertical-align: top;
+}
+.mainSections .material a div{display: block;height: 94px;float:left;}
+.mainSections .material a div:first-child{
+	padding:.8rem;
+	width: 80%;
+}
+.mainSections .material a div.unaLinea{
+    padding:1.9rem .8rem .8rem;
+    width: 80%;
+}
+.mainSections .material a div:last-child{
+	padding:1.5rem .3rem;
+	width: 20%;
+	background: #15aabf;
+	color:#FFF;
+	border-left:6px solid #119db1;
+	font-size:2.2rem;
+	text-align: center;
+}
+
+.toolsSection a{color:#FFF;display: block;}
+.toolsSection .material .img{padding:20px 0 12px;text-align: center;}
+.toolsSection .material .img img{}
+.toolsSection .material .texto{padding:5px 12px;font-size:.9rem;}
+
+.ico-restringido-float{position:absolute;top:4px;right:4px;padding:3px;border:1px solid #FFF;border-radius: 2px;}
+
+.shadowed{text-shadow: 2px 2px 3px rgba(0,0,0,1)}
+.mesaayudaSection{}
+.mesaayudaSection .barraTitulo{font-size:1.6rem;padding:.55rem .7rem;}
+.mesaayudaSection .barraTitulo i{margin:0 1.2rem 0 .6rem;background-color: #282c36;border-radius:24px;padding: 10px;font-size:1.6rem;}
+.mesaayudaSection .optionsButtons li a{background-image: url('../img/grad-btn-azulgris.png');background-color: #3c4249;color:#FFF;background-position: center top;}
+.mesaayudaSection .optionsButtons li a:hover{background-image: url('../img/grad-btn-azulgris-hover.png');background-color: #6b7782;}
+
+/*
+Desktop First
+max-width
++1200px
+1200px-red
+1024px-green
+768px-blue
+600px-cyan
+480px-magenta
+320px-yellow
+----------------
+
+Mobile First
+min-width
+-320px-yellow
+-480px-magenta
+-600px-cyan
+-768px-blue
+-1024px-green
+-1200px-red
++1200px
+*/
+/*|||||||||||||||||||1200px||||||||||||||||||||||*/
+@media screen and (max-width: 1200px){
+    .checker{background:yellow;}
+}
+
+/*|||||||||||||||||||1024px||||||||||||||||||||||*/
+@media screen and (max-width: 1024px){
+    .checker{background:magenta;}
+    
+}
+
+/*|||||||||||||||||||768px||||||||||||||||||||||*/
+@media screen and (max-width: 768px){
+    .checker{background:cyan;}
+}
+
+/*|||||||||||||||||||600px||||||||||||||||||||||*/
+@media screen and (max-width: 600px){
+    .checker{background:blue;}
+}
+
+/*|||||||||||||||||||480px||||||||||||||||||||||*/
+@media screen and (max-width: 480px){
+    .checker{background:green;}
+}
+
+/*|||||||||||||||||||320px||||||||||||||||||||||*/
+@media screen and (max-width: 320px){
+    .checker{background:red;}
+}

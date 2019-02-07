@@ -1,0 +1,14 @@
+# Info files
+_info/*
+
+# logs files
+_logs/*
+
+# design files
+_design/*
+_diseño/*
+
+
+**/.DS_Store
+*/.DS_Store
+.DS_Store

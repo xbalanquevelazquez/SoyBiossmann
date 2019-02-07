@@ -1,0 +1,445 @@
+.fleft{float:left;}
+.fright{float:right;}
+
+.transicion{transition: all 0.4s ease 0s;}
+
+.searchBox{padding: 1em;/*width: 250px;*/background:#4d4d4f;box-shadow: 4px 0 6px -2px rgba(0, 0, 0, 0.6);position:relative;z-index: 10;/*height: 300px;*/}
+.searchBox h2{color: #ddd;font-family: ExoDos;font-size: 1.2em;font-weight: 200;/*margin-bottom: 1em;*/}
+
+input, select{background:#FFF;border-radius: 4px;border:1px solid #cbc9c9;font-size:.9em;padding:8px 28px 8px 6px;color:#c6c6c6;}
+select{color:#000;}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus{border-color:#333;color:#333;}
+input[type="submit"],.btnD1{background:#8d448e;color:#FFF;}
+input[type="submit"]:hover,.btnD1:hover{background:#600c61;color:#FFF;}
+
+
+#directorio form {
+    margin-bottom: 0;
+}
+
+.searchBox div,
+.searchBox input{position: relative;z-index: 10;}
+.searchBox input{width: 100%;}
+.uk-form-icon i{z-index: 11}
+.uk-form-icon .uk-icon-user{font-size: 18px !important;}
+.uk-form-icon .uk-icon-envelope{font-size: 16px !important;}
+.uk-form-icon .uk-icon-mobile{font-size: 28px !important;margin-top: 0;top: 40%;}
+.btn.ixSubmit{
+    background: #6ab2ae none repeat scroll 0 0;
+    border: 0 none;
+    color: #fff;
+    font-size: 1.1em;
+    padding: 5px 21px;
+    cursor:pointer;
+    border-radius: 3px;
+   /* height: 39px;*/
+    /*width: 80px;*/
+}
+.btn.ixSubmit.search{background:#19bbb9;font-family:"FontAwesome";display:inline;}
+.btn.ixSubmit.clear{background:#6d7070;color:#a3a3a3;}
+.clearable{
+  background: #fff url("data:image/gif;base64,R0lGODlhDwAPAKIAAMfHx9vb27Ozs/n5+aOjo+7u7pycnP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMjEgNzkuMTU1NzcyLCAyMDE0LzAxLzEzLTE5OjQ0OjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo1RUVFRDhEMjMzQTUxMUU1ODE3REQwOUU0MjVEMkMwNCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo1RUVFRDhEMTMzQTUxMUU1ODE3REQwOUU0MjVEMkMwNCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoTWFjaW50b3NoKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6MGNiOTBiNjctNzYyYy0xMTc4LWExNmUtOWQzNzVmNzhjNDQ3IiBzdFJlZjpkb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6MGNiOTBiNjctNzYyYy0xMTc4LWExNmUtOWQzNzVmNzhjNDQ3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAAA8ADwAAA0J4utw6IDQA2BDGSAVy5VkmdWGhFERoYKHAoGo7NLAqzA4ZblMs9r6fImCrZUwHYuZ2qBFwyRUURUAurIsB1MFVJAAAOw==") no-repeat right -15px center;
+  transition: background 0.4s;
+}
+.clearable.x  { background-position: right 5px center; color:#000;} /* (jQ) Show icon */
+.clearable.onX{ cursor: pointer; }              /* (jQ) hover cursor style */
+
+.uk-form-icon i{color:#6bb2ae !important;font-size:1.2em !important;margin-top: -15px !important;}
+
+.uk-form-select{text-align: left;}
+.spacer{display:inline-block;width:5px;}
+
+.inputsContainer{width: 80%;}
+.inputsContainer,.submitsBtns{display: inline-block;}
+.inputsContainer .uk-form{width: 65%;margin-right: 0.5em;}
+.inputsContainer .uk-form-select{width: calc(35% - 0.7em)}
+.inputsContainer .uk-form, .inputsContainer .uk-form-select{display: inline-block;}
+
+.submitsBtns{text-align: right;margin-left:0.5em;}
+.submitsBtns button{margin-left:4px;}
+
+.uk-icon-caret-down {
+    float: right;
+    margin-top: 7px;
+}
+.resultsBox {
+    position: relative;
+    /*top: 0;*/
+    /*left: -40%;*/
+    z-index: 9;
+    /*display: inline-block;*/
+    /*height: 300px;*/
+    background-color: #f2f2f2;
+	box-shadow: 4px 0 6px -2px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    overflow: hidden;
+	/*width: 40%;		*/
+}
+.resultsBox h3{
+	background: #27afa7;
+    color: #e6f1f0;
+    display: block;
+    font-family: ExoDos;
+    font-size: 1em;
+    font-weight: 200;
+    margin: 0;
+    padding: 14px 10px;
+}
+.resultsBox .resultados{
+    /*border:1px solid #FFF;*/
+	/*height: 298px;*/
+}
+.resultado {
+    background: #FFF none repeat scroll 0 0;
+    color: #7d7d7d;
+    border-bottom: 1px solid #e6e6e6;
+    display: block;
+    font-size: 0.9em;
+    overflow: hidden;
+    position: relative;
+	/*border-bottom: 1px dashed #aacccb;*/
+	cursor: pointer;
+}
+ .resultados .letra {
+    background: #8dc6c2 none repeat scroll 0 0;
+    color: #fff;
+    font-family: exodos;
+    font-size: 0.9em;
+    font-weight: 400;
+    padding: 1px 15px 1px 10px;
+   
+}
+.zebra{background-color: #f2f2f2;}
+.detailBox{
+	background-color: #fff;
+    height: 343px;
+    position: absolute;
+    top: 72px;
+    width: 100%;
+    z-index: 9;
+    right: -100%;
+}
+
+.detailBox h3{
+	display:block;
+	height:15px;
+	width: 100%;	
+	margin: 0;
+	padding: 22px 20px;
+	background: #4d4d4f url("../img/minilogo-biossmann.png") no-repeat 13px center;
+}
+.detailBox .main{background-color: #5ea8a5;padding:8px 14px;color:#FFF;}
+.detailBox .main .foto {
+    background: #FFF url("../img/fotos/medicus.png") no-repeat scroll center;
+    background-size: 100% auto;
+    height: 69px;
+    width: 25%;
+    margin-right: 12px;
+}
+.detailBox .main .foto,
+.detailBox .main .textos{
+	display: inline-block;
+}
+.detailBox .main .foto,
+.detailBox .main .nombre,
+.detailBox .main .puesto {
+    /*float:left;*/
+}
+.detailBox .main .nombre {
+    font-weight: 400;
+    margin-top:6px;
+    font-size: 0.8em;
+    white-space: normal;
+}
+.detailBox .main .puesto {
+    font-size:.7em;
+    color: #e4f1f1;
+}
+.detailBox .area {
+    background: #8cc9c9 none repeat scroll 0 0;
+    color: #fff;
+    padding: 5px 16px;
+}
+.detailBox .area .nombre {
+    font-size: 0.8em;
+}
+.detailBox .area .desc {
+    color: #e4f1f1;
+    font-size: 0.8em;
+    font-weight: 200;
+}
+.detailBox .detail {
+    padding: 2px 8px;
+}
+.detailBox .detail i{
+    color:#3f8f8b;
+    display: inline-block;
+    padding: 2px 10px 2px 2px;
+    text-align: center;
+    width: 35px;
+}
+.detailBox .detail p {
+    font-size: 0.8em;
+    line-height: 1.2em;
+    margin: 0 0 0 39px;
+}
+.detail div {
+    font-size: 0.95em;
+    line-height: 1.7em;
+}
+.detail h4{
+	margin: 0;padding: 0; display: inline-block;font-size:.9em;
+}
+
+
+.detailBox .detail .fa-mobile {
+    font-size: 1.5em;
+}
+.detailBox .detail .fa-phone {
+    font-size: 1.2em;
+    margin-left: 6px;
+}
+.detailBox .detail .fa-map-marker {
+    font-size: 1.3em;
+}
+
+
+.detailBox .main .foto{
+    width: 22%;
+    float:left;
+}
+.detailBox .main .textos{
+    width: 70%;
+    float:left;
+}
+
+
+
+
+
+
+
+
+
+.resultado .foto {
+    display: inline-block;
+    
+    padding: 8px;
+}
+
+.resultado .foto img{
+    border: 1px solid #bfdbda;
+    border-radius: 30px;
+    display: inline-block;
+    overflow: hidden;
+    max-width: inherit;
+    width: 45px;
+    height: 45px;
+}
+.resultado .nombre {
+    display: inline-block;
+    vertical-align: top;
+    padding: 13px 10px 10px;
+    width: 62%;
+    font-weight: 400;
+}
+.resultado .extension {
+    display: inline-block;
+    vertical-align: top;
+    padding: 13px 10px 10px;
+}
+.resultado .more {
+    display: inline-block;
+    width: 20%;
+    background: #
+}
+.resultado .personaBox,
+.resultado .more{display: inline-block;vertical-align: middle;}
+
+.resultado .foto,
+.resultado .extension{
+	width: 18%;
+}
+.resultado .nombre span{background:#abe2de;color:#00604e;}
+.resultado:hover{
+	
+}
+.personaBox {
+    
+    width: 79%;
+    position: relative;
+}
+.resultados .bloqueDePersonal{display:inline;width: 100%}
+.resultados .mensaje,
+.resultados .email,
+.resultados .phone{display:inline-block;text-align: center;}
+.resultados .mensaje a,
+.resultados .email a,
+.resultados .phone a{color: #f1f1f1;display: block;font-size: 1.4em;padding: 10px;background-color: #848484;border-radius: 4px;}
+.resultados .mensaje a:hover,
+.resultados .email a:hover,
+.resultados .phone a:hover{background: #934991;color:#FFF;text-decoration: none;}
+
+/*.resultados .mensaje a {padding: 12px 10px 6px;}*/
+
+.columnaIzq{width:calc(100% - 30px);float:left;overflow-y:auto;max-height:298px;background: grey;}
+.columnaDer{width: 30px;float:left;background:#a1a3a3;text-align: center;padding: 2px 0;}
+.columnaDer ul{margin:0;padding:0;list-style: none;}
+.columnaDer ul li{font-size: 0.6em;line-height: 1.18em;text-transform: uppercase;color:#BBB;}
+.columnaDer ul li a {
+    display: block;color:#FFF;
+}
+
+.renglonDirectorioH {
+    overflow: hidden;
+    position: relative;
+}
+
+
+/*.ink styles - the elements which will create the ripple effect. The size and position of these elements will be set by the JS code. Initially these elements will be scaled down to 0% and later animated to large fading circles on user click.*/
+.ink {
+	display: block; position: absolute;
+	background: hsl(175, 50%, 75%);
+	border-radius: 100%;
+	transform: scale(0);
+	-webkit-transform: scale(0);
+}
+/*animation effect*/
+.ink.animate {
+	animation: ripple 0.65s linear; 
+	-webkit-animation: ripple 0.65s linear;
+}
+@keyframes ripple {
+	/*scale the element to 250% to safely cover the entire link and fade it out*/
+	100% {
+		opacity: 0; 
+		transform: scale(2.5); 
+	}
+}
+
+@-webkit-keyframes ripple{
+	100% {
+		-webkit-opacity:0; 
+		-webkit-transform: scale(2.5);
+	}
+}
+
+
+
+.detail a {
+    border-radius: 15px;
+    color: #7d7d7d;
+    display: block;
+    padding: 3px 5px 5px 5px;
+   /* font-size: 0.95em;*/
+}
+.detail a:hover,
+.detail a:hover i{
+    background: #5ea8a5;
+    color:#FFF;
+    text-decoration: none;   
+}
+.detail a:hover h4{
+    color:#FFF;
+}
+
+.searchBox  label{
+    color: #a8a8a8;
+    font-size: 0.8em;
+    line-height: 2em;
+}
+.dataSelectEmpresas{font-size: .8em;}
+
+.bloqueinfopersona {
+    float: right;
+    width: calc(100% - 40px);
+}
+
+.btnReturn {
+    background: #1e827e;
+    float: left;
+    font-size: 1.5em;
+    height: 100%;
+    position: relative;
+    width: 40px;
+    color:#FFF;
+    text-align: center;
+    /*cursor: pointer;*/
+}
+.btnReturn .flecha {
+    background: transparent;
+    color: #fff;
+    display: inline-block;
+    height: 100%;
+    padding: 150px 0 0;
+    position: relative;
+    vertical-align: middle;
+    width: 100%;
+}
+
+/*
+Desktop First
+max-width
++1200px
+1200px-red
+1024px-green
+768px-blue
+600px-cyan
+480px-magenta
+320px-yellow
+----------------
+
+Mobile First
+min-width
+-320px-yellow
+-480px-magenta
+-600px-cyan
+-768px-blue
+-1024px-green
+-1200px-red
++1200px
+*/
+
+/*|||||||||||||||||||1200px||||||||||||||||||||||*/
+@media screen and (max-width: 1200px){
+    .checker{background:yellow;}
+}
+/*|||||||||||||||||||1024px||||||||||||||||||||||*/
+@media screen and (max-width: 1024px){
+    .checker{background:magenta;}
+    .btn.ixSubmit{padding:5px 21px;}
+    .inputsContainer{width: 77%;}
+}
+/*|||||||||||||||||||768px||||||||||||||||||||||*/
+@media screen and (max-width: 768px){
+    .checker{background:cyan;}
+    .inputsContainer,
+    .submitsBtns{display:block;width: 100%;}
+    .submitsBtns{margin-top: 8px;padding:0 0.5em;}
+    .inputsContainer .uk-form,
+    .inputsContainer .uk-button{display: block;margin-top: 8px;width: 100%;}
+    .detailBox {top: 155px;}
+    .personaBox{width: 68%;}
+    .resultado .more{width: 31%;}
+}
+/*|||||||||||||||||||600px||||||||||||||||||||||*/
+@media screen and (max-width: 600px){
+    .checker{background:blue;}
+    
+}
+/*|||||||||||||||||||480px||||||||||||||||||||||*/
+
+@media screen and (max-width: 480px){
+    .checker{background:green;}
+    .resultado .foto{display: none;}
+    .resultado .nombre{width: 100%;}
+    .personaBox{width: 56%;}
+    .resultado .more{width: 43%;}
+
+}
+/*|||||||||||||||||||320px||||||||||||||||||||||*/
+@media screen and (max-width: 320px){
+    .checker{background:red;}
+}

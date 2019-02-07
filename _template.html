@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>home | Soy Biossmann</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="description" content="Descripcion" />
+	<link rel="shortcut icon" href="img/favicon.ico"/>
+    <link type="text/css" rel="stylesheet" href="css/basico.css" />
+    <link rel="stylesheet" href="libs/bootstrap-4.1.3/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/personalizacion.css">
+   	<script src="js/jquery-3.0.0.min.js"></script>
+ 	<script src="libs/bootstrap-4.1.3/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/uikit.min.js"></script><?php echo $page->siteURL; ?>
+	<script type="text/javascript" src="js/components/form-select.min.js"></script>
+	<script src="js/app.js"></script>           <!-- recommended location of your JavaScript code relative to other JS files -->
+	</head>
+<body>
+	<section id="mainContainer container-fluid">
+		<header>
+			<nav class="navbar sticky-top navbar-expand-lg navbar-light  biossHeader">
+					<a class="navbar-brand" href="<?php echo APP_URL; ?>"><img src="img/logo-soy-biossmann.png" alt="Soy Biossmann" /></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					 	<ul class="navbar-nav mr-auto">
+							<li class="active"><a class="nav-link" href="">Nuestros servicios</a></li>
+							<li class=""><a class="nav-link" href="">Apps y Tableros de Control</a></li>
+							<li class=""><a class="nav-link" href="">Preguntas Frecuentes</a></li>
+							<li class=""><a class="nav-link" href="">Mesa de ayuda</a></li>
+						</ul>
+					</div>
+				</nav>
+		</header>
+		<section id="main">
+			<div class="renglonGutter"></div>
+
+			<div class="row no-gutters">
+				<div class="col-9 gutter">
+
+					
+					<div class="material bordeGris bg-azulgris" id="directorio">
+						Directorio biossmann:
+						<h2>Encontrar a:</h2>
+          
+
+				          	<form id="busqueda" action="#">
+					            <div class="inputsContainer">
+					              
+					              <div class="uk-form">
+					                <input type="text" name="nombre" id="nombre" placeholder="Nombre, apellido, correo o celular:" class="clearable" />
+					              </div>
+					              
+					              
+					              <div class="uk-button uk-form-select relative" data-uk-form-select>
+					                <span class="dataSelectEmpresas"></span>
+					                <span class="spacer"></span>
+					                <i class="uk-icon-caret-down"></i>
+					                <?php 
+					                $queryEmpresas = 'SELECT company FROM empleados GROUP BY company';
+					                $resultadoEmpresas = mysql_query($queryEmpresas,$conn) or die(mysql_error());
+					                ?>
+					                <select name="empresa" id="empresa">
+					                  <option value="%">En todas las empresas</option>
+					                  <?php 
+					                  while ($empresa = mysql_fetch_assoc($resultadoEmpresas)) {
+					                  ?>
+					                  <option value="<?php echo $empresa['company']; ?>"><?php echo $empresa['company']; ?></option>
+					                  <?php
+					                  }
+					                  ?>
+					                </select>
+					              </div>
+					            </div>
+					            <div class="submitsBtns">
+					              <button class="btn ixSubmit search"><i class="fa fa-search"></i></button>
+					              <button class="btn ixSubmit clear"><i class="fa fa-times"></i></button>
+					            </div>
+				          	</form>
+
+
+
+					</div>
+					<div class="renglonGutter"></div>
+
+					<div class="row no-gutters">
+						<div class="col-8 gutter">
+							<div class="material bordeGris">Banners</div>
+						</div>
+						<div class="col-4 gutter">
+							<div class="material bordeGris">SAP</div>
+							<div class="renglonGutter"></div>
+							<div class="material bordeGris">Proyectos</div>
+							<div class="renglonGutter"></div>
+							<div class="material bordeGris">Seguridad</div>
+						</div>
+					</div>
+					<div class="renglonGutter"></div>
+
+					<div class="row no-gutters">
+						<div class="col-8 gutter">
+							
+							<div class="row no-gutters">
+								<div class="col gutter">
+									<div class="material bordeGris">A</div>
+								</div>
+								<div class="col gutter">
+									<div class="material bordeGris">B</div>
+								</div>
+								<div class="col gutter">
+									<div class="material bordeGris">C</div>
+								</div>
+							</div>
+							<div class="renglonGutter"></div>
+							<div class="row no-gutters">
+								<div class="col gutter">
+									<div class="material bordeGris">A</div>
+								</div>
+								<div class="col gutter">
+									<div class="material bordeGris">B</div>
+								</div>
+								<div class="col gutter">
+									<div class="material bordeGris">C</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-4 gutter">
+							
+							<div class="material bordeGris">Mesa de ayuda</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-3 gutter">
+					<div class="material bordeGris">Servicios destacados</div>
+					<div class="renglonGutter"></div>
+					<div class="material bordeGris">Opina</div>
+				</div>
+			</div>
+
+		</section><!--//#main-->
+		<footer>
+			<div class="biossFooter">
+				<nav class="navbar">
+					<ul>
+						<li><a href="">Contáctanos</a></li>
+						<li><a href="">Mapa de sitio</a></li>
+						<li><a href="">Reporta un problema en esta página</a></li>
+					</ul>
+				</nav>
+			</div>
+		</footer>
+	</section><!--//#mainContainer-->
+	<script>
+	$(document).ready(function(){
+	});
+	</script>
+</body>
+</html>

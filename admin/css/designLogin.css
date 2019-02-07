@@ -1,0 +1,12 @@
+body{background-color:#a6a6a6;background-image:url("../img/back-interface-grey.gif")}
+#mainContainer{width:786px;margin-top:54px}
+#header{background-image:url("../img/header-crn-rt-2.gif")}
+.separador{height:0px}
+#contentContainer{border:0px none;padding:0px;background:#535353 url("../img/back-login.gif") repeat-x center bottom}
+label{color:#ff7e00}
+.form .loginInput{background:url("../img/input-login.gif") no-repeat left center;padding:2px 5px;}
+.form .loginInput input{border:0px none;background:none;width:119px;color:black;}
+.loginBackL{background:url("../img/back-login-l.gif") no-repeat left bottom}
+.loginBackR{background:url("../img/back-login-r.gif") no-repeat right bottom}
+.version{float:right;width:18px;height:55px;background:url("../img/version.gif") no-repeat center bottom}
+.anchoMax{background:#757575}

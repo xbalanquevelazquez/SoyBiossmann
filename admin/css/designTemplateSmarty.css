@@ -1,0 +1,10 @@
+.titleUbic{width:100%;}
+.titleUbic th{padding:2px 4px;background:#006699 url("../img/back-mosaic.gif");color:white;font-weight:bold;}
+.titleUbicSin{width:95%}
+.titleUbicSin th{padding:2px 4px;background:#5a0e0e url("../img/back-mosaic-red.gif");color:white;font-weight:bold}
+fieldset legend{color:#485A68}
+fieldset legend span{font-weight:bold}
+.contenidoBox a{border:1px dotted #CCCCCC;padding:3px 3px 3px;margin:3px;display:block;width:80%;float:left}
+.contenidoBox a.btn{width:6%;padding:1px 3px 0px}
+.contenidoBox a:hover{background:#DDE3F4}
+.contenidoBox a.btn:hover{background:#FF5555}

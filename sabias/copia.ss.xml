@@ -1,0 +1,52 @@
+<items>
+  <item>
+    <command>add</command>
+    <url>https://soy.biossmann.com/sabias/img/bioss.jpg</url>
+    <imagesize position="center">fitbig</imagesize>
+  </item>
+  <item>
+    <command>add</command>
+    <url>https://soy.biossmann.com/sabias/img/1.jpg</url>
+    <imagesize position="center">fitbig</imagesize>
+  </item>
+  <item>
+    <command>add</command>
+    <url>https://soy.biossmann.com/sabias/img/2.jpg</url>
+    <imagesize position="center">fitbig</imagesize>
+  </item>
+  <item>
+    <command>add</command>
+    <url>https://soy.biossmann.com/sabias/img/3.jpg</url>
+    <imagesize position="center">fitbig</imagesize>
+  </item>
+  <item>
+    <command>add</command>
+    <url>https://soy.biossmann.com/sabias/img/4.jpg</url>
+    <imagesize position="center">fitbig</imagesize>
+  </item>
+  <item>
+    <command>add</command>
+    <url>https://soy.biossmann.com/sabias/img/5.jpg</url>
+    <imagesize position="center">fitbig</imagesize>
+  </item>
+  <item>
+    <command>add</command>
+    <url>https://soy.biossmann.com/sabias/img/6.jpg</url>
+    <imagesize position="center">fitbig</imagesize>
+  </item>
+  <item>
+    <command>add</command>
+    <url>https://soy.biossmann.com/sabias/img/7.jpg</url>
+    <imagesize position="center">fitbig</imagesize>
+  </item>
+  <item>
+    <command>add</command>
+    <url>https://soy.biossmann.com/sabias/img/8.jpg</url>
+    <imagesize position="center">fitbig</imagesize>
+  </item>
+  <item>
+    <command>add</command>
+    <url>https://soy.biossmann.com/sabias/img/9.jpg</url>
+    <imagesize position="center">fitbig</imagesize>
+  </item>
+</items>

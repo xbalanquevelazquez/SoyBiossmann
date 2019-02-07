@@ -1,0 +1,127 @@
+/*::FUNCIONALIDAD::*/
+ul.menu{list-style:none;}
+ul.menu li{
+   position:relative; /* Las coordenadas de los ul inferiores serán relativas al <li> que los contiene */
+   display: inline;
+   z-index: 800;
+}
+ul.menu li:hover{
+  background:#f1f0f0 url('../img/grad-btn-gris-hover.png') repeat-x center top;color: #3b3f4b;
+}
+ul.menu ul li{width:100%}
+ul.menu ul{
+   position:absolute; /* Esta posición es relativa al <li> que contiene a este <ul> */
+   left:30px; /* Para que no monte sobre el <li> */
+   top:-1px;
+   display:none;
+   list-style:none;
+}
+ul.menu ul{display:none}
+/*NIVELES*/
+ul.menu li:hover ul,
+ul.menu li ul li:hover ul,
+ul.menu li ul li ul li:hover ul,
+ul.menu li ul li ul li ul li:hover ul,
+ul.menu li ul li ul li ul li ul li:hover ul,
+ul.menu li.hover ul,
+ul.menu li ul li.hover ul,
+ul.menu li ul li ul li.hover ul,
+ul.menu li ul li ul li ul li.hover ul,
+ul.menu li ul li ul li ul li ul li.hover ul{
+   display:block;
+}
+/*NIVELES*/
+ul.menu ul,
+ul.menu li:hover ul ul,
+ul.menu li.hover ul ul,
+ul.menu li:hover ul ul ul,
+ul.menu li.hover ul ul ul,
+ul.menu li:hover ul ul ul ul,
+ul.menu li.hover ul ul ul ul,
+ul.menu li:hover ul ul ul ul ul,
+ul.menu li.hover ul ul ul ul ul{
+   display:none;
+}
+
+ul.menu li ul{ /* Solo para los ul debajo de los li de primer nivel. */
+  /* position:absolute;*/
+  width: 14rem;
+   left:0;
+   top:40px;
+   display:none;
+   list-style:none;
+   z-index: 900;
+}
+ul.menu li ul li ul{
+	left:10em;top:0;
+}
+
+/*::DISEÑO::* /
+body {
+    background: none repeat scroll 0 0 #F5F5F5;
+    color: #2F2F2F;
+    font: 1em Arial;
+    margin: 0;
+}*/
+.menu_principal {
+    /*background: url("../img/decoration.gif") repeat center top;*/
+    /*display: block;*/
+    height: 2.8em;
+    /*margin-top: 0;
+	text-align: center;
+    width: 100%;*/
+	font-size: 0.8em;
+}
+.menu_principal ul {
+    /*height: 1.8em;*/
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.menu_principal li {
+    background-color: transparent;
+    font-weight: bold;
+}
+.menu_principal li a {
+    color: #000;
+    line-height: 2.4em;
+    padding: 0.3em 0.5em 0.3em;
+    text-align: center;
+    text-decoration: none;
+}
+
+.menu_principal li a:hover{
+    text-decoration: none;
+}
+.menu_principal li ul{
+    background: none repeat scroll 0 0 #737373;
+    border-bottom: 3px solid #15aabf;
+    height: auto;
+    width: 10em;
+}
+.menu_principal li ul{
+  background:#f1f0f0 /*url('../img/back-header.gif') repeat-x center bottom*/;
+	width: 100%;/*12.5em*/
+}
+.menu_principal li ul li{
+    font-style: normal;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+	display: block;
+}
+.menu_principal li ul a{
+  display: block;
+  font-size: .9rem;
+  font-style: normal;
+  padding: 5px 10px 5px 15px;
+	margin-bottom:0px;
+  text-align: left;
+	line-height: 1.2em;
+}
+.menu_principal li ul a:hover{
+    /*text-decoration: underline;*/
+    background: #3CC;
+    color:#FFF;
+}
