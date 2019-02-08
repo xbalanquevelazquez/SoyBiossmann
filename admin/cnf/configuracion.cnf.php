@@ -1,28 +1,44 @@
 <?php
+#echo ;
 //Validar que este archivo sea cargado por un Include y no directamente
 if(!defined('VIEWABLE')) {
 	header('HTTP/1.0 404 Not Found');
 	exit;
 }else{
+	$thisserver = $_SERVER['SERVER_NAME'];
 
 	date_default_timezone_set('America/Mexico_City');
 	$debug = TRUE;
 	if($debug) { error_reporting(E_ALL); ini_set('display_errors', 1); ini_set('error_reporting', E_ALL); }
 
+	if($thisserver == 'localhost'){
+		define('WWW_HOST',			'http://localhost');
+		define('HOME_DIR',			'soybiossmann');
+		define('APP_URL',			WWW_HOST.'/'.HOME_DIR.'/');
+		define('APP_PATH',			'D:\PoisonStinger\wamp64\www\soybiossmann/');#
+		define('WEB_PATH',			'http://localhost/soybiossmann/');//
+		define('COOKIE_DOMAIN',		'localhost');
+		define('BD_HOST', 			'localhost');
+		define('DB_USER', 			'root');
+		define('DB_PSW', 			'arkan');
+		define('DB_NAME', 			'soybiossmann');
+		define('PREFIJO',			'cms_');
+	}else if($thisserver=='soy.biossmann.com'){
+		define('WWW_HOST',			'https://soy.biossmann.com');
+		define('HOME_DIR',			'');
+		define('APP_URL',			WWW_HOST.'/');
+		define('APP_PATH',			'/usr/local/apache/htdocs_ssl/');#
+		define('WEB_PATH',			'https://soy.biossmann.com/');//
+		define('COOKIE_DOMAIN',		'soy.biossmann.com');
+		define('BD_HOST', 			'localhost');
+		define('DB_USER', 			'soybiossmann');
+		define('DB_PSW', 			'8Wa9poG-t.X');
+		define('DB_NAME', 			'soybiossmann');
+		define('PREFIJO',			'cms_');
+	}
 
-	define('WWW_HOST',			'http://localhost');
-	define('HOME_DIR',			'soybiossmann');
-	define('APP_URL',			WWW_HOST.'/'.HOME_DIR.'/');
 	define('COOKIE_DEF',		'soyBiossmann');
-	define('COOKIE_DOMAIN',		'localhost');
-	define('APP_PATH',			'D:\PoisonStinger\wamp64\www\soybiossmann/');#
-	define('WEB_PATH',			'http://localhost/soybiossmann/');//
 	#define('HTDOCS_HOST',		'D:\PoisonStinger\wamp64\www\soybiossmann/');
-	define('BD_HOST', 			'localhost');
-	define('DB_USER', 			'root');
-	define('DB_PSW', 			'arkan');
-	define('DB_NAME', 			'soybiossmann');
-	define('PREFIJO',			'cms_');
 	$prefijo = PREFIJO;
 	define('SESSION_DATA_SET',	'soyBiossmann');
 	define('AES_ENCRYPT',		'$0y.Bios5m4n');

@@ -258,40 +258,40 @@ function compararFecha($fecha1,$fecha2,$formatoResultado='segundos'){//introduci
 function formatDate($date){
     $fecha = explode("-",$date);
     switch($fecha[1]){
-        case 01:
+        case '01':
             $mes = 'enero';
             break;
-        case 02:
+        case '02':
             $mes = 'febrero';
             break;
-        case 03:
+        case '03':
             $mes = 'marzo';
             break;
-        case 04:
+        case '04':
             $mes = 'abril';
             break;
-        case 05:
+        case '05':
             $mes = 'mayo';
             break;
-        case 06:
+        case '06':
             $mes = 'junio';
             break;
-        case 07:
+        case '07':
             $mes = 'julio';
             break;
-        case 08:
+        case '08':
             $mes = 'agosto';
             break;
-        case 09:
+        case '09':
             $mes = 'septiembre';
             break;
-        case 10:
+        case '10':
             $mes = 'octubre';
             break;
-        case 11:
+        case '11':
             $mes = 'noviembre';
             break;
-        case 12:
+        case '12':
             $mes = 'diciembre';
             break;
     }

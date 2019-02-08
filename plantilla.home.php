@@ -44,7 +44,7 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
           <div class="banner transicion 3 naranja" id="bann3">
             <a href="/talento-humano"><!--banner link-->
               <div class="img">
-                <img src="http://localhost/soybiossmann/img/banner/bann-valor-innovacion.png" alt="Valores Biossmann">
+                <img src="<?php echo APP_URL; ?>img/banner/bann-valor-innovacion.png" alt="Valores Biossmann">
               </div>
               <div class="texto">
                 Banner de prueba                <br>
@@ -55,7 +55,7 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
           <div class="banner transicion 2 verde" id="bann2">
             <a href="#"><!--banner link-->
               <div class="img">
-                <img src="http://localhost/soybiossmann/img/banner/bann-valor-pasion.png" alt="Valores Biossmann">
+                <img src="<?php echo APP_URL; ?>img/banner/bann-valor-pasion.png" alt="Valores Biossmann">
               </div>
               <div class="texto">
                 Felicidades a todos los que cumplen años!                <br>
@@ -66,7 +66,7 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
           <div class="banner transicion 1 morado" id="bann1">
             <a href="/corporativo"><!--banner link-->
               <div class="img">
-                <img src="http://localhost/soybiossmann/img/banner/bann-dias-festivos.png" alt="Calendario de días festivos">
+                <img src="<?php echo APP_URL; ?>img/banner/bann-dias-festivos.png" alt="Calendario de días festivos">
               </div>
               <div class="texto">
                 Nuestro trabajo tiene sentido                <br>

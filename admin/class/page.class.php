@@ -28,7 +28,7 @@ class Page{
 	var $comentarios = array();
 	var $estructura = array();
 	
-	function Page($page){
+	function __construct($page){
 		global $siteURL;
 		
 		$this->page = convertirDatoSeguro($page);

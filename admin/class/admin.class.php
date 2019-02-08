@@ -12,11 +12,10 @@ class Admin{
 	var $confpath = '../cnf/';
 	var $libfpath = '../librerias/';
 	var $paginador = '';
-	function Admin(){
+	function __construct(){
 		$this->confpath = CONF_PATH;
 		$this->libfpath = LIB_PATH;
 		$this->conectarBD();
-		//$_SESSION['site'] = true;
 	}
 	
 	function conectarBD(){

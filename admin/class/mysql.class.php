@@ -24,21 +24,14 @@ class Conexion{
 		#verificar que se asigne un usuario.
 		if($usr == '') { $this->error = 'Debe indicar un usuario de conexión'; return false; }
 		#realizo la conexión, que PHP no despliegue error, se imprimirá en caso de que suceda.
-		if(!$this->id = @mysql_connect($host,$usr,$psw)){
-			$this->error=mysql_errno().": ".mysql_error();
+		if(!$this->id = mysqli_connect($host,$usr,$psw,$dbname)){
+			$this->error=mysqli_connect_errno().": ".mysqli_connect_error();
 			#si está activado el debug, mostrar error
 			if($this->debug) echo $this->error;
             return false;
 		}else{
-			if(!mysql_select_db($dbname,$this->id)){
-				$this->error=mysql_errno().": ".mysql_error(); 
-				#si está activado el debug, mostrar error
-				if($this->debug) echo $this->error;
-				return false;
-			}else{
-				#si todo es correcto regreso el identificador de la conexión
-				return $this->id;
-			}
+			#si todo es correcto regreso el identificador de la conexión
+			return $this->id;
 		}
 	}
 	function query($sql='',$debug=FALSE){
@@ -49,10 +42,10 @@ class Conexion{
 				$this->error = 'No especificó el sql a ejecutar';
 				return false;
 			}else{
-				if(!$this->resultado = mysql_query($sql)){
+				if(!$this->resultado = mysqli_query($this->id,$sql)){
 					#echo mysql_real_escape_string($sql);
 					echo $sql;
-					$this->error=mysql_errno().": ".mysql_error(); 
+					$this->error=mysqli_errno($this->id).": ".mysqli_error($this->id); 
 					#si está activado el debug, mostrar error
 					if($this->debug) die($this->error);
 					return false;
@@ -63,10 +56,10 @@ class Conexion{
 		}
 	}
 	function num_rows($resultado){
-		return mysql_num_rows($resultado);
+		return mysqli_num_rows($resultado);
 	}
-	function num_fields($resultado){
-		return mysql_num_fields($resultado);
+	function num_fields(){
+		return mysqli_field_count($this->id);
 	}
 	function fetch($resultado,$opcion = 'ASSOC'){
 		if(empty($resultado)) die("El identificador no tiene datos.");
@@ -74,23 +67,24 @@ class Conexion{
 		$this->numcols 	= $this->num_fields($resultado);
 		$arr = array();
 		$arrKeys = array();
+		$fetch_fields = mysqli_fetch_fields($resultado);
 		for($i=0;$i<$this->numcols;$i++){
-			$arrKeys[] = mysql_field_name($resultado,$i);
+			$arrKeys[] = $fetch_fields[$i];
 		}
 		switch($opcion){
 			case 'NUM':#guarda en array num
-				while($result = mysql_fetch_array($resultado,MYSQL_NUM)){
+				while($result = mysqli_fetch_array($resultado,MYSQL_NUM)){
 					$arr[] = $result;
 				}
 				break;
 			case 'ARRAY':#guarda tanto key como num
-				while($result = mysql_fetch_array($resultado)){
+				while($result = mysqli_fetch_array($resultado)){
 					$arr[] = $result;
 				}
 				break;
 			case 'ASSOC':#guarda en assoc
 			default:
-				while($result = mysql_fetch_assoc($resultado)){
+				while($result = mysqli_fetch_assoc($resultado)){
 					$arr[] = $result;
 				}
 				break;
@@ -130,10 +124,10 @@ class Conexion{
 		return $this->query("DELETE FROM $tabla WHERE $condicion");
 	}
 	function free(){
-		return mysql_free_result($this->resultado);
+		return mysqli_free_result($this->resultado);
 	}
 	function close(){
-		return mysql_close($this->id);
+		return mysqli_close($this->id);
 	}
 }
 ?>

@@ -115,7 +115,7 @@ CREATE TABLE cms_permisos_pagina (
   fid_accion INT(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO cms_permisos VALUES (1,1);
+INSERT INTO cms_permisos_pagina VALUES (1,1);
 
 DROP TABLE IF EXISTS cms_seccion;
 CREATE TABLE cms_seccion(
@@ -137,7 +137,6 @@ INSERT INTO cms_seccion VALUES
 (7,'Calidad',1,'calidad','imgCalidad','ADMIN,CALIDAD');
 
 DROP TABLE IF EXISTS cms_banners;
-
 CREATE TABLE cms_banners(
   kid_banner INT(11) NOT NULL AUTO_INCREMENT,
   img VARCHAR(255) NOT NULL DEFAULT '',
@@ -152,7 +151,6 @@ CREATE TABLE cms_banners(
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS cms_grupo_banners;
-
 CREATE TABLE cms_grupo_banners (
   kid_grupo int(11) NOT NULL auto_increment,
   identificador varchar(255) NOT NULL default '',
@@ -166,7 +164,6 @@ INSERT INTO cms_grupo_banners VALUES
 (1,'banners-inicio','Banners de la p&aacute;gina de inicio','banner',1);
 
 DROP TABLE IF EXISTS cms_grupo_links;
-
 CREATE TABLE cms_grupo_links (
   kid_grupo int(11) NOT NULL auto_increment,
   identificador varchar(255) NOT NULL default '',
@@ -180,7 +177,6 @@ INSERT INTO cms_grupo_links VALUES
 (1,'temas-de-interes','Temas de inter&eacute;s','listadoBotones',1);
 
 DROP TABLE IF EXISTS cms_lista_links;
-
 CREATE TABLE cms_lista_links (
   kid_link int(11) NOT NULL auto_increment,
   titulo text NOT NULL,
