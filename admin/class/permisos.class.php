@@ -1,5 +1,5 @@
 <?php
-#define("VIEWABLE",true);
+#define("INCLUDE_ANY",true);
 function conectDBp(){
 	include_once("cnf/configuracion.cnf.php");
 	$myCon = new Conexion();

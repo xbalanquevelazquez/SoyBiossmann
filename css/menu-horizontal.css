@@ -6,7 +6,7 @@ ul.menu li{
    z-index: 800;
 }
 ul.menu li:hover{
-  background:#f1f0f0 url('../img/grad-btn-gris-hover.png') repeat-x center top;color: #3b3f4b;
+  background:#f2f0f0 url('../img/grad-btn-gris-hover.png ') repeat-x center top;color: #3b3f4b;
 }
 ul.menu ul li{width:100%}
 ul.menu ul{
@@ -82,12 +82,13 @@ body {
     background-color: transparent;
     font-weight: bold;
 }
-.menu_principal li a {
+.menu_principal #menunav li a {
     color: #000;
     line-height: 2.4em;
     padding: 0.3em 0.5em 0.3em;
-    text-align: center;
+    text-align: left;
     text-decoration: none;
+    font-family:"ExoDos";
 }
 
 .menu_principal li a:hover{
@@ -100,7 +101,7 @@ body {
     width: 10em;
 }
 .menu_principal li ul{
-  background:#f1f0f0 /*url('../img/back-header.gif') repeat-x center bottom*/;
+  background:#f2f0f0 /*url('../img/back-header.gif') repeat-x center bottom*/;
 	width: 100%;/*12.5em*/
 }
 .menu_principal li ul li{
@@ -122,6 +123,7 @@ body {
 }
 .menu_principal li ul a:hover{
     /*text-decoration: underline;*/
+    text-align: left;
     background: #3CC;
     color:#FFF;
 }

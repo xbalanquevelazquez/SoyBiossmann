@@ -2,7 +2,7 @@
 /*if(logedin()){
 	$nombre = isset($_SESSION[SESSION_DATA_SET]['nombre'])?$_SESSION[SESSION_DATA_SET]['nombre']:'';
 	$apellidos = isset($_SESSION[SESSION_DATA_SET]['apellidos'])?$_SESSION[SESSION_DATA_SET]['apellidos']:'';
-	$userpicture = isset($_SESSION[SESSION_DATA_SET]['foto'])?$_SESSION[SESSION_DATA_SET]['foto']:WWW_HOST.'/'.HOME_DIR.'/img/foto-perfil.png';
+	$userpicture = isset($_SESSION[SESSION_DATA_SET]['foto'])?$_SESSION[SESSION_DATA_SET]['foto']:WEB_PATH.'/'.HOME_DIR.'/img/foto-perfil.png';
 ?>
 <div id="perfilContexto" class="transicionLenta">
 <?php  ?>

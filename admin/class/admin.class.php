@@ -60,7 +60,7 @@ class Admin{
 			$permisos = $this->conexion->fetch($resPermisos);
 
 			#print_r(obtenerPermisos($comp[0]['bit']));
-			$seccionesAcceso = obtenerPermisos($data[0]['bit']);
+			$seccionesAcceso = obtenerPermisos($data['bit']);
 			$arrSecc['bits'] = $seccionesAcceso;
 			$firstSecc = end($seccionesAcceso);
 			$query = "SELECT acronimo FROM ".PREFIJO."seccion WHERE kid_seccion = $firstSecc";

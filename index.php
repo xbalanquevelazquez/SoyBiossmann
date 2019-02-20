@@ -24,10 +24,5 @@ include_once(APP_PATH.'plantilla.'.$plantilla_filepath.'.php');
 include_once(APP_PATH."footer.inc.php");
 ?>
 	</section><!--//#mainContainer-->
-	<script type="text/javascript">
-	$(document).ready(function(){
-		console.log('SITE ready!');
-	});
-	</script>
 </body>
 </html>

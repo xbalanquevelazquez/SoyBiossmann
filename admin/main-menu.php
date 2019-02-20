@@ -1,87 +1,36 @@
-<?php 
-include(LIB_PATH."sitemap.inc.php");
-if(isset($site[$page])){
-	$pageName = $site[$page]['name'];
-	$currentPage = $site[$page]['name'];
-}
-if($page2!='' && isset($site[$page][$page2])){
-	$secondPageName = $site[$page][$page2]['name'];
-	$currentPage = $site[$page][$page2]['name'];
-}
-if($page3!='' && isset($site[$page][$page2][$page3])){
-	$thirdPageName = $site[$page][$page2][$page3]['name'];
-	$currentPage = $site[$page][$page2][$page3]['name'];
-}
-#echo "$page    |   $page2";
+<?php
+$permisos = $myAdmin->obtenerUsr('permisos');
+$secciones = $myAdmin->obtenerUsr('secciones');
 ?>
-<div id="mainMenu">
-	<!--div class="ini">
-		<div class="end"-->
-			<div class="menuinner">
-				<table class="layout" align="left" cellspacing="0">				
-					<tr>
-						<?php
-						if($myAdmin->comprobarSesion()){ 
-							
-						$secHabilitadas = implode(",",$myAdmin->permisosUsuario());
-						$qSecc = $myAdmin->conexion->fetch($myAdmin->conexion->query("SELECT * FROM ".PREFIJO."seccion WHERE visible=1 AND kid_seccion in ($secHabilitadas)"));
-						if(count($qSecc) <= 1){
-							$label = "";
-						}else{
-							$label = "rrect";
-						}
-						$counter=1;
-						foreach($qSecc as $secc){
-							#echo validarPermiso(16,$myAdmin->permisosUsuario())?'si':'no';
-							if($counter==1){}else if($counter == count($qSecc)){$label = "lrect";}else{$label = "drect";}
-						?>
-						<td class="<?php echo $label; ?>">
-						<a href="<?php echo $_SERVER['PHP_SELF']."?{$secc['acronimo']}"; ?>" class="btn <?php echo $page==$secc['acronimo']?"naranja":"verde"; ?>" title="<?php echo $secc['nombre'] ?>">
-							<div class="inner">
-								<div class="crnl">
-								<div class="crnr">
-									<div class="img <?php echo $secc['image'] ?>"></div>
-									<div class="fixed"></div>
-								</div>
-								</div>
-							</div>
-							<div class="fixed"></div>
-							</a>
-						</td>
-						<?php 
-							$counter++;
-						} ?>
-				<?php }#comprobar session ?>
-					</tr>
-				</table>
-				
-				
-				<div class="fixed"></div>
-			</div>
-		<!--/div>
-	</div-->
-	<div class="fixed"></div>
-</div>
-<!-- Breadcrumb -->
-<?php if($myAdmin->comprobarSesion()){ ?>
-<div id="breadcrumb">
-<a href="<?php echo $_SERVER['PHP_SELF']."?".$page ?><?php echo isset($_GET['parentpaginadespliegue'])?'&paginadespliegue='.$_GET['parentpaginadespliegue']:''?>"><?php echo $pageName ?></a> 
-<?php if(isset($thirdPageName)){
-		echo ' &rsaquo; <a href="'.$_SERVER['PHP_SELF'].'?'.$page.'&edit&id='.$_GET['fid'].'">'.$secondPageName.'</a>';
-		echo ' &rsaquo; '.$thirdPageName;
-	}else{
-		echo isset($secondPageName)?' &rsaquo; '.$secondPageName:'';
-	}
-?>
+		<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+		  <a class="navbar-brand" href="<?php echo APP_URL; ?>">CRS</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
 
-</div>
-<div id="ubicator">
-	<div class="fleft"><?php echo $currentPage; ?></div>
-	<?php if(isset($thirdPageName)){?>
-	<div class="fright"><a href="<?php echo $_SERVER['PHP_SELF']."?".$page."&edit&id=".$_GET['fid'] ?>">Regresar</a></div>
-	<?php }else if(isset($secondPageName)){?>
-	<div class="fright"><a href="<?php echo $_SERVER['PHP_SELF']."?".$page ?><?php echo isset($_GET['parentpaginadespliegue'])?'&paginadespliegue='.$_GET['parentpaginadespliegue']:''?>">Regresar</a></div>
-	<?php } ?>
-	<div class="fixed"></div>
-</div>
-<?php } ?>
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      	<?php
+				for($s=0; $s < count($secciones); $s++){
+					$activo = '';
+					$acron = $secciones[$s]['acronimo'];
+					$seccName = utf8_encode($secciones[$s]['nombre']);
+					if($acron != 'ADMIN'){//Saltamos la opción de ADMIN porque es un permiso global del sistema
+						// edi($data1 . ' vs ' . $acron);
+						if($data1 == $acron){
+							$activo = ' active';
+							$tituloDePagina = $seccName;
+						}
+						if(in_array($acron,$permisos)){
+							echo '<li class="nav-item '.$activo.'"><a class="nav-link" href="'.APP_URL.$acron.'">'.$seccName.'</a></li>';
+						}
+					}
+				}
+				?>
+		    </ul>
+		    <button class="btn btn-dark text-white sm"><?php echo $myAdmin->obtenerUsr('nombre') ?></button>
+		    <button type="button" class="btn btn-danger btnSalir">Salir</button>
+
+		  </div>
+		</nav>
+<div class="fixed espaciar"></div>

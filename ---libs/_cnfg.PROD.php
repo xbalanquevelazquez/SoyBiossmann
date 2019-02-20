@@ -8,9 +8,9 @@ if(!defined('VIEWABLE')) {
 	die('Inaccesible');
 }
 
-define('WWW_HOST',		'https://soy.biossmann.com');//192.168.62.168
+define('WEB_PATH',		'https://soy.biossmann.com');//192.168.62.168
 define('HOME_DIR',		'');
-define('APP_URL',		WWW_HOST.'/'.HOME_DIR.'/');
+define('APP_URL',		WEB_PATH.'/'.HOME_DIR.'/');
 define('COOKIE_DEF',	'soyBiossmann');
 define('COOKIE_DOMAIN',	'soy.biossmann.com');
 define('HTDOCS_HOST',	'/usr/local/apache/htdocs_ssl');
@@ -32,7 +32,7 @@ ini_set('session.use_strict_mode','On');
 ini_set('session.cookie_httponly','On');
 ini_set('session.gc_maxlifetime',60*60);
 ini_set('session.use_trans_sid','Off');
-ini_set('session.referer_check',WWW_HOST);
+ini_set('session.referer_check',WEB_PATH);
 ini_set('session.cache_limiter','nocache');
 ini_set('session.hash_function','sha256');
 
@@ -40,7 +40,7 @@ if (!isset($_SESSION)) session_start();
 
 header('Content-Type: text/html; charset=UTF-8');
 
-$referer = WWW_HOST.'/'.HOME_DIR;
+$referer = WEB_PATH.'/'.HOME_DIR;
 
 include_once('sesiones.php');
 #include_once('conexion.php');

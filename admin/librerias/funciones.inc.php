@@ -363,5 +363,25 @@ function comprobarCodigoDuplicado($codigo,$arrCodigos){
     }
     return $codigo;
 }
+function makeTemplate($plantilla, $datos, $dir = '', $rutaEspecial = ''){
+        $html = '';
+        if ($dir != '') $dir = $dir . '/';
+        if ($rutaEspecial != ''){
+            $file = $rutaEspecial . $plantilla;
+        } else {
+            $file = TEMPLATE_PATH . $dir . $plantilla;
+        }
+        if (file_exists($file)){
+            $itModel = file_get_contents($file);
+            foreach ($datos as $key => $value) {
+                $re_str = '{$' . $key . '}';
+                $re_value = $value;
+                if (is_array($re_value)) $re_value = '';
+                $itModel = str_replace($re_str, $re_value, $itModel);
+            }
+            $html .= $itModel;
+        } else $html .= 'No existe el archivo: ' . $file;
 
+    return $html;
+}
 ?>

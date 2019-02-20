@@ -1,8 +1,8 @@
 <?php
 $index = TRUE;
 
-$siteURL = WWW_HOST;
-if(HOME_DIR != '') $siteURL .= '/'.HOME_DIR;
+$siteURL = WEB_PATH;
+if(HOME_DIR != '') $siteURL .= HOME_DIR;
 
 if(!is_index()) { $page = $data1; $index = FALSE; }
 
@@ -132,7 +132,7 @@ class Page{
                             <?php if($product['link'] != '') {?>
                             <a href="<?php echo $product['link']; ?>">
                             <?php } ?>
-                            <img width="145" style="background:#f5f5f5" alt="<?php echo $product['titulo'] ?>" title="<?php echo $product['titulo'] ?>" src="<?php echo WEB_PATH."/webimgs/destacadas/".$product['img'] ?>" />
+                            <img width="145" style="background:#f5f5f5" alt="<?php echo $product['titulo'] ?>" title="<?php echo $product['titulo'] ?>" src="<?php echo WEB_PATH."webimgs/destacadas/".$product['img'] ?>" />
                             <?php if($product['link'] != '') {?>
                             </a>
                             <?php } ?>

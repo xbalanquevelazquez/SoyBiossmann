@@ -92,9 +92,6 @@ function activarResultados(forzar){
 			contador++;
 		}
 	});
-	if($("#empresa").val()!='%'){
-		contador++;
-	}
 	if(forzar==true) contador++;
 	if(contador>0) {
 		$(".resultsBox").css({height:"342px",background:"#FFF url(img/loader.gif) no-repeat center center"});
@@ -189,7 +186,8 @@ function detenerCambioBanners(){
 	window.clearInterval(bannerTimer);
 }
 function siguienteBanner(){
-	$("#bann"+bannerActual).css({left:"-730px",zIndex:numeroBanners});
+	var movimientoALaIzq = $('#contenedorBanners').width();
+	$("#bann"+bannerActual).css({left:'-'+movimientoALaIzq+'px',zIndex:numeroBanners});
 	bannerPasado=bannerActual;
 	setTimeout(acomodarBanners, 400);
 	if(bannerActual == numeroBanners){
@@ -241,10 +239,10 @@ function generarMatrizDeBanners(numero){
 	
 	for(i=0;i<numeroBanners;i++){
 		$("#bann"+arrBanners[i]).css({zIndex:(numeroBanners-i)});
-		$("#bannLink"+arrBanners[i]+" a").css({backgroundColor:"rgba(0,0,0,0.4)"});
+		$("#bannLink"+arrBanners[i]+" a").css({backgroundColor:"rgba(198,214,68,0.4)"});
 	}
 
-	$("#bannLink"+arrBanners[0]+" a").css({backgroundColor:"rgba(0,0,0,0.8)"});
+	$("#bannLink"+arrBanners[0]+" a").css({backgroundColor:"rgba(198,214,68,0.8)"});
 
 	return arrBanners;
 }

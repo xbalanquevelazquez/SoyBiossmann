@@ -1,7 +1,9 @@
+body{background: #FFF;}
 header{background:transparent url('../img/back-header.gif') repeat-x center bottom;border-bottom:2px solid #3b3f4b;}
 
-#mainContainer{min-width: 1366px;}
-
+#mainContainer{min-width: 1366px;background: #fcfcfc;}
+.transicion   {transition: all 0.4s ease 0s;}
+.transicionLenta{transition: all 1s ease 0.5s;}
 
 .biossHeader,
 #main,
@@ -71,6 +73,9 @@ header{background:transparent url('../img/back-header.gif') repeat-x center bott
 .bg-verdeaguaclaro{background: #e4faf0;}
 .texto-verdeaguaclaro{color: #e4faf0;}
 
+.bg-gris-biossmann{background: #424243;}
+.texto-gris-biossmann{color: #424243;}
+
 .hidden{display:none;}
 
 #directorio{padding:.2rem .7rem  .5rem;vertical-align: top;}
@@ -101,13 +106,15 @@ header{background:transparent url('../img/back-header.gif') repeat-x center bott
 .encuestaHome textarea{width: 100%;margin-bottom:.5rem;}
 .encuestaHome button{font-size:.85rem;}
 
-.material.btn{border-radius: .25rem;}
+.btn{border-radius: .25rem;}
 
 .mainSections{font-family: "ExoDos";}
 .strong{font-weight: bold;}
+
+.sticky-top{top:-2px;}
 /*************BANNER*************/
 /********************************/
-#contenedorBanners{height: 313px;
+#contenedorBanners{height: 430px;
     overflow: hidden;
     position: relative;
     /*width: 729px;*/
@@ -140,30 +147,30 @@ header{background:transparent url('../img/back-header.gif') repeat-x center bott
 .ancho-1,.columnaGutter{width: 1%;}
 .ancho-18,.columnaG{width: 18%;}
 .ancho-73,.columnaH{width: 73%;}
+.ancho-66,.columnaI{width: 66%;}
 
 
 
 
 /*BANNERS MAIN SECTION*/
-.mainSections .material a {
-    font-size: 1.5rem;
+.mainSections a {
+    font-size: 1.2rem;
     color: #3b3f4b;
-    display: block;
-    vertical-align: top;
+    
 }
-.mainSections .material a div{display: block;height: 94px;float:left;}
-.mainSections .material a div:first-child{
-	padding:.8rem;
+.mainSections a div{display: block;height: 94px;float:left;}
+.mainSections a div:first-child{
+	padding:1.5rem .8rem;
 	width: 80%;
 }
-.mainSections .material a div.unaLinea{
-    padding:1.9rem .8rem .8rem;
+.mainSections a div.unaLinea{
+    padding:2.2rem .8rem .8rem;
     width: 80%;
 }
-.mainSections .material a div:last-child{
+.mainSections a div:last-child{
 	padding:1.5rem .3rem;
 	width: 20%;
-	background: #15aabf;
+	background-color: #15aabf;
 	color:#FFF;
 	border-left:6px solid #119db1;
 	font-size:2.2rem;
@@ -171,19 +178,26 @@ header{background:transparent url('../img/back-header.gif') repeat-x center bott
 }
 
 .toolsSection a{color:#FFF;display: block;}
-.toolsSection .material .img{padding:20px 0 12px;text-align: center;}
-.toolsSection .material .img img{}
-.toolsSection .material .texto{padding:5px 12px;font-size:.9rem;}
+.toolsSection .img{padding:20px 0 12px;text-align: center;}
+.toolsSection .img img{}
+.toolsSection .texto{padding:5px 12px;font-size:.9rem;}
 
 .ico-restringido-float{position:absolute;top:4px;right:4px;padding:3px;border:1px solid #FFF;border-radius: 2px;}
 
 .shadowed{text-shadow: 2px 2px 3px rgba(0,0,0,1)}
 .mesaayudaSection{}
-.mesaayudaSection .barraTitulo{font-size:1.6rem;padding:.55rem .7rem;}
-.mesaayudaSection .barraTitulo i{margin:0 1.2rem 0 .6rem;background-color: #282c36;border-radius:24px;padding: 10px;font-size:1.6rem;}
+.mesaayudaSection .barraTitulo{font-size:1.4rem;padding:0;}
+.mesaayudaSection .barraTitulo i{margin:0 10px 0 0;background-color: #282c36;border-radius:0 30px 30px 0;padding:21px 16px 21px 10px;font-size:1.2rem;}
 .mesaayudaSection .optionsButtons li a{background-image: url('../img/grad-btn-azulgris.png');background-color: #3c4249;color:#FFF;background-position: center top;}
 .mesaayudaSection .optionsButtons li a:hover{background-image: url('../img/grad-btn-azulgris-hover.png');background-color: #6b7782;}
+.mesaayudaSection:hover .barraTitulo{background:#224b5e;}
 
+.galeriaContainer{height: 20rem;}
+
+.mainSections .icon{background:#119db1 url("../img/ico-biossmann.png") no-repeat center center;}
+.mainSections .icon-biossmann{background-image: url("../img/ico-biossmann.png");}
+.mainSections .icon-calidad{background-image: url("../img/ico-calidad.png");}
+.mainSections .icon-productos{background-image: url("../img/ico-productos.png");}
 /*
 Desktop First
 max-width

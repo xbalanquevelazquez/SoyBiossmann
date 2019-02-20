@@ -1,23 +1,11 @@
-<?php
-include("plantilla.inc.php");
-$msg = '';
-?>
-<div class="loginBackL">
-	<div class="loginBackR">
-		<form method="POST">
-			<table class="form">
-				<tr>
-					<td colspan="6"><?php echo $msg; ?></td>
-				</tr>
-				<tr>
-					<td><label for="cmp[usrlogin]">Usuario</label></td>
-					<td><div class="loginInput"><input type="text" name="cmp[usrlogin]" maxlength="15" /></div></td>
-					<td><label for="cmp[pswlogin]">Contrase&ntilde;a</label></td>
-					<td><div class="loginInput"><input type="password" name="cmp[pswlogin]" maxlength="15" /></div></td>
-					<td colspan="2"><input type="image" src="img/btn/login.gif" value="Ingresar" /></td>
-				</tr>
-			</table>
-		</form>
+<form method="POST">
+	<div class="form-group">
+	    <label for="cmp[usrlogin]">Usuario</label>
+	    <input type="text" class="form-control" id="cmp[usrlogin]" name="cmp[usrlogin]" placeholder="Escriba su usuario" maxlength="15">
 	</div>
-</div>
-<?php include("plantillaFoot.inc.php"); ?>
+	<div class="form-group">
+	    <label for="cmp[pswlogin]">Contrase&ntilde;a</label>
+	    <input type="password" class="form-control" id="cmp[pswlogin]" name="cmp[pswlogin]" placeholder="Escriba su contraseña" maxlength="15">
+	</div>
+	<button type="submit" class="btn btn-primary">Ingresar</button>
+</form>

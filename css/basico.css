@@ -14,6 +14,17 @@ a,a:hover{text-decoration: none !important;}
 .dobleespacio{margin-bottom:1.75em;clear: both;height: 0;line-height: 0;}
 #mainContainer{width: 100%;max-width: 1366px;min-width: 320px;margin:0 auto;padding:0;}
 #main{width: 100%;}
+.clickeable{cursor:pointer;}
+.efectoRealce{
+	transition: all 0.5s;
+	border-radius: 0px;
+	box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0);
+	position:relative;
+	top:0;
+	left:0;
+	overflow: hidden;
+}
+
 
 .transicion   {transition: all 0.4s ease 0s;}
 .transicionLenta{transition: all 1s ease 0.5s;}

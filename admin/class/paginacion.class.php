@@ -7,8 +7,22 @@ class Paginacion
 	var $numRegistros = 0;
 	var $pagActual = 0;
 	var $conexion = '';
+	var $data1 = '';
+	var $data2 = '';
+	var $data3 = '';
+	var $data4 = '';
+
+
 	function init($conexion){
 		$this->conexion = $conexion;
+		$this->data1 = NULL;
+		if(isset($_GET['data1']) && $_GET['data1'] != ''){ $this->data1 = $_GET['data1']; }else{ $this->data1 = 'LOGIN'; }
+		$this->data2 = NULL;
+		if(isset($_GET['data2']) && $_GET['data2'] != ''){ $this->data2 = $_GET['data2']; }
+		$this->data3 = NULL;
+		if(isset($_GET['data3']) && $_GET['data3'] != ''){ $this->data3 = $_GET['data3']; }
+		$this->data4 = NULL;
+		if(isset($_GET['data4']) && $_GET['data4'] != ''){ $this->data4 = $_GET['data4']; }
 	}
 
 	function paginar($queryPagTotal = '',$regXPag,$paginasAMostrar,$pagVar='')//SELECT COUNT(id) as total FROM mensaje-"SELECT * FROM mensaje"-REGXPAG SHOWPAG 
@@ -16,7 +30,17 @@ class Paginacion
 	$resultadoHTML = '';
 	//PAGINACION
 	$totalRegs = $this->conexion->query($queryPagTotal);
-	if (isset($_REQUEST['paginadespliegue'])) $pagActual = $_REQUEST['paginadespliegue']; else $pagActual = 1;
+	if(isset($this->data2) && $this->data2 == 'pag'){
+		$pagActual = $this->data3;
+	}else if(isset($this->data3) && $this->data3 == 'pag'){
+		$pagActual = $this->data4;
+	}else if(isset($this->data4) && $this->data4 == 'pag'){
+		$pagActual = $this->data5;
+	}else{
+		$pagActual = 1;
+	}
+	
+
 	$totalRegs = $this->conexion->fetch($this->conexion->resultado);
 	
 	$numRegistros = $totalRegs[0]['total'];
@@ -41,7 +65,7 @@ class Paginacion
 		for($i=$pagInicial; $i<$pagInicial+$paginasAMostrar; $i++){
 			if ($i <= $numPags){
 				if($i != $pagActual){//no es la página actual
-					$vinculosHTML .= '<a href="'.$_SERVER['PHP_SELF'].'?'.$pagVar.'&paginadespliegue='.$i.'">'.$i.'</a>  &nbsp;&nbsp;';
+					$vinculosHTML .= '<a href="'.APP_URL.$pagVar.'/pag/'.$i.'">'.$i.'</a>  &nbsp;&nbsp;';
 				} else {
 					$vinculosHTML .= '<span>'.$i.'</span>  &nbsp;&nbsp;';
 				}
@@ -56,20 +80,20 @@ class Paginacion
 					<tr class="paginacion">
 						<td width="15%">';
 					 if($pagActual == 1) { 
-						$resultadoHTML .= '<img src="img/pager/page-off-start.gif" border="0"> &nbsp; <img src="img/pager/page-off-prev.gif" border="0">';
+						$resultadoHTML .= '<span class="btn btn-light" disabled><i class="fa fa-angle-double-left"></i></span> &nbsp; <span class="btn btn-light" disabled><i class="fa fa-angle-left btnOn"></i></span>';
 					 } else {
 					 	$prePag = $pagActual-1;
-						$resultadoHTML .= '<a href="'.$_SERVER['PHP_SELF'].'?'.$pagVar.'&paginadespliegue=1'.'"><img src="img/pager/page-start.gif" border="0"></a> &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?'.$pagVar.'&paginadespliegue='.$prePag.'>"><img src="img/pager/page-prev.gif" border="0"></a>';
+						$resultadoHTML .= '<a href="'.APP_URL.$pagVar.'/pag/1" class="btn btn-primary"><i class="fa fa-angle-double-left"></i></a> &nbsp; <a href="'.APP_URL.$pagVar.'/pag/'.$prePag.'" class="btn btn-primary"><i class="fa fa-angle-left"></i></a>';
 					 }
 						$resultadoHTML .= '</td>
 						<td width="70%" align="center">'.$vinculosHTML.'</td>
 						<td width="15%">';
 					
 					 if($pagActual == $numPags) {
-						$resultadoHTML .= '<img src="img/pager/page-off-next.gif" border="0"> &nbsp; <img src="img/pager/page-off-end.gif" border="0">';
+						$resultadoHTML .= '<span class="btn btn-light" disabled><i class="fa fa-angle-right"></i></span> &nbsp; <span class="btn btn-light" disabled><i class="fa fa-angle-double-right"></i></span>';
 					 } else {
 					 	$sigPag = $pagActual+1;
-						$resultadoHTML .= '<a href="'.$_SERVER['PHP_SELF'].'?'.$pagVar.'&paginadespliegue='.$sigPag.'"><img src="img/pager/page-next.gif" border="0"></a> &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?'.$pagVar.'&paginadespliegue='.$numPags.'"><img src="img/pager/page-end.gif" border="0"></a>';
+						$resultadoHTML .= '<a href="'.APP_URL.$pagVar.'/pag/'.$sigPag.'" class="btn btn-primary"><i class="fa fa-angle-right btnOn"></i></a> &nbsp; <a href="'.APP_URL.$pagVar.'/pag/'.$numPags.'" class="btn btn-primary"><i class="fa fa-angle-double-right btnOn"></a>';
 					 }
 						$resultadoHTML .= '</td>
 					</tr>

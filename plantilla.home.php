@@ -5,16 +5,24 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 			<div class="renglonGutter"></div>
 
 			<div class="row no-gutters">
-				<div class="columnaD gutter" id="primeraColumna">
+				<div class="columnaI gutter" id="primeraColumna">
 
-					<div class="material bordeGris bg-azulgris texto-blanco" id="directorio">
+					<div class="bordeGris bg-azulgris texto-blanco" id="directorio">
 						<label for="nombre">Directorio biossmann:</label>
 						<br />
 					    <input type="text" name="nombre" id="nombre" placeholder="Nombre, apellido, correo o celular:" />
-					    <button class="btn ixSubmit search texto-blanco bg-verdeagua"><i class="fa fa-search"></i></button>
-					    <button class="btn ixSubmit clear bg-grismedio texto-grisclaro"><i class="fa fa-times"></i></button>
+					    <button class="btn ixSubmit search texto-blanco bg-verdeagua efectoRealce"><i class="fa fa-search"></i></button>
+					    <button class="btn ixSubmit clear bg-grismedio texto-grisclaro efectoRealce"><i class="fa fa-times"></i></button>
 					</div>
-				          					
+					<!--DIRECTORIO-->
+				    <div class="resultsBox transicionLenta columna5F" style="height: 0px;">
+			          	<div class="container transicionLenta"></div>
+			        </div>
+			        <!--DIRECTORIO-->
+			        <div class="detailBox transicionLenta columnaC" style="right: -100%;">
+			          	<div class="container transicionLenta"></div>
+			        </div>
+
 					<div class="renglonGutter"></div>
 
 					<div class="row no-gutters">
@@ -44,7 +52,7 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
           <div class="banner transicion 3 naranja" id="bann3">
             <a href="/talento-humano"><!--banner link-->
               <div class="img">
-                <img src="<?php echo APP_URL; ?>img/banner/bann-valor-innovacion.png" alt="Valores Biossmann">
+                <img src="<?php echo APP_URL; ?>img/banner/bann-valor-innovacion_v2.png" alt="Valores Biossmann">
               </div>
               <div class="texto">
                 Banner de prueba                <br>
@@ -55,7 +63,7 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
           <div class="banner transicion 2 verde" id="bann2">
             <a href="#"><!--banner link-->
               <div class="img">
-                <img src="<?php echo APP_URL; ?>img/banner/bann-valor-pasion.png" alt="Valores Biossmann">
+                <img src="<?php echo APP_URL; ?>img/banner/bann-valor-pasion_v2.png" alt="Valores Biossmann">
               </div>
               <div class="texto">
                 Felicidades a todos los que cumplen años!                <br>
@@ -66,7 +74,7 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
           <div class="banner transicion 1 morado" id="bann1">
             <a href="/corporativo"><!--banner link-->
               <div class="img">
-                <img src="<?php echo APP_URL; ?>img/banner/bann-dias-festivos.png" alt="Calendario de días festivos">
+                <img src="<?php echo APP_URL; ?>img/banner/bann-dias-festivos_v2.png" alt="Calendario de días festivos">
               </div>
               <div class="texto">
                 Nuestro trabajo tiene sentido                <br>
@@ -128,20 +136,20 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 							
 							<div class="row no-gutters">
 								<div class="col gutter">
-									<div class="material bordeGris bg-azulgris"><a href="">
+									<div class="bordeGris bg-azulgris efectoRealce"><a href="">
 										<div class="img"><img src="img/img-prosperidad.png" alt="prosperidad"></div>
 										<div class="texto">Tableros de control</div>
 									</a></div>
 								</div>
 								<div class="col gutter">
-									<div class="material bordeGris bg-azulgris"><a href="">
+									<div class="bordeGris bg-azulgris efectoRealce"><a href="">
 										<div class="ico-restringido-float"><i class="fa fa-key"></i></div>
 										<div class="img"><img src="img/img-innovacion.png" alt="innovacion"></div>
 										<div class="texto">Apps biossmann</div>
 									</a></div>
 								</div>
 								<div class="col gutter">
-									<div class="material bordeGris bg-azulgris"><a href="">
+									<div class="bordeGris bg-azulgris efectoRealce"><a href="">
 										<div class="img"><img src="img/img-pasion.png" alt="pasion"></div>
 										<div class="texto">Preguntas frecuentes</div>
 									</a></div>
@@ -152,13 +160,13 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 
 							<div class="row no-gutters">
 								<div class="col gutter">
-									<div class="material bordeGris bg-blanco"><a href="" class="acenter"><img src="img/img-transformacion.png" alt=""></a></div>
+									<div class="bordeGris bg-gris-biossmann efectoRealce"><a href="" class="acenter"><img src="img/img-transformacion.png" alt=""></a></div>
 								</div>
 								<div class="col gutter">
-									<div class="material bordeGris bg-blanco"><a href="" class="acenter"><img src="img/img-universidad-biossmann.png" alt=""></a></div>
+									<div class="bordeGris bg-blanco efectoRealce"><a href="" class="acenter"><img src="img/img-universidad-biossmann.png" alt=""></a></div>
 								</div>
 								<div class="col gutter">
-									<div class="material bordeGris bg-blanco"><a href="" class="acenter"><img src="img/img-portal-biossmann.png" alt=""></a></div>
+									<div class="bordeGris bg-blanco efectoRealce"><a href="" class="acenter"><img src="img/img-portal-biossmann.png" alt=""></a></div>
 								</div>
 							</div>
 
@@ -169,8 +177,8 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 
 				</div><!--//#primeraColumna-->
 
-				<div class="columnaE gutter" id="segundaColumna">
-					<div class="material bordeGris mesaayudaSection">
+				<div class="columnaF gutter" id="segundaColumna">
+					<div class="bordeGris mesaayudaSection clickeable efectoRealce">
 						<div class="barraTitulo texto-blanco bg-azulgris"><i class="fa fa-headset shadowed"></i> Solicita <span class="strong">Ayuda</span></div>
 						<div class="innerContent bg-gris13 bordeGris hidden">
 							<ul class="optionsButtons">
@@ -185,22 +193,25 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 
 					<div class="row no-gutters">
 						<div class="col gutter mainSections">
-							<div class="material bordeGris">
+							<div class="bordeGris efectoRealce">
 								<a href="">
-									<div class="unaLinea"><span class="strong">Biossmann</span> </div><div class="icon"><i class="fa fa-cogs"></i></div>
+									<div class="unaLinea"><span class="strong">Biossmann</span> </div><div class="icon icon-biossmann"></div>
 								</a>
+								<div class="fixed"></div>
 							</div>
 							<div class="renglonGutter"></div>
-							<div class="material bordeGris">
+							<div class="bordeGris efectoRealce">
 								<a href="">
-									<div><span class="strong">Políticas</span><span class="break"></span>y Procedimientos</div><div class="icon"><i class="fa fa-chess-knight"></i></div>
+									<div><span class="strong">Políticas</span><span class="break"></span>y Procedimientos</div><div class="icon icon-calidad"></div>
 								</a>
+								<div class="fixed"></div>
 							</div>
 							<div class="renglonGutter"></div>
-							<div class="material bordeGris">
+							<div class="bordeGris efectoRealce">
 								<a href="">
-									<div><span class="strong">Productos</span> <span class="break"></span> y Servicios</div><div class="icon"><i class="fa fa-shield-alt"></i></div>
+									<div><span class="strong">Productos</span> <span class="break"></span> y Servicios</div><div class="icon icon-productos"></div>
 								</a>
+								<div class="fixed"></div>
 							</div>
 						</div>
 					</div>
@@ -209,15 +220,14 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 
 					<div class="row no-gutters">
 						<div class="col">
-							<div class="material bordeGris">
-								<a href=""><img src="img/img-galeria-biossmann.png" alt="Galería Biossmann"></a>
+							<div class="bordeGris galeriaContainer efectoRealce">
+								<a href="<?php echo APP_URL; ?>galeria-biossmann"><img src="img/img-galeria-biossmann-vert.png" alt="Galería Biossmann"></a>
 							</div>
 						</div>
 					</div>					
 				</div><!--//#segundaColumna-->
-
 				<div class="columnaF gutter" id="terceraColumna">
-					<div class="material bordeGris bg-gris13">
+					<div class="bordeGris bg-gris13">
 						<div class="barraTitulo texto-blanco  bg-azulgris ico ico-compromiso">Opina</div>
 						<div class="innerContent encuestaHome">
 							<p>¿Te parece útil la información de este sitio web?</p>
@@ -229,19 +239,19 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 							<div>Comentarios</div>
 							<textarea name="opiniontext" id="opiniontext" rows="2"></textarea>
 							<div class="aright">
-								<button id="enviarComentarios" class="material btn bg-verdeagua texto-blanco">Enviar</button>
+								<button id="enviarComentarios" class="btn bg-verdeagua texto-blanco efectoRealce">Enviar</button>
 							</div>
 						</div>
 					</div><!--//.material > Opina-->
 					<div class="renglonGutter"></div>
-					<div class="material bordeGris">
+					<div class="bordeGris">
 						<div class="barraTitulo texto-blanco bg-azulgris ico ico-valentia">Portales de interés</div>
 						<div class="innerContent">
 							<ul class="optionsButtons btnsBlancos">
-								<li><a href="">Federación Mexicana de Anestesiología</a></li>
-								<li><a href="">Colegio de Anestesiología de México</a></li>
-								<li><a href="">Instituto Mexicano del Seguro Social</a></li>
-								<li><a href="">Diario Oficial de la Federación</a></li>
+								<li><a href="" class="efectoRealce">Federación Mexicana de Anestesiología</a></li>
+								<li><a href="" class="efectoRealce">Colegio de Anestesiología de México</a></li>
+								<li><a href="" class="efectoRealce">Instituto Mexicano del Seguro Social</a></li>
+								<li><a href="" class="efectoRealce">Diario Oficial de la Federación</a></li>
 							</ul>
 						</div>
 					</div><!--//.material > Portales de interés-->
