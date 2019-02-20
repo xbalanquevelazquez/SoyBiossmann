@@ -7,21 +7,23 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 			<div class="row no-gutters">
 				<div class="columnaI gutter" id="primeraColumna">
 
-					<div class="bordeGris bg-azulgris texto-blanco" id="directorio">
+					<div class="bg-azulgris texto-blanco" id="directorio">
 						<label for="nombre">Directorio biossmann:</label>
 						<br />
 					    <input type="text" name="nombre" id="nombre" placeholder="Nombre, apellido, correo o celular:" />
 					    <button class="btn ixSubmit search texto-blanco bg-verdeagua efectoRealce"><i class="fa fa-search"></i></button>
 					    <button class="btn ixSubmit clear bg-grismedio texto-grisclaro efectoRealce"><i class="fa fa-times"></i></button>
 					</div>
-					<!--DIRECTORIO-->
-				    <div class="resultsBox transicionLenta columna5F" style="height: 0px;">
-			          	<div class="container transicionLenta"></div>
-			        </div>
-			        <!--DIRECTORIO-->
-			        <div class="detailBox transicionLenta columnaC" style="right: -100%;">
-			          	<div class="container transicionLenta"></div>
-			        </div>
+					<div class="bloqueResultadoDirectorio transicionLenta" style="height: 0px;">
+						<!--DIRECTORIO LISTADO-->
+						<div class="resultsBox transicionLenta columna5F" style="height: 0px;">
+							<div class="container transicionLenta"></div>
+						</div>
+						<!--DIRECTORIO DETALLE-->
+						<div class="detailBox transicionLenta columnaC" style="right: -100%;">
+							<div class="container transicionLenta"></div>
+						</div>
+					</div>
 
 					<div class="renglonGutter"></div>
 

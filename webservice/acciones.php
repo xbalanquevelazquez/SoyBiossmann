@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 header("Content-Type: application/json", true);
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -66,9 +65,9 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 
 				foreach($resultados as $res){
 					$res['inicial'] = normaliza($res['inicial']);//utf8_encode
-					$res['nombre'] = $res['nombre'];
-					$res['paterno'] = $res['paterno'];
-					$res['materno'] = $res['materno'];
+					$res['nombre'] = mb_convert_encoding($res['nombre'],'UTF-8');
+					$res['paterno'] = mb_convert_encoding($res['paterno'],'UTF-8');
+					$res['materno'] = mb_convert_encoding($res['materno'],'UTF-8');
 
 					if($res['inicial'] != $inicial){
 						$inicial = $res['inicial'];
@@ -114,7 +113,7 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 			if($resultadoIniciales = $conn->query($queryGroup,$conn)){
 				$inicialesResultantes = $conn->fetch($resultadoIniciales);
 				foreach($inicialesResultantes as $resInic){
-					array_push($listadoIniciales, normaliza(utf8_encode($resInic['inicial'])));
+					array_push($listadoIniciales, normaliza($resInic['inicial']));
 				}
 			}
 			
@@ -144,11 +143,69 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 		}
 		$success = TRUE;
 		$error   = '';
-		$data    = array("codigo"=>$html);
+		$data    = array("codigo"=>$html);#mb_detect_encoding
 		break;				
 		/*****************************************/
 		/******** DEFAULT  **********/
 		/*****************************************/
+		/*****************************************/
+		/******** getDetalle  **********/
+		/*****************************************/
+		case 'getDetalle':
+			$html = '';
+			$dataPersonaBox = array();
+
+			$id = (isset($_POST['id'])		&&	$_POST['id']!='' 	&& 	make_safe($_POST['id']))	?normaliza($_POST['id'])	:0;
+
+			$query = "SELECT id_empleado as id, nombre, paterno, materno, company, area, puesto, id_edificio, piso, did, ext, email, movil, foto FROM empleados WHERE baja=0 AND id_empleado=$id LIMIT 1";
+
+			if($resultado = $conn->query($query,$conn)){
+				$res = $conn->fetch($resultado);
+				$res = $res[0];
+	
+				$queryEdificio = "SELECT nombre, direccion, conmutador, mapa FROM edificios WHERE id_edificio={$res['id_edificio']}";
+				$resultadoEdificio = $conn->query($queryEdificio,$conn);
+	
+				$edificio = $conn->fetch($resultadoEdificio);
+				$edificio = $edificio[0];
+
+
+				$dataPersonaBox['foto'] = $res['foto'];
+				$dataPersonaBox['nombreCompleto'] = mb_convert_encoding("{$res['nombre']} {$res['paterno']} {$res['materno']}",'UTF-8');
+				$dataPersonaBox['puesto'] = mb_convert_encoding($res['puesto'],'UTF-8');
+				$dataPersonaBox['area'] =  mb_convert_encoding($res['area']);
+
+				$botones = '';
+				if($res['email'] !== ''){//GENERA CODIGO BOTON
+					$dataBoton = array("clase"=>"","tipoDeEnlace"=>"mailto","info"=>$res['email'],"tipoIcono"=>"envelope");
+					$botones .= makeTemplate('_directorio_detalle_boton.html', $dataBoton);
+				}
+				if($res['movil'] !== ''){//GENERA CODIGO BOTON
+					$dataBoton = array("clase"=>"","tipoDeEnlace"=>"tel","info"=>$res['movil'],"tipoIcono"=>"mobile-alt");
+					$botones .= makeTemplate('_directorio_detalle_boton.html', $dataBoton);
+				}
+				if($res['ext'] !== ''){//GENERA CODIGO BOTON
+					$dataBoton = array("clase"=>"","tipoDeEnlace"=>"","info"=>"{$edificio['conmutador']} ext. {$res['ext']}","tipoIcono"=>"phone");
+					$botones .= makeTemplate('_directorio_detalle_boton_ext.html', $dataBoton);
+				}
+				if($edificio['direccion'] !== ''){//GENERA CODIGO BOTON
+					$dataBoton = array("clase"=>"","mapa"=>str_replace(';', ',', $edificio['mapa']),"edificio"=>mb_convert_encoding($edificio['nombre'],'UTF-8'),"direccion"=>$edificio['direccion']);
+					$botones .= makeTemplate('_directorio_detalle_boton_mapa.html', $dataBoton);
+				} 
+
+				$dataPersonaBox['botones'] = $botones;
+			
+				$html = makeTemplate('_directorio_detalle.html', $dataPersonaBox);
+
+				$success = TRUE;
+				$error   = '';
+				$data    = array("codigo"=>$html);
+			}else{
+				$success = FALSE;
+				$error   = 'Error: '.$conn->error;
+				$data    = array();
+			}			
+		break;				
 		default:
 			$success = FALSE;
 			$error   = 'Error, no existe la action';

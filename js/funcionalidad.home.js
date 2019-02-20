@@ -14,12 +14,12 @@ $(document).ready(function(){
 
 	$('.ixSubmit.clear').click(function(e){
 		e.preventDefault();
-		$('.searchBox input').val('').removeClass('x');
-		$('.searchBox select').val('%');
-		$('.dataSelectEmpresas').text('En todas las empresas');
 		$(".detailBox").css({right:"-100%"});
-		$(".resultsBox").css("height","0px");
-		$(".resultsBox .container").html('');
+		$(".resultsBox").css({height:'0px',opacity:0});
+		$(".bloqueResultadoDirectorio").css({height:'0px'});
+		setTimeout(function(){
+			$(".resultsBox .container").html('');
+		},1000);
 	});
 
 	$('.ixSubmit.search').click(function(e){
@@ -49,22 +49,14 @@ $(document).ready(function(){
 		}
 	}); // focus && blur
 	
-
-	$("#empresa").change(activarResultados);
-
 	activarResultados();
 
-	$("#contenedorBanners .apuntador a").on("click",function(e){
+	$("#contenedorBanners .apuntador a").click(function(e){
 		e.preventDefault();
 		var numeroActual;
 		numeroActual = $(this).parent().attr("id");
-		//console.log(numeroActual);
 		numeroActual = numeroActual.split("bannLink");
-		//console.log(numeroActual);
 		numeroActual = numeroActual[1];
-		//console.log(numeroActual);
-		//console.log("---------------");
-		//console.log(numeroActual);
 		cambiarBanner(numeroActual);
 	});
 });
@@ -94,7 +86,8 @@ function activarResultados(forzar){
 	});
 	if(forzar==true) contador++;
 	if(contador>0) {
-		$(".resultsBox").css({height:"342px",background:"#FFF url(img/loader.gif) no-repeat center center"});
+		$(".resultsBox").css({height:"301px",background:"#FFF url(img/loader.gif) no-repeat center center"});
+		$(".bloqueResultadoDirectorio").css({height:'301px'});
 		$(".detailBox").css({right:"-100%"});
 		busquedaResultados();
 	}else{
@@ -104,11 +97,12 @@ function activarResultados(forzar){
 	}
 }
 function busquedaResultados(){
+	$(".resultsBox .container").html('');
 	var myFormData = new FormData();
 	myFormData.append('action','getListado');
 	myFormData.append("nombre",$("#nombre").val());
 	$.ajax({
-		url: siteURL+"/webservice/resultados.php",
+		url: siteURL+"/webservice/acciones.php",
 		type:"POST",
 		processData: false,//tanto processData como contentType deben estar en false para que funcione FormData
 		contentType: false,
@@ -117,9 +111,8 @@ function busquedaResultados(){
 		dataType:"json",
 		success: function(response){
 			if(response.success){
-				console.log('HTML obtenido:'+response.data.codigo);
-				$(".resultsBox .container").html(response.data.codigo).css("opacity",1);
-				$(".resultsBox").css({background:"#FFF"});
+				$(".resultsBox").css({background:'#FFF',opacity:1});
+				$(".resultsBox .container").html(response.data.codigo);
 				activarLinksIniciales();
 				activarOndas();
 			}else{
@@ -164,10 +157,11 @@ function activarOndas(){
 function abrirDetalle(id){
 	//alert(id);
 	var dataDetail = new FormData();
+	dataDetail.append('action','getDetalle');
 	dataDetail.append("id",id);
 	$(".detailBox").css({right:"0%"});
 	$.ajax({
-		url: siteURL+"/webservice/detalle.php",
+		url: siteURL+"/webservice/acciones.php",
 		type:"POST",
 		processData: false,//tanto processData como contentType deben estar en false para que funcione FormData
 		contentType: false,
