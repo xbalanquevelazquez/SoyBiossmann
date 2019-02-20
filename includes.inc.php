@@ -11,8 +11,11 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
     <meta name="author" content="Biossmann TI" />
 	<link rel="shortcut icon" href="<?php echo APP_URL; ?>img/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="<?php echo APP_URL; ?>js/libs/bootstrap-4.1.3/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo APP_URL; ?>css/fontawesome-free-5.1.0-web/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo APP_URL; ?>css/fontawesome-free-5.7.2-web/css/all.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo APP_URL; ?>css/basico.css" />
+    <?php if($index){ ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo APP_URL; ?>css/dirtel.css" />
+     <?php } ?>
     <link rel="stylesheet" type="text/css" href="<?php echo APP_URL; ?>css/personalizacion.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo APP_URL; ?>css/menu-horizontal.css" />
 

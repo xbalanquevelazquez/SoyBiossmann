@@ -105,9 +105,8 @@ function activarResultados(forzar){
 }
 function busquedaResultados(){
 	var myFormData = new FormData();
+	myFormData.append('action','getListado');
 	myFormData.append("nombre",$("#nombre").val());
-	myFormData.append("empresa",$("#empresa").val());
-
 	$.ajax({
 		url: siteURL+"/webservice/resultados.php",
 		type:"POST",
@@ -115,12 +114,18 @@ function busquedaResultados(){
 		contentType: false,
 		data:myFormData,
 		cache:false,
-		dataType:"html",
-		success: function(data){
-			$(".resultsBox .container").html(data).css("opacity",1);
-			$(".resultsBox").css({background:"#FFF"});
-			activarLinksIniciales();
-			activarOndas();
+		dataType:"json",
+		success: function(response){
+			if(response.success){
+				console.log('HTML obtenido:'+response.data.codigo);
+				$(".resultsBox .container").html(response.data.codigo).css("opacity",1);
+				$(".resultsBox").css({background:"#FFF"});
+				activarLinksIniciales();
+				activarOndas();
+			}else{
+				$(".resultsBox .container").html(response.error).css("opacity",1);
+			}
+
 		}
 	});
 }

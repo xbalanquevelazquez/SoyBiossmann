@@ -15,6 +15,9 @@ class Conexion{
 	var $numfilas		= 0;
 	var $lastQuery 		= '';
 	
+	function __construct(){
+		
+	}
 	function conectar($host='',$usr='',$psw='',$dbname=''){
 		#asignar los datos de la función, o los default de la clase.
 		$host 	= empty($host)	?$this->host	:$host;

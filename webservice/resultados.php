@@ -51,23 +51,24 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 
 			$inicial = '';
 			$imprimirInicial = FALSE;
-			if($resultados = mysql_query($query,$conn)){
-				$numeroDeRegistros = mysql_num_rows($resultados);
+			if($resultados = $conn->query($query)){
+				$numeroDeRegistros = $conn->num_rows($resultados);
 				$labelRegistros = 'registro'.(($numeroDeRegistros == 1)?'':'s');
 
 				$dataListado['numeroDeRegistros'] = $numeroDeRegistros;
 				$dataListado['labelRegistros'] = $labelRegistros;
 				
 				################################# 
-
 				$zebra = 0;
 				$personal = '';
 				$letras = '';
-				while($res = mysql_fetch_assoc($resultados)){
-					$res['inicial'] = normaliza(utf8_encode($res['inicial']));
-					$res['nombre'] = utf8_decode($res['nombre']);
-					$res['paterno'] = utf8_decode($res['paterno']);
-					$res['materno'] = utf8_decode($res['materno']);
+				$resultados = $conn->fetch($resultados);
+
+				foreach($resultados as $res){
+					$res['inicial'] = normaliza($res['inicial']);//utf8_encode
+					$res['nombre'] = $res['nombre'];
+					$res['paterno'] = $res['paterno'];
+					$res['materno'] = $res['materno'];
 
 					if($res['inicial'] != $inicial){
 						$inicial = $res['inicial'];
@@ -92,15 +93,15 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 					$dataPersonaBox['ext'] = $res['ext']!=''? "Ext. ".$res['ext']:'';
 					$botones = '';
 					if($res['movil'] !== ''){//GENERA CODIGO BOTON SMS
-						$dataBoton = array("clase"=>"mensaje","tipoDeEnlace"=>"sms","info"=>$res['movil'],"tipoIcono"=>"mensaje");
+						$dataBoton = array("clase"=>"mensaje","tipoDeEnlace"=>"sms","info"=>$res['movil'],"tipoIcono"=>"sms");
 						$botones .= makeTemplate('_directorio_C2_boton.html', $dataBoton);
 					} 
 					if($res['email'] !== ''){//GENERA CODIGO BOTON EMAIL
-						$dataBoton = array("clase"=>"email","tipoDeEnlace"=>"mailto","info"=>$res['email'],"tipoIcono"=>"mail");
+						$dataBoton = array("clase"=>"email","tipoDeEnlace"=>"mailto","info"=>$res['email'],"tipoIcono"=>"envelope");
 						$botones .= makeTemplate('_directorio_C2_boton.html', $dataBoton);
 					} 
 					if($res['movil'] !== ''){//GENERA CODIGO BOTON TEL MOVIL
-						$dataBoton = array("clase"=>"phone","tipoDeEnlace"=>"tel","info"=>$res['movil'],"tipoIcono"=>"phone");
+						$dataBoton = array("clase"=>"phone","tipoDeEnlace"=>"tel","info"=>$res['movil'],"tipoIcono"=>"mobile-alt");
 						$botones .= makeTemplate('_directorio_C2_boton.html', $dataBoton);
 					} 
 					$dataPersonaBox['botones'] = $botones;
@@ -110,8 +111,9 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 			}
 			$alfabeto = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 			$listadoIniciales = array();
-			if($resultadoIniciales = mysql_query($queryGroup,$conn)){
-				while($resInic = mysql_fetch_assoc($resultadoIniciales)){
+			if($resultadoIniciales = $conn->query($queryGroup,$conn)){
+				$inicialesResultantes = $conn->fetch($resultadoIniciales);
+				foreach($inicialesResultantes as $resInic){
 					array_push($listadoIniciales, normaliza(utf8_encode($resInic['inicial'])));
 				}
 			}

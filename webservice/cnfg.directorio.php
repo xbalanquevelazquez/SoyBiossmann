@@ -8,10 +8,6 @@ define('HOME_DIR',		'intranetBiossmann');
 define('COOKIE_DEF',	'intranetBiossmann');
 define('COOKIE_DOMAIN',	'localhost');
 define('HTDOCS_HOST',	'C:\XiuhBalam\wamp\www\intranetBiossmann/');
-define('BD_HOST', 		'localhost');
-define('DB_USER', 		'dashboard');
-define('DB_PSW', 		'b10ssd4shb04rd.-');
-define('DB_NAME', 		'dashboard');
 define('WS_PROTOCOL', 	'https://');//
 define('WS_DOMAIN', 	'universidadbiossmann.com');//
 define('WS_LOGIN', 		'/webservice/_xws/');//
@@ -47,7 +43,14 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 //include_once(LIB_PATH.'sesiones.php');
 //include_once(LIB_PATH.'conexion.php');
 //include_once(LIB_PATH.'funciones.php');
+define('DIRECTORIO_BD_HOST', 		'localhost');
+define('DIRECTORIO_DB_USER', 		'dashboard');
+define('DIRECTORIO_DB_PSW', 		'b10ssd4shb04rd.-');
+define('DIRECTORIO_DB_NAME', 		'dashboard');
+
+$conn = new Conexion();
+$conn->conectar( DIRECTORIO_BD_HOST , DIRECTORIO_DB_USER , DIRECTORIO_DB_PSW , DIRECTORIO_DB_NAME );
+
 include_once(LIB_PATH.'Mobile_Detect_2.8.17.php');
 $detect = new Mobile_Detect;
 $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
-//include_once('cookies.php');
