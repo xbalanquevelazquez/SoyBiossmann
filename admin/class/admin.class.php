@@ -39,53 +39,45 @@ class Admin{
 		echo '--- test ---';
 	}
 	function comprobarUsuario($usrlogin,$pswlogin){
-		//echo $usrlogin." - ".$pswlogin;
 		$this->comprobar_conexion();
-		$query = "SELECT COUNT(*) as total FROM ".PREFIJO."usuarios WHERE usr_login='$usrlogin' AND AES_DECRYPT(usr_psw,'".AES_ENCRYPT."') = '$pswlogin' AND usr_activo=1";
-		#echo $query;
-		#die();
+		$query = "SELECT COUNT(*) as total FROM ".PREFIJO."usuarios WHERE usr_login='$usrlogin' AND AES_DECRYPT(usr_psw,'".AESCRYPT."') = '$pswlogin' AND usr_activo=1";
 		$res = $this->conexion->query($query);
 		$comp = $this->conexion->fetch($res);
-		#print_r($comp);
 		if($comp[0]['total'] == 1){
-			$query = "SELECT usr_login,usr_nombre,fid_perfil FROM ".PREFIJO."usuarios WHERE usr_login='$usrlogin' AND AES_DECRYPT(usr_psw,'".AES_ENCRYPT."') = '$pswlogin'";
+			$query = "SELECT kid_usr,usr_login,usr_nombre,usr_correo,fid_perfil FROM ".PREFIJO."usuarios WHERE usr_login='$usrlogin' AND AES_DECRYPT(usr_psw,'".AESCRYPT."') = '$pswlogin' AND usr_activo=1 LIMIT 1";
 
-			$res = $this->conexion->query($query);
-			$data = $this->conexion->fetch($res);
-			$data = $data[0];
+			$qryId = $this->conexion->query($query);
+			$res = $this->conexion->fetch($qryId);
+			$datosUsuario = $res[0];
 
-			echo $queryPermisos = "SELECT *,(SELECT acronimo_accion FROM ".PREFIJO."acciones WHERE fid_accion=kid_accion) AS acronimo FROM ".PREFIJO."permisos WHERE fid_perfil = ".$data['fid_perfil'];
-			echo "<br>";
-			$resPermisos = $this->conexion->query($queryPermisos);
-			$permisos = $this->conexion->fetch($resPermisos);
+			$seccionesAcceso = $this->obtenerPermisos($datosUsuario['fid_perfil']);
 
-			#print_r(obtenerPermisos($comp[0]['bit']));
-			$seccionesAcceso = obtenerPermisos($data['bit']);
-			$arrSecc['bits'] = $seccionesAcceso;
-			$firstSecc = end($seccionesAcceso);
-			$query = "SELECT acronimo FROM ".PREFIJO."seccion WHERE kid_seccion = $firstSecc";
-			$res = $this->conexion->query($query);
-			$seccIni = $this->conexion->fetch($res);
-			$seccionesAccesoImp = implode(",",$seccionesAcceso);
-			$query2 = "SELECT acronimo FROM ".PREFIJO."seccion WHERE kid_seccion in($seccionesAccesoImp)";
-			$res2 = $this->conexion->query($query2);
-			$acronimos = $this->conexion->fetch($res2);
-			foreach($acronimos as $acron){
-				$arrSecc['acronimos'][] = $acron['acronimo'];
-			}
-			#echo $seccIni[0]['acronimo'];
-			#define('INIT_PAGE',$seccIni[0]['acronimo']);
-			#die();
-			$this->iniciarSesion($data['usr_login'],$data['usr_nombre'],$data['fid_perfil'],$data['bit'],$seccIni[0]['acronimo'],$arrSecc);
-			#echo $seccIni[0]['acronimo'];
-			#die();
-			#print_r($_SESSION);
-			#echo $comp[0]['usr_login']." | ".$comp[0]['usr_nombre']." | ".$comp[0]['usr_perfil']." | ".$comp[0]['bit']." | ".$seccIni[0]['acronimo']." | ".$arrSecc;
-			#die();
+			$querySeccIni = "SELECT seccion_inicial FROM ".PREFIJO."perfil WHERE kid_perfil=".$datosUsuario['fid_perfil'];
+			$qryId = $this->conexion->query($querySeccIni);
+			$res = $this->conexion->fetch($qryId);
+			$firstSecc = $res[0]['seccion_inicial'];
+
+			$this->iniciarSesion($datosUsuario['usr_login'],$datosUsuario['usr_nombre'],$datosUsuario['fid_perfil'],$seccionesAcceso,$firstSecc,$datosUsuario['kid_usr']);
 			return true;
 		}else{
 			return false;
 		}
+	}
+	function obtenerPermisos($fid_perfil){
+		if($fid_perfil == 1){//ES ADMIN obtener todos los permisos posibles
+			$query = "SELECT acronimo_accion AS acronimo FROM ".PREFIJO."acciones";
+		}else{
+			$query = "SELECT *,(SELECT acronimo_accion FROM ".PREFIJO."acciones WHERE fid_accion=kid_accion) AS acronimo FROM ".PREFIJO."permisos WHERE fid_perfil='$fid_perfil'";
+		}
+		// echo '<div>' . $query  . ';</div>';
+		$res = $this->conexion->query($query);
+		$permisos = $this->conexion->fetch($res);
+		$arrPermisos = array();
+		foreach ($permisos as $key => $value) {
+			$arrPermisos[] = $value['acronimo'];
+			echo ' | ' . $value['acronimo'];
+		}
+		return $arrPermisos;
 	}
 	function obtenerUsuarios($limit='',$returnQuery=0){
 		$this->comprobar_conexion();
@@ -113,33 +105,27 @@ class Admin{
 		return $this->resultado;	
 	}
 
-	function iniciarSesion($usr,$nombre,$perfil,$bit,$seccIni,$arrSecc){
-		echo $usr;
-		if($bit == 0){
+	function iniciarSesion($usr,$nombre,$perfil,$seccionesAcceso,$firstSecc,$kid_usr){
+		if($perfil == 1){
 			$admin = TRUE;
 		}else{
 			$admin = FALSE;
 		}
-		$arrDatos = array(
-							'usr' => $usr, 
-							'nombre' => $nombre, 
-							'perfil' => $perfil, 
-							'bit' => $bit, 
-							'seccIni' => $seccIni,
-							'permisos' => $arrSecc['bits'],
-							'permisosPag' => $arrSecc['acronimos'],
-							'admin' => $admin
-						);
-		#$_SESSION['site']['usr'] = $usr;
-		#$_SESSION['site']['nombre'] = $nombre;
-		#$_SESSION['site']['perfil'] = $perfil;
-		#$_SESSION['site']['bit'] = $bit;
-		#$_SESSION['site']['seccIni'] = $seccIni;
-		#$permisosUsuario = obtenerPermisos($perfil);
-		//$this->confpath;
-		#$_SESSION['site']['permisos'] = $arrSecc['bits'];
-		#$_SESSION['site']['permisosPag'] = $arrSecc['acronimos'];
+		$query = "SELECT acronimo_accion AS acronimo,nombre_accion AS nombre FROM ".PREFIJO."acciones ORDER BY kid_accion ASC";
+		$qryId = $this->conexion->query($query);
+		$res = $this->conexion->fetch($qryId);
+		$secciones = $res;
 
+		$arrDatos = array(
+				'usr' => $usr, 
+				'nombre' => $nombre, 
+				'perfil' => $perfil, 
+				'permisos' => $seccionesAcceso,#$arrSecc['bits'],
+				'firstSecc' => $firstSecc,
+				'secciones' => $secciones,
+				'admin' => $admin,
+				'kid_usr' => $kid_usr
+			);
 		$_SESSION['site'] = $arrDatos;
 	}
 	function comprobarSesion(){

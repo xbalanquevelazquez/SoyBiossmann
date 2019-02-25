@@ -50,8 +50,11 @@ if(!defined('VIEWABLE')) {
 
 	$prefijo = PREFIJO;
 
-	define('APP_NAME', 	'IntranetSoyBiossmann');
-	define('AESCRYPT',		'mrstp');
+	define('ADMIN_PATH',		APP_PATH.'admin/');
+	define('ADMIN_URL',			WEB_PATH.HOME_DIR.'/admin/');
+	
+	define('APP_NAME', 		'IntranetSoyBiossmann');
+	define('AESCRYPT',		'$0y.Bios5m4n');
 
 	define('COOKIE_DEF',		'soyBiossmann');
 	define('SESSION_DATA_SET',	'soyBiossmann');

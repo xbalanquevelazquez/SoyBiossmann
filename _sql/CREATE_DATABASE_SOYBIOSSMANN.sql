@@ -81,7 +81,7 @@ CREATE TABLE cms_perfil (
   PRIMARY KEY  (kid_perfil)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO cms_perfil VALUES (1,'Administrador principal','ADMIN');
+INSERT INTO cms_perfil VALUES (1,'Administrador principal','CMS');
 
 DROP TABLE IF EXISTS cms_acciones;
 CREATE TABLE cms_acciones (

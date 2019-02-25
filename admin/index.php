@@ -11,8 +11,6 @@ $paginaDespliegue = "home.php";
 $tituloDePagina = 'Inicio';
 $msg='';
 
-$query = "SELECT *,(SELECT acronimo_accion FROM crs_acciones WHERE fid_accion=kid_accion) AS acronimo FROM crs_permisos WHERE fid_perfil = 2";
-
 if(!$myAdmin->comprobarSesion()){// No hay session
 	if(isset($_POST['cmp']) && is_array($_POST['cmp']) && !empty($_POST['cmp'])){//vienen datos de form
 		$arrWords=array("'","%",'"','SELECT','select','GROUP','group','=','--');
@@ -23,7 +21,7 @@ if(!$myAdmin->comprobarSesion()){// No hay session
 			
 			if(!isset($data1) || $data1=='' || $data1='LOGIN') { $data1 = $myAdmin->obtenerUsr('firstSecc'); } 
 
-			header("Location: ".APP_URL.$data1);
+			header("Location: ".ADMIN_URL.$data1);
 		}else{
 			echo "<div class='bg-warning'>Usuario o contraseña incorrecta o usuario desactivado</div>";
 			$data1='LOGIN';
@@ -32,7 +30,8 @@ if(!$myAdmin->comprobarSesion()){// No hay session
 		$data1='LOGIN';
 	}
 } else {//HAY SESSION
-	// print_r($_SESSION['site']['permisos']);
+	#echo 'SI SESSION<pre>';
+	 #print_r($_SESSION);//['site']['permisos']
 		if($data1=='' || $data1=='LOGIN') {
 			$data1 = $myAdmin->obtenerUsr('firstSecc');
 		} else {

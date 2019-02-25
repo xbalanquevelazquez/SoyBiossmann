@@ -14,7 +14,7 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 					    <button class="btn ixSubmit search texto-blanco bg-verdeagua efectoRealce"><i class="fa fa-search"></i></button>
 					    <button class="btn ixSubmit clear bg-grismedio texto-grisclaro efectoRealce"><i class="fa fa-times"></i></button>
 					</div>
-					<div class="bloqueResultadoDirectorio transicionLenta" style="height: 0px;">
+					<div class="bloqueResultadoDirectorio transicionLenta material" style="height: 0px;">
 						<!--DIRECTORIO LISTADO-->
 						<div class="resultsBox transicionLenta columna5F" style="height: 0px;">
 							<div class="container transicionLenta"></div>
@@ -46,12 +46,12 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
           
           <div class="apuntador" style="">
             <ul>
-                <li id="bannLink1"><a href="" style="background-color: rgba(0, 0, 0, 0.4);">&nbsp;</a></li>
+                <!--li id="bannLink1"><a href="" style="background-color: rgba(0, 0, 0, 0.4);">&nbsp;</a></li>
                 <li id="bannLink2"><a href="" style="background-color: rgba(0, 0, 0, 0.4);">&nbsp;</a></li>
-                <li id="bannLink3"><a href="" style="background-color: rgba(0, 0, 0, 0.8);">&nbsp;</a></li>
+                <li id="bannLink3"><a href="" style="background-color: rgba(0, 0, 0, 0.8);">&nbsp;</a></li-->
             </ul> 
           </div>
-          <div class="banner transicion 3 naranja" id="bann3">
+          <div class="banner transicion 3 naranja" banner="3">
             <a href="/talento-humano"><!--banner link-->
               <div class="img">
                 <img src="<?php echo APP_URL; ?>img/banner/bann-valor-innovacion_v2.png" alt="Valores Biossmann">
@@ -61,8 +61,8 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
                 <span>Grupo Biossmann palabras palabras Grupo Biossmann palabras palabras Grupo Biossmann palabras palabras Grupo Biossmann palabras palabras Grupo Biossmann pn pax ax ax axxx</span>
               </div>
             </a><!--//banner link-->
-          </div>
-          <div class="banner transicion 2 verde" id="bann2">
+          </div><!--//banner-->
+          <div class="banner transicion 2 verde" banner="2">
             <a href="#"><!--banner link-->
               <div class="img">
                 <img src="<?php echo APP_URL; ?>img/banner/bann-valor-pasion_v2.png" alt="Valores Biossmann">
@@ -71,9 +71,9 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
                 Felicidades a todos los que cumplen años!                <br>
                 <span>Mayo, 2017</span>
               </div>
-            </a><!--//banner link-->
-          </div>
-          <div class="banner transicion 1 morado" id="bann1">
+            </a><!- -//banner link-->
+          </div><!- -//b anner-->
+          <div class="banner transicion 1 morado" banner="1">
             <a href="/corporativo"><!--banner link-->
               <div class="img">
                 <img src="<?php echo APP_URL; ?>img/banner/bann-dias-festivos_v2.png" alt="Calendario de días festivos">
@@ -83,7 +83,7 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
                 <span>Grupo Biossmann</span>
               </div>
             </a><!--//banner link-->
-          </div>
+          </div><!--//banner-->
         </div>
 
 							        <!--div class="columna columna2C margenIzq rightAlign material" id="contenedorBanners">

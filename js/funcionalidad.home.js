@@ -6,6 +6,9 @@ var bannerSiguiente = 2;
 var bannerPasado;
 var bannerTimer;
 var numeroBanners;
+var btnRColor = 198;
+var btnGColor = 214;
+var btnBColor = 68;
 
 $(document).ready(function(){
 
@@ -50,16 +53,27 @@ $(document).ready(function(){
 	}); // focus && blur
 	
 	activarResultados();
-
+	crearLinksBanners();
+});
+function crearLinksBanners(){
+	var aElement = '';
+	for(i=1;i<=numeroBanners;i++){
+		aElement = $('<a></a>').css({backgroundColor:'rgba('+btnRColor+', '+btnGColor+', '+btnBColor+', 0.4)'}).addClass('clickeable').html('&nbsp;');
+		$('.apuntador ul').append(
+			$('<li></li>').attr('bannLink',i).append(aElement)
+		);
+	}
+	$('.apuntador li:first-child a').css({backgroundColor:'rgba('+btnRColor+', '+btnGColor+', '+btnBColor+', 0.8)'});
+	activarLinksBanners();
+}
+function activarLinksBanners(){
 	$("#contenedorBanners .apuntador a").click(function(e){
 		e.preventDefault();
 		var numeroActual;
-		numeroActual = $(this).parent().attr("id");
-		numeroActual = numeroActual.split("bannLink");
-		numeroActual = numeroActual[1];
+		numeroActual = $(this).parent().attr("bannLink");
 		cambiarBanner(numeroActual);
 	});
-});
+}
 function activarLinksIniciales(){
 	$(".columnaDer a").click(function(e){
 		e.preventDefault();
@@ -96,6 +110,38 @@ function activarResultados(forzar){
 		$(".resultsBox .container").html('');
 	}
 }
+function busquedaResultados_SistChava(){
+	$(".resultsBox .container").html('');
+	var myFormData = new FormData();
+	//myFormData.append('action','getListado');
+	
+	//$password = "2019#$&CA%SA?¿PLA!RRE.-*".date("Y-m-d")."'HG2019CASAPLARRE.";
+	//$token = sha1(md5($password));
+
+	myFormData.append('token','8478348459d717c9958fe4025d5426fcb59bdce7');
+	myFormData.append("prt",$("#nombre").val());
+	$.ajax({
+		url: "http://www.casaplarre.com/CASA/SATI/wsdirrep?prt=salvador&token=8478348459d717c9958fe4025d5426fcb59bdce7",
+		type:"POST",
+		//processData: false,//tanto processData como contentType deben estar en false para que funcione FormData
+		//contentType: false,
+		//data:myFormData,
+		cache:false,
+		dataType:"json",
+		success: function(response){
+			console.log(response);
+			if(response.estatus == 'OK'){
+				$(".resultsBox").css({background:'#FFF',opacity:1});
+				$(".resultsBox .container").html(response.data.codigo);
+				activarLinksIniciales();
+				activarOndas();
+			}else{
+				$(".resultsBox .container").html(response.error).css("opacity",1);
+			}
+
+		}
+	});
+}
 function busquedaResultados(){
 	$(".resultsBox .container").html('');
 	var myFormData = new FormData();
@@ -122,6 +168,7 @@ function busquedaResultados(){
 		}
 	});
 }
+
 //jQuery time
 function activarOndas(){
 	var parent, ink, d, x, y;
@@ -179,14 +226,13 @@ function cerrarDetalle(){
 function iniciarCambioBanners(){
 	bannerTimer = setInterval(siguienteBanner, 10000);
 	console.log("iniciando banners...");
-	//$(".banner").click(abrirEnlace);
 }
 function detenerCambioBanners(){
 	window.clearInterval(bannerTimer);
 }
 function siguienteBanner(){
 	var movimientoALaIzq = $('#contenedorBanners').width();
-	$("#bann"+bannerActual).css({left:'-'+movimientoALaIzq+'px',zIndex:numeroBanners});
+	$('.banner[banner='+bannerActual+']').css({left:'-'+movimientoALaIzq+'px',zIndex:numeroBanners});
 	bannerPasado=bannerActual;
 	setTimeout(acomodarBanners, 400);
 	if(bannerActual == numeroBanners){
@@ -206,7 +252,7 @@ function acomodarBanners(){
 	setTimeout(resetBanner, 1000);
 }
 function resetBanner(){
-	$("#bann"+bannerPasado).css({left:"0px"});
+	$('.banner[banner='+bannerPasado+']').css({left:"0px"});
 }
 function cambiarBanner(numero){
 	detenerCambioBanners();
@@ -214,6 +260,20 @@ function cambiarBanner(numero){
 
 	bannerActual = numero;
 	bannerSiguiente = matriz[1];
+	iniciarCambioBanners();
+}
+function cambiarBannerSalto(numero){
+	detenerCambioBanners();
+	var matriz = generarMatrizDeBanners(numero);
+	bannerSiguiente = matriz[1];
+
+	/*var numeroSiguiente = 0;
+	if(numero == numeroBanners){
+		numeroSiguiente = 1;
+	}else{
+		numeroSiguiente = numero + 1;
+	}*/
+	setTimeout(acomodarBanners, 400);
 	iniciarCambioBanners();
 }
 function generarMatrizDeBanners(numero){
@@ -237,11 +297,11 @@ function generarMatrizDeBanners(numero){
 	}
 	
 	for(i=0;i<numeroBanners;i++){
-		$("#bann"+arrBanners[i]).css({zIndex:(numeroBanners-i)});
-		$("#bannLink"+arrBanners[i]+" a").css({backgroundColor:"rgba(198,214,68,0.4)"});
+		$('.banner[banner='+arrBanners[i]+']').css({zIndex:(numeroBanners-i)});
+		$('.apuntador li[bannLink='+arrBanners[i]+'] a').css({backgroundColor:'rgba('+btnRColor+', '+btnGColor+', '+btnBColor+',0.4)'});
 	}
 
-	$("#bannLink"+arrBanners[0]+" a").css({backgroundColor:"rgba(198,214,68,0.8)"});
+	$('.apuntador li[bannLink='+arrBanners[0]+'] a').css({backgroundColor:'rgba('+btnRColor+', '+btnGColor+', '+btnBColor+',0.8)'});
 
 	return arrBanners;
 }
