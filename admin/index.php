@@ -1,7 +1,9 @@
 <?php
 session_start();
-define('VIEWABLE',TRUE);
+define('VIEWABLE'	,TRUE);
+define('ADMIN'		,TRUE);
 include_once("cnf/configuracion.cnf.php");
+define('CURRENT_SECCION',ADMIN_URL.$data1.'/');
 if(DEBUG){
 	error_reporting(E_ALL);
 	ini_set('display_errors', 1);
@@ -31,8 +33,8 @@ if(!$myAdmin->comprobarSesion()){// No hay session
 	}
 } else {//HAY SESSION
 	#echo 'SI SESSION<pre>';
-	 #print_r($_SESSION);//['site']['permisos']
-		if($data1=='' || $data1=='LOGIN') {
+	 #print_r($_SESSION['site']);//['permisos']
+		if($data1=='' || $data1=='LOGIN' || $data1=='index') {
 			$data1 = $myAdmin->obtenerUsr('firstSecc');
 		} else {
 			if(!in_array($data1,$myAdmin->obtenerUsr('permisos')) && $data1 != 'SALIR'){

@@ -1,3 +1,3 @@
 <?php
-$myAdmin->salirSesion(APP_URL);
+$myAdmin->salirSesion(ADMIN_URL);
 ?>

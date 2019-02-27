@@ -1,7 +1,7 @@
 body{background: #FFF;}
 header{background:transparent url('../img/back-header.gif') repeat-x center bottom;border-bottom:2px solid #3b3f4b;}
 
-#mainContainer{min-width: 1366px;background: #fcfcfc;}
+#mainContainer{min-width: 1366px;/*background: #fcfcfc;*/}
 .transicion   {transition: all 0.4s ease 0s;}
 .transicionLenta{transition: all 1s ease 0.5s;}
 

@@ -65,7 +65,7 @@ class Admin{
 	}
 	function obtenerPermisos($fid_perfil){
 		if($fid_perfil == 1){//ES ADMIN obtener todos los permisos posibles
-			$query = "SELECT acronimo_accion AS acronimo FROM ".PREFIJO."acciones";
+			$query = "SELECT acronimo_accion AS acronimo FROM ".PREFIJO."acciones";//NO MOSTRAR Admin, no Consulta de secciones generales
 		}else{
 			$query = "SELECT *,(SELECT acronimo_accion FROM ".PREFIJO."acciones WHERE fid_accion=kid_accion) AS acronimo FROM ".PREFIJO."permisos WHERE fid_perfil='$fid_perfil'";
 		}

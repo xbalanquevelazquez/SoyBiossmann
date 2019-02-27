@@ -1,6 +1,8 @@
-	</div><!--//.container-->
+		</div><!--//.container-->
+	</div><!--//.col-->
+</div><!--//.row-->
 	<script type="text/javascript">
-	var siteURL = '<?php echo APP_URL; ?>';
+	var siteURL = '<?php echo ADMIN_URL; ?>';
 	</script>
 </body>
 </html>

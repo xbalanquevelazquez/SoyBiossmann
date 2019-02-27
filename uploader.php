@@ -4,7 +4,7 @@ if(!isset($_GET['dir'])){
 }
 define("VIEWABLE",true);
 include('admin/cnf/configuracion.cnf.php');
-include(LIB_PATH."functions.inc.php");
+#include(LIB_PATH."functions.inc.php");
 $dir = $_GET['dir']; 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

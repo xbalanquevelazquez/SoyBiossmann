@@ -7,7 +7,7 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 include('admin/cnf/configuracion.cnf.php');
 ?>
 <div class="fixed"></div>
-<div class="titulo"><a href="#" onclick="ajax_getData('<?php echo WEB_PATH; ?>insImage.php','oculto&do=true','imgcont','POST');return false;"><img src="<?php echo WEB_PATH; ?>admin/img/ico/more.gif" border="0" /></a> Visor de im&aacute;genes</div>
+<div class="titulo"><a href="#" onclick="ajax_getData('<?php echo APP_URL; ?>insImage.php','oculto&do=true','imgcont','POST');return false;"><img src="<?php echo APP_URL; ?>admin/img/ico/more.gif" border="0" /></a> Visor de im&aacute;genes</div>
 <?php
 $basefolder = 'webimgs';
 $basePath = "$basefolder/";
@@ -32,10 +32,10 @@ if(isset($_REQUEST['mini']) && $_REQUEST['mini']=='true'){
 	$cambio = 'true';
 }
 ?>
-<a id="clickerImg" href="#" onclick="ajax_getData('<?php echo WEB_PATH; ?>insImage.php','dir=<?php echo isset($_REQUEST['dir'])?$_REQUEST['dir']:''; ?>&mini=<?php echo isset($_REQUEST['mini'])?$_REQUEST['mini']:''; ?>&do=true','imgcont','POST');return false;">Recargar</a>
+<a id="clickerImg" href="#" onclick="ajax_getData('<?php echo APP_URL; ?>insImage.php','dir=<?php echo isset($_REQUEST['dir'])?$_REQUEST['dir']:''; ?>&mini=<?php echo isset($_REQUEST['mini'])?$_REQUEST['mini']:''; ?>&do=true','imgcont','POST');return false;">Recargar</a>
 <div class="pathLocator"><?php echo $path; ?></div>
 <div class="miniSelector">
-<input type="checkbox" name="mini" onclick="ajax_getData('<?php echo WEB_PATH; ?>insImage.php','<?php echo "dir=".preg_replace('/$/','',str_replace("$basefolder/",'',$path)); ?>&mini=<?php echo $cambio; ?>&do=true','imgcont','POST');return false;" <?php echo $check; ?> /> Visualizar miniaturas
+<input type="checkbox" name="mini" onclick="ajax_getData('<?php echo APP_URL; ?>insImage.php','<?php echo "dir=".preg_replace('/$/','',str_replace("$basefolder/",'',$path)); ?>&mini=<?php echo $cambio; ?>&do=true','imgcont','POST');return false;" <?php echo $check; ?> /> Visualizar miniaturas
 </div>
 <div class="contenedorImg">
 <?php
@@ -86,7 +86,7 @@ $directorio->close();
 sort($arrFolders);
 sort($arrImagenes);
 ?>
-<link href="<?php echo WEB_PATH; ?>admin/css/imgadmin.css" type="text/css" rel="stylesheet" />
+<link href="<?php echo APP_URL; ?>admin/css/imgadmin.css" type="text/css" rel="stylesheet" />
 <table border="0" class="tableCatalog">
 		<?php
 			foreach($arrFolders as $folder){
@@ -119,8 +119,8 @@ sort($arrImagenes);
 		}
 
 		?>
-		<th><a href="#<?php #echo $link; ?>" onclick="ajax_getData('<?php echo WEB_PATH; ?>insImage.php','<?php echo $link; ?>&do=true','imgcont','POST');return false;"><img src="<?php echo WEB_PATH; ?>admin/img/ico/<?php echo $ico; ?>" border="0" /></a></th>
-		<td><a href="#<?php #echo $link; ?>" onclick="ajax_getData('<?php echo WEB_PATH; ?>insImage.php','<?php echo $link; ?>&do=true','imgcont','POST');return false;"><?php echo $folder; ?></a></td>
+		<th><a href="#<?php #echo $link; ?>" onclick="ajax_getData('<?php echo APP_URL; ?>insImage.php','<?php echo $link; ?>&do=true','imgcont','POST');return false;"><img src="<?php echo APP_URL; ?>admin/img/ico/<?php echo $ico; ?>" border="0" /></a></th>
+		<td><a href="#<?php #echo $link; ?>" onclick="ajax_getData('<?php echo APP_URL; ?>insImage.php','<?php echo $link; ?>&do=true','imgcont','POST');return false;"><?php echo $folder; ?></a></td>
 		<td></td>
 	</tr>
 		<?php
@@ -138,9 +138,9 @@ sort($arrImagenes);
 					$medida = 'height';
 				}
 		?>
-		<th><a href="#" onclick="tinyMCE.execCommand('mceInsertRawHTML',false,'<img src='+'<?php echo "../".$imagen['path']; ?>'+' />');return false;"><img src="<?php echo WEB_PATH.$imagen['path']; ?>" border="0" <?php echo $medida; ?>="35" /></a></th>
+		<th><a href="#" onclick="tinyMCE.execCommand('mceInsertRawHTML',false,'<img src='+'<?php echo "../".$imagen['path']; ?>'+' />');return false;"><img src="<?php echo APP_URL.$imagen['path']; ?>" border="0" <?php echo $medida; ?>="35" /></a></th>
 		<?php }else{ ?>
-		<th><a href="#" onclick="tinyMCE.execCommand('mceInsertRawHTML',false,'<img src='+'<?php echo "../".$imagen['path']; ?>'+' />');return false;"><img src="<?php echo WEB_PATH; ?>admin/img/ico/image-sm.gif" border="0" /></a></th>
+		<th><a href="#" onclick="tinyMCE.execCommand('mceInsertRawHTML',false,'<img src='+'<?php echo "../".$imagen['path']; ?>'+' />');return false;"><img src="<?php echo APP_URL; ?>admin/img/ico/image-sm.gif" border="0" /></a></th>
 		<?php } ?>
 		<td><a href="#" onclick="tinyMCE.execCommand('mceInsertRawHTML',false,'<img src=&quot;<?php echo "../".$imagen['path']; ?>&quot; />');return false;"><?php echo $imagen['nombre']; ?></a></td>
 		<td><?php echo $imagen['extension']; ?></td>
@@ -149,5 +149,5 @@ sort($arrImagenes);
 			}
 		?>
 </table>
-		<iframe src="<?php echo WEB_PATH; ?>uploaderImg.php?dir=<?php echo $path; ?>" scrolling="no" frameborder="0" width="100%" height="100" marginheight="0" marginwidth="0"></iframe>
+		<iframe src="<?php echo APP_URL; ?>uploaderImg.php?dir=<?php echo $path; ?>" scrolling="no" frameborder="0" width="100%" height="100" marginheight="0" marginwidth="0"></iframe>
 </div>

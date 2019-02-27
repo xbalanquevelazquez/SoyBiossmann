@@ -53,9 +53,10 @@ CREATE TABLE cms_plantilla (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO cms_plantilla VALUES (1, 'home', 'Plantilla home', 'home', 1);
-INSERT INTO cms_plantilla VALUES (2, 'subseccion', 'Mostrar subsecciones como lista', 'subseccion', 1);
+INSERT INTO cms_plantilla VALUES (2, 'subseccion', 'Página normal', 'subseccion', 1);
 INSERT INTO cms_plantilla VALUES (3, 'mapadesitio', 'Mostrar el mapa del sitio', 'mapadesitio', 1);
 INSERT INTO cms_plantilla VALUES (4, 'sinsubsecciones', 'P&aacute;gina, no mostrar columna de subsecciones', 'sinsubsecciones', 1);
+INSERT INTO cms_plantilla VALUES (5, 'landingpage', 'Mostrar subsecciones como lista', 'landingpage', 1);
 
 DROP TABLE IF EXISTS cms_usuarios;
 CREATE TABLE cms_usuarios (
@@ -94,12 +95,12 @@ CREATE TABLE cms_acciones (
 
 INSERT INTO cms_acciones VALUES (1,'ADMIN','Administrar','Administración total del sistema');
 INSERT INTO cms_acciones VALUES (2,'VIEW','Consulta de secciones generales','');
-INSERT INTO cms_acciones VALUES (3,'USERS','Gestionar usuarios','Permisos para dar de alta, baja y editar usuarios');
-INSERT INTO cms_acciones VALUES (4,'PERF','Gestionar perfiles','Permisos para modificar los permisos de los perfiles');
-INSERT INTO cms_acciones VALUES (5,'CMS','Administración de Páginas','');
-INSERT INTO cms_acciones VALUES (6,'NOTICIAS','Administración de Noticias','');
-INSERT INTO cms_acciones VALUES (7,'BANNERS','Administración de Banners','');
-INSERT INTO cms_acciones VALUES (8,'CALIDAD','Administración de Calidad','');
+INSERT INTO cms_acciones VALUES (3,'USERS','Usuarios','Permisos para dar de alta, baja y editar usuarios');
+INSERT INTO cms_acciones VALUES (4,'PERF','Perfiles','Permisos para modificar los permisos de los perfiles');
+INSERT INTO cms_acciones VALUES (5,'CMS','Páginas','');
+INSERT INTO cms_acciones VALUES (6,'NOTICIAS','Noticias','');
+INSERT INTO cms_acciones VALUES (7,'BANNERS','Banners','');
+INSERT INTO cms_acciones VALUES (8,'CALIDAD','Calidad','');
 
 DROP TABLE IF EXISTS cms_permisos;
 CREATE TABLE cms_permisos (

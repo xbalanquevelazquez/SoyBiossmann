@@ -7,7 +7,7 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 include('admin/cnf/configuracion.cnf.php');
 ?>
 <div class="fixed"></div>
-<div class="titulo"><a href="#"><img src="<?php echo WEB_PATH; ?>admin/img/ico/more.gif" border="0" /></a> Visor de archivos</div>
+<div class="titulo"><a href="#"><img src="<?php echo APP_URL; ?>admin/img/ico/more.gif" border="0" /></a> Visor de archivos</div>
 <?php
 $basefolder = 'webfiles';
 $basePath = "$basefolder/";
@@ -20,7 +20,7 @@ $path = str_replace("//","/",$path);
 //es folder base u otro
 ?>
 <!--a href="#" onclick="alert('abc');return false;" id="clicker">click</a-->
-<a id="clicker" href="#" onclick="ajax_getData('<?php echo WEB_PATH; ?>insFile.php','dir=<?php echo isset($_REQUEST['dir'])?$_REQUEST['dir']:''; ?>&do=true','filecont','POST');return false;">Recargar</a>
+<a id="clicker" href="#" onclick="ajax_getData('<?php echo APP_URL; ?>insFile.php','dir=<?php echo isset($_REQUEST['dir'])?$_REQUEST['dir']:''; ?>&do=true','filecont','POST');return false;">Recargar</a>
 <div class="pathLocator"><?php echo $path; ?></div>
 <div class="fixed"></div>
 <?php
@@ -85,7 +85,7 @@ $directorio->close();
 sort($arrFolders);
 sort($arrImagenes);
 ?>
-<link href="<?php echo WEB_PATH; ?>admin/css/imgadmin.css" type="text/css" rel="stylesheet" />
+<link href="<?php echo APP_URL; ?>admin/css/imgadmin.css" type="text/css" rel="stylesheet" />
 <table border="0" class="tableCatalog" width="100%">
 		<?php
 			foreach($arrFolders as $folder){
@@ -107,8 +107,8 @@ sort($arrImagenes);
 		}
 
 		?>
-		<th width="13%"><a href="#<?php #echo $link; ?>" onclick="ajax_getData('<?php echo WEB_PATH; ?>insFile.php','<?php echo $link; ?>&do=true','filecont','POST');return false;"><img src="img/ico/<?php echo $ico; ?>" border="0" /></a></th>
-		<td width="75%"><a href="#<?php #echo $link; ?>" onclick="ajax_getData('<?php echo WEB_PATH; ?>insFile.php','<?php echo $link; ?>&do=true','filecont','POST');return false;"><?php echo $folder; ?></a></td>
+		<th width="13%"><a href="#<?php #echo $link; ?>" onclick="ajax_getData('<?php echo APP_URL; ?>insFile.php','<?php echo $link; ?>&do=true','filecont','POST');return false;"><img src="img/ico/<?php echo $ico; ?>" border="0" /></a></th>
+		<td width="75%"><a href="#<?php #echo $link; ?>" onclick="ajax_getData('<?php echo APP_URL; ?>insFile.php','<?php echo $link; ?>&do=true','filecont','POST');return false;"><?php echo $folder; ?></a></td>
 		<td width="12%"></td>
 	</tr>
 		<?php
@@ -129,5 +129,5 @@ function contenido(){
 	return 'abc';
 }
 </script>
-		<iframe src="<?php echo WEB_PATH; ?>uploader.php?dir=<?php echo $path; ?>" scrolling="no" frameborder="0" width="100%" height="100" marginheight="0" marginwidth="0"></iframe>
+		<iframe src="<?php echo APP_URL; ?>uploader.php?dir=<?php echo $path; ?>" scrolling="no" frameborder="0" width="100%" height="100" marginheight="0" marginwidth="0"></iframe>
 </div>

@@ -149,11 +149,11 @@ class Page{
 		}
 	}
 	function mostrarMenuPrincipal(){
-		$menu = $this->myAdmin->fetch($this->myAdmin->query("SELECT * FROM ".PREFIJO."view_estructura WHERE iniPadre=1 AND visible=1 ORDER BY clasificacion"));
+		$menu = $this->myAdmin->fetch($this->myAdmin->query("SELECT * FROM ".PREFIJO."view_estructura WHERE iniPadre=1 AND visible=1 AND publicado=1 ORDER BY clasificacion"));
 		?><ul id="menunav" class="navbar-nav mr-auto menu"><?php
 		foreach($menu as $elem){
 			$childrens='';
-			$menuSub = $this->myAdmin->fetch($this->myAdmin->query("SELECT * FROM ".PREFIJO."view_estructura WHERE iniPadre={$elem['kid_pagina']} AND visible=1"));
+			$menuSub = $this->myAdmin->fetch($this->myAdmin->query("SELECT * FROM ".PREFIJO."view_estructura WHERE iniPadre={$elem['kid_pagina']} AND visible=1 AND publicado=1"));
 			#print_r(count($menuSub)."-->".$menuSub);
 			if(count($menuSub)>0){ $childrens.="<ul>"; }
 			foreach($menuSub as $elemSub){

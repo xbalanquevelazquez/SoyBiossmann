@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('America/Mexico_City');
-header('Content-Type: text/html; charset=utf-8');
+header('Content-Type: text/html; charset=UTF-8');
 error_reporting(E_ALL);
 //Validar que este archivo sea cargado por un Include y no directamente
 if(!defined('VIEWABLE')) {

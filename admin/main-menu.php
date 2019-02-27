@@ -3,7 +3,7 @@ $permisos = $myAdmin->obtenerUsr('permisos');
 $secciones = $myAdmin->obtenerUsr('secciones');
 ?>
 		<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-		  <a class="navbar-brand" href="<?php echo APP_URL; ?>">CRS</a>
+		  <a class="navbar-brand" href="<?php echo APP_URL; ?>">SoyBiossmann</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
@@ -15,14 +15,13 @@ $secciones = $myAdmin->obtenerUsr('secciones');
 					$activo = '';
 					$acron = $secciones[$s]['acronimo'];
 					$seccName = utf8_encode($secciones[$s]['nombre']);
-					if($acron != 'ADMIN'){//Saltamos la opción de ADMIN porque es un permiso global del sistema
-						// edi($data1 . ' vs ' . $acron);
+					if($acron != 'ADMIN' && $acron != 'VIEW'){//Saltamos la opción de ADMIN porque es un permiso global del sistema
 						if($data1 == $acron){
 							$activo = ' active';
 							$tituloDePagina = $seccName;
 						}
 						if(in_array($acron,$permisos)){
-							echo '<li class="nav-item '.$activo.'"><a class="nav-link" href="'.APP_URL.$acron.'">'.$seccName.'</a></li>';
+							echo '<li class="nav-item '.$activo.'"><a class="nav-link" href="'.ADMIN_URL.$acron.'">'.$seccName.'</a></li>';
 						}
 					}
 				}
