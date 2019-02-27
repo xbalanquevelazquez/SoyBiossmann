@@ -9,7 +9,40 @@ $(document).ready(function(){
 	$('.btnSalir').click(function(){
 		document.location.href = siteURL+'SALIR';
 	});
+	$('.makeIO').each(function(){
+		makeIOControl($(this));
+	});
+	$('.ioCheck').click(function(e){
+		switchEstatusIO($(this));
+	});
 });
+function makeIOControl(obj){
+	var isChecked = obj.is(':checked');
+	var originID = obj.attr('id');
+	var currentEstatus = 'ioOFF';
+	var currentValue = 0;
+	if(isChecked){
+		currentEstatus = 'ioON';
+		currentValue = 1;
+	}
+	var controlIO = '<div class="ioCheck '+currentEstatus+'" estatus="'+currentValue+'" reference="'+originID+'"><div><span>&nbsp;</span></div><span class="onLabel">ON</span><span>OFF</span></div>';
+	obj.after(controlIO);
+	obj.css({display:'none'});
+}
+function switchEstatusIO(obj){
+	var placa = obj.find('div');
+	var reference = $('#'+obj.attr('reference'));
+	var anchoElemento = obj.width();
+	var anchoPlaca = placa.width();
+	obj.toggleClass('ioOFF').toggleClass('ioON');
+	if(obj.attr('estatus') == 0){//ESTA APAGADO -> ENCENDER
+		obj.attr('estatus',1);
+		reference.prop('checked', true);
+	}else{//ESTA ENCENDIDO -> APAGAR
+		obj.attr('estatus',0);
+		reference.prop('checked', false);
+	}
+}
 function makeIdentificador(text){
 		//alert('identificador: '+text);
 		//var  target = document.getElementById('res[identificador]');
