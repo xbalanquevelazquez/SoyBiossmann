@@ -1,10 +1,11 @@
-<?php
+ï»¿<?php
 if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 
-include("plantilla.inc.php");
+$type = $data2;
+$id  = $data3;
 
-if(isset($_GET['id']) && $_GET['id'] != '' && is_numeric($_GET['id'])){
-$id = $_GET['id'];
+if($id != '' && is_numeric($id)){
+
 $resultado = $myAdmin->conexion->fetch(	$myAdmin->conexion->query("SELECT * FROM ".PREFIJO."estructura WHERE kid_pagina=".$id)	);
 $resultado = $resultado[0];
 
@@ -19,131 +20,105 @@ $contenido = $myAdmin->conexion->fetch(	$myAdmin->conexion->query("SELECT * FROM
 $contenido = $contenido[0];
 
 ?>
-<script type="text/javascript" src="js/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript" src="<?php echo ADMIN_URL ?>js/tinymce5/tinymce.min.js"></script>
+<script type="text/javascript" src="<?php echo ADMIN_URL ?>js/tinymce5/jquery.tinymce.min.js"></script>
 <script type="text/javascript">
-tinyMCE.init({
-	// General options
-	language : 'es',
-	mode : "textareas",
-	theme : "advanced",
-	plugins : "safari,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,imagemanager,filemanager",
-
-	// Theme options
-	//theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
-	theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,|,visualchars",
-	//theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
-	theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo",
-	theme_advanced_buttons3 : "link,unlink,anchor,image,cleanup,code,|,preview,|,forecolor,backcolor,|,media",
-	//theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
-	theme_advanced_buttons4 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup",
-	//theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage",
-	//theme_advanced_buttons4 : 
-	theme_advanced_toolbar_location : "top",
-	theme_advanced_toolbar_align : "left",
-	theme_advanced_statusbar_location : "bottom",
-	theme_advanced_resizing : true,
-
-	// Example content CSS (should be your site CSS)
-	content_css : "css/contenido.css",
-
-	// Drop lists for link/image/media/template dialogs
-	template_external_list_url : "js/template_list.js",
-	external_link_list_url : "js/link_list.js",
-	external_image_list_url : "js/image_list.js",
-	media_external_list_url : "js/media_list.js",
-
-	// Replace values for the template plugin
-	template_replace_values : {
-		username : "Some User",
-		staffid : "991234"
-	}
+tinymce.init({
+   	selector: 'textarea',
+   	skin: "oxide-dark",
+   	width: '100%',
+    height: 450,
+    //images_upload_url: '<?php echo ADMIN_URL ?>webservice/acciones.php',
+   // automatic_uploads: true,
+    images_upload_handler: function (blobInfo, success, failure) {
+   			upload_with_tinymce(blobInfo, success, failure, '<?php echo APP_URL ?>webservice/acciones.php');
+  },
+    plugins: [
+      'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+      'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+      'save table directionality emoticons template paste'
+    ],
+   	//contextmenu: "link image imagetools table spellchecker",
+   //	toolbar: "newdocument bold italic underline strikethrough alignleft aligncenter alignright alignjustify styleselect formatselect 	fontselect 	fontsizeselect cut copy paste bullist numlist outdent indent blockquote undo redo removeformat subscript superscript"
+	toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor'
+  
 });
 </script>
-<script src="js/validacion_formulario.js" type="text/javascript"></script>
-<script type="text/javascript">
-	var data = Array();
-	data[data.length] = Array('titulo','texto','"Título"');
-	data[data.length] = Array('alias','texto','"Alias"');
-	/*data[2] = Array('res[res_anio]','combo','"Año"');
-	data[3] = Array('res[fk_clas_id]','combo','"Clasificación"');*/
-</script>
+<script src="<?php echo ADMIN_URL ?>js/validacion_formulario.js" type="text/javascript"></script>
 <table class="layout" summary="layout" width="100%">
 	<tr>
-		<td id="botonesVert">
-			<div class="botones">
-						<a href="?est"><img src="img/ico/cancel.gif" border="0" alt="Cancelar" /></a>
-						<?php if($resultado['visible']==1){	?>
-						<a href="?est&change&invisible&fast&id=<?php echo $id ?>" class="btnVisible" title="Hacer invisible"></a>
-						<?php }else{ ?>
-						<a href="?est&change&visible&fast&id=<?php echo $id ?>" class="btnInvisible" title="Hacer visible"></a>
-						<?php }  if($resultado['publicado']==1){ ?>
-						<a href="?est&change&desactivar&fast&id=<?php echo $id ?>" class="btnActivo" title="Desactivar"></a>
-						<?php }else{ ?>
-						<a href="?est&change&activar&fast&id=<?php echo $id ?>" class="btnInactivo" title="Activar"></a>
-						<?php }?>
-						
-						<div class="fixed"></div>
-					</div>
-		</td>
 		<td valign="top">
 		<div id="workArea">
 		<?php if(isset($_GET['msg'])){
 		echo  mostrarMensaje($_GET['msg']);
 		} ?>
-		<form method="POST" action="?est&save" name="formPagina" onsubmit="return validarFormulario(data);">
-						<input name="id" type="hidden" value="<?php echo $resultado['kid_pagina']; ?>" />
-						<table class="layout abierto" summary="layout">
-							<tr>
-								<td class="label"><label for="">T&iacute;tulo:</label></td>
-								<td><input name="titulo" id="titulo" type="text" value="<?php echo $resultado['nombre']; ?>" size="43" /></td>
-							</tr>
-							<tr>
-								<td class="label"><label for="">Alias:</label></td>
-								<td><input name="alias" id="alias" type="text" maxlength="40" value="<?php echo $resultado['alias']; ?>" size="43" onblur="this.value=makeIdentificador(this.value)" /></td>
-							</tr>
-							<?php
-							$plantillas = $myAdmin->conexion->fetch($myAdmin->conexion->query("SELECT * FROM ".PREFIJO."plantilla"));
-							?>
-							<tr>
-								<td class="label"><label for="">Plantilla:</label></td>
-							  <td><select name="plantilla">
-								<?php foreach($plantillas as $plantilla){ ?>
-								<option value="<?php echo $plantilla['kid_plantilla']; ?>" <?php echo $resultado['plantilla']==$plantilla['kid_plantilla']?"selected='selected'":""; ?> id="<?php echo $plantilla['filepath']; ?>&id=<?php echo $_GET['id'] ?>"><?php echo $plantilla['descripcion']; ?></option>
-								<?php } ?>
-								</select> [Original: <?php echo $plantillaName ?>]		
-							  </td>
-							</tr>
-							<tr>
-								<td class="label"><label for="descripcion">Descripción:</label></td>
-								<td><input name="descripcion" type="text" value="<?php echo $resultado['descripcion']; ?>" size="80" maxlength="255" /></td>
-							</tr>
-							<tr>
-								<td class="label"><label for="keywords">Keywords:</label></td>
-								<td><input name="keywords" type="text" value="<?php echo $resultado['keywords']; ?>" size="80" maxlength="255" /></td>
-							</tr>
-                            
-							<tr>
-								<td colspan="2">
-						<br />
-						<label>Contenido:</label>
-							<textarea name="contenido" rows="50" class="dynamicText">
-							<?php echo $contenido['contenido']; ?>
-							</textarea>
-                            <br />
-                            <input type="image" src="img/guardar.gif" />
-								<div class="btnContainer fleft">
+		<div class="botones">
+						<?php if($resultado['visible']==1){	?>
+						<a href="?est&change&invisible&fast&id=<?php echo $id ?>" class="btnVisible" title="Hacer invisible"><i class="fa fa-eye-slash"></i></a>
+						<?php }else{ ?>
+						<a href="?est&change&visible&fast&id=<?php echo $id ?>" class="btnInvisible" title="Hacer visible"><i class="fa fa-eye"></i></a>
+						<?php }  if($resultado['publicado']==1){ ?>
+						<a href="?est&change&desactivar&fast&id=<?php echo $id ?>" class="btnActivo" title="Desactivar"><i class="fa fa-minus-circle"></i></a>
+						<?php }else{ ?>
+						<a href="?est&change&activar&fast&id=<?php echo $id ?>" class="btnInactivo" title="Activar"><i class="fa fa-circle"></i></a>
+						<?php }?>
 						
 						<div class="fixed"></div>
-						</div>
-								</td>
-							</tr>
-						</table>
-						
-						</form>
-		
+					</div>
+		<form method="POST" action="<?php echo CURRENT_SECCION; ?>save/" name="formPagina">
+						<input name="id" type="hidden" value="<?php echo $resultado['kid_pagina']; ?>" />
+			<div class="row">
+				<div class="col-1 label"><label for="titulo">TÃ­tulo:</label></div>
+				<div class="col"><input name="titulo" id="titulo" type="text" value="<?php echo $resultado['nombre']; ?>" class="form-control setObligatorio" data-validation='texto' /></div>
+			</div>
+			<div class="row">
+				<div class="col-1 label"><label for="alias">Alias:</label></div>
+				<div class="col"><input name="alias" id="alias" type="text" value="<?php echo $resultado['alias']; ?>" maxlength="40" class="form-control setObligatorio" data-validation='texto' /></div>
+			</div>
+			<div class="row">
+				<div class="col-1 label"><label for="visible">Visible:</label></div>
+				<div class="col"><input name="visible" id="visible" type="checkbox" <?php echo $resultado['visible']==1?'checked="checked"':''; ?> value="1" class="makeIO" /></div>
+			</div>
+			<div class="row">
+				<div class="col-1 label"><label for="publicado">Publicado:</label></div>
+				<div class="col"><input name="publicado" id="publicado" type="checkbox" <?php echo $resultado['publicado']==1?'checked="checked"':''; ?> value="1" class="makeIO" /></div>
+			</div>
+			<?php
+			$plantillas = $myAdmin->conexion->fetch($myAdmin->conexion->query("SELECT * FROM ".PREFIJO."plantilla WHERE estatus=1"));
+			?>
+			<div class="row">
+				<div class="col-1 label"><label for="plantilla">Plantilla:</label></div>
+				<div class="col"><select name="plantilla" id="plantilla" class="form-control">
+								<?php 
+								#print_r($plantillas);
+								foreach($plantillas as $plantilla){ 
+									$selected = '';
+									if($plantilla['kid_plantilla'] == $resultado['plantilla']){ $selected = 'selected="selected"'; }
+									$descipcionPlantilla = utf8_encode($plantilla['descripcion']);
+									echo "<option value='{$plantilla['kid_plantilla']}' id='{$plantilla['filepath']}' $selected>{$descipcionPlantilla}</option>";
+								 } ?>
+								</select></div>
+			</div>
+			<div class="row">
+				<div class="col-1 label"><label for="descripcion">Descripci&oacute;n:</label></div>
+				<div class="col"><input name="descripcion" id="descripcion" type="text" value="<?php echo $resultado['descripcion']; ?>" maxlength="255" class="form-control" /></div>
+			</div>
+			<div class="row">
+				<div class="col-1 label"><label for="keywords">Keywords:</label></div>
+				<div class="col"><input name="keywords" id="keywords" type="text" value="<?php echo $resultado['keywords']; ?>" maxlength="255" class="form-control" /></div>
+			</div>
+			<div class="row">
+				<div class="col"><label for="contenido">Contenido:</label>
+					<textarea name="contenido" id="contenido" rows="50"><?php echo replaceDirImages($contenido['contenido']); ?></textarea></div>
+			</div>
+			<div class="row">
+				<div class="col-1"><input type="submit" name="btnGuardar" id="btnGuardar" value="Guardar" class="form-control btn btn-primary" /></div>
+				<div class="col-1"><button class="btn btn-secondary" id="btnCancelar">Cancelar</button>	</div>
+			</div>	
+		</form>
 		</div>
 		</td>
-						  <td valign="top" width="250" class="backSubTools">
+						  <!--td valign="top" width="250" class="backSubTools">
 					<script type="text/javascript" language="javascript" src="js/x_ajax.js"></script>
 				  	<div id="imgcont"></div>
 					<div class="fixed"></div>
@@ -153,13 +128,32 @@ tinyMCE.init({
 					  ajax_getData('<?php echo WEB_PATH; ?>insImage.php','&do=true','imgcont','POST');
 					  ajax_getData('<?php echo WEB_PATH; ?>insFile.php','&do=true','filecont','POST');
 					</script>
-				  </td>
+				  </td-->
 
 	</tr>
 </table>
+<script type="text/javascript">
+$(document).ready(function() {
+  	$('#btnGuardar').click(function(e){
+  		e.preventDefault();
+  		if(validarFormulario(formCampos)){//obtengo el array de ejecutar la opcion .obligatorio en app.js
+  			$('form[name=formPagina]').submit();
+  		}
+  	});
+  	$('#btnCancelar').click(function(e){
+  		document.location.href='<?php echo CURRENT_SECCION; ?>';
+  	});
+  	$('#titulo').on('keyup',function(e) {
+  		$('#alias').val(makeIdentificador($('#titulo').val()));
+  	});
+  	$('#titulo').on('blur',function(e) {
+  		$('#alias').val(makeIdentificador($('#titulo').val()));
+  	});
+});
+</script>
+
 <?php
 }else{
-	echo "<div class='aviso'>No indicó la página a editar</div>";
+	echo "<div class='aviso'>No indicÃ³ la pÃ¡gina a editar</div>";
 }
-include("plantillaFoot.inc.php");
 ?>

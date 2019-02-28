@@ -384,4 +384,10 @@ function makeTemplate($plantilla, $datos, $dir = '', $rutaEspecial = ''){
 
     return $html;
 }
+function replaceDirImages($string){
+    $string = str_replace('../../../../webimgs/', WEB_IMG_PATH, $string);
+    $string = str_replace('../../webimgs/', WEB_IMG_PATH, $string);
+    $string = str_replace('../http', 'http', $string);
+    return $string;
+}
 ?>

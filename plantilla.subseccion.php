@@ -15,7 +15,7 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 			<div class="row no-gutters">
 				<div class="columnaH gutter">
 					
-					<?php echo $page->contenido['contenido'];  ?>
+					<?php echo replaceDirImages($page->contenido['contenido']);  ?>
 					<!--div class="material bordeGris bg-azulgris texto-blanco" id="directorio">
 						<label for="nombre">Directorio biossmann:</label>
 						<br />

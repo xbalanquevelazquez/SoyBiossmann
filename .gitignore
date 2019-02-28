@@ -11,6 +11,10 @@ _diseño/*
 # screensaver
 sabias/*
 
+# directorios de subida de imagenes y archivo
+webfiles/*
+webimgs/*
+
 # copias
 admin_ORIG/*
 

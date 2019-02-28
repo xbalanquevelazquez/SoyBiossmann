@@ -15,7 +15,7 @@ if(!defined('VIEWABLE')) {
 	if($thisserver == 'localhost'){
 		define('WEB_PATH',			'http://localhost/');
 		define('APP_PATH',			'D:\PoisonStinger\wamp64\www\soybiossmann/');
-		define('HOME_DIR',			'soybiossmann');
+		define('HOME_DIR',			'soybiossmann/');
 		define('APP_URL',			WEB_PATH.HOME_DIR.'/');
 		define('COOKIE_DOMAIN',		'localhost/soybiossmann');
 		define('BD_HOST', 			'localhost');
@@ -51,7 +51,7 @@ if(!defined('VIEWABLE')) {
 	$prefijo = PREFIJO;
 
 	define('ADMIN_PATH',		APP_PATH.'admin/');
-	define('ADMIN_URL',			WEB_PATH.HOME_DIR.'/admin/');
+	define('ADMIN_URL',			WEB_PATH.HOME_DIR.'admin/');
 	
 	define('APP_NAME', 		'IntranetSoyBiossmann');
 	define('AESCRYPT',		'$0y.Bios5m4n');
@@ -69,17 +69,18 @@ if(!defined('VIEWABLE')) {
 		define('LIB_PATH',			APP_PATH.'admin/librerias/');
 		define('CONF_PATH',			APP_PATH.'admin/cnf/');
 		define('FILE_PATH',			APP_PATH.'webfiles/');
-		define('WEB_FILE_PATH',		WEB_PATH.'webfiles/');
+		define('WEB_FILE_PATH',		WEB_PATH.HOME_DIR.'webfiles/');
 		define('TEMPLATE_PATH',		APP_PATH.'templates/');
 		define('NEWS_PATH',			APP_PATH.'webimgs/noticias/');
-		define('WEB_NEWS_PATH',		WEB_PATH.'webimgs/noticias/');
+		define('WEB_NEWS_PATH',		WEB_PATH.HOME_DIR.'webimgs/noticias/');
 		define('BANNER_PATH',		APP_PATH.'webimgs/banners/');
-		define('WEB_BANNER_PATH',	WEB_PATH.'webimgs/banners/');
+		define('WEB_BANNER_PATH',	WEB_PATH.HOME_DIR.'webimgs/banners/');
 
 		define('APP_IMG_PATH',		APP_PATH.'webimgs/');
 		define('APP_LOGO_PATH',		APP_IMG_PATH.'empresas/');
 		
-		define('WEB_IMG_PATH',		WEB_PATH.'webimgs/');
+		define('IMG_PATH',			APP_PATH.'webimgs/');
+		define('WEB_IMG_PATH',		WEB_PATH.HOME_DIR.'webimgs/');
 
 		define('BORRADO',			1);
 		

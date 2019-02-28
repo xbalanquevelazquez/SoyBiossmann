@@ -1,3 +1,4 @@
+var formCampos = Array();
 $(document).ready(function(){
 	console.log('¡App lista!');
 	$("input, textarea, button").focus(function(){
@@ -14,6 +15,9 @@ $(document).ready(function(){
 	});
 	$('.ioCheck').click(function(e){
 		switchEstatusIO($(this));
+	});
+	$('.setObligatorio').each(function(){//coloca el esterisco de obligatorio
+		setObligatorio($(this));
 	});
 });
 function makeIOControl(obj){
@@ -43,7 +47,20 @@ function switchEstatusIO(obj){
 		reference.prop('checked', false);
 	}
 }
+function setObligatorio(obj){
+	var id = obj.attr('id');
+	var type = obj.attr('data-validation');
+	if(type == undefined){ alert('Coloque la propiedad data-validation en el campo '+id); }
+	var targetLabel = $('label[for='+id+']');
+	var titulo = targetLabel.text();
+	$('label[for='+id+']').append('<span class="obligatorioMark">*</span>');
+	//idCampo,tipoValidacion,nombreCampo
+	formCampos[formCampos.length] = Array(id,type,titulo);
+		// data[data.length] = Array('titulo','texto','"Título"');
+
+}
 function makeIdentificador(text){
+	var maxCaracteres = 40;
 		//alert('identificador: '+text);
 		//var  target = document.getElementById('res[identificador]');
 		var nuevoValor = text.toLowerCase();//todo a minúsculas
@@ -63,8 +80,36 @@ function makeIdentificador(text){
 			nuevoValor = nuevoValor.replace(/\u00fa/g, "u");
 			nuevoValor = nuevoValor.replace(/\u00f1/g, "n");
 			//indiceObjeto.value=nuevoValor;
+			console.log(nuevoValor.length);
+			if(nuevoValor.length > maxCaracteres){//Máximo de caracteres
+				nuevoValor = nuevoValor.substring(0, 40); 
+			}
 		return nuevoValor;	
 }
+function upload_with_tinymce(blobInfo, success, failure, webimages_path){
+    var envioData = new FormData();
+		envioData.append("action",'subirImagenTinyMCE');													
+		envioData.append('file', blobInfo.blob(), blobInfo.filename());
+	$.ajax({
+		url: webimages_path,
+		type:"POST",
+		processData: false,//tanto processData como contentType deben estar en false para que funcione FormData
+		contentType: false,
+		data:envioData,
+		cache:false,
+		dataType:"json",
+		success: function(respuesta){
+			var texto = '';
+			if(respuesta.success){
+				console.log(respuesta);
+				success(respuesta.data.location);
+			}else{
+				failure(respuesta.error);
+			}
+		}
+	});
+}
+
 $.fn.Algo = function(){
 	alert('algo');
 };

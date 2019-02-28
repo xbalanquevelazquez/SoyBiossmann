@@ -7,6 +7,11 @@ define("VIEWABLE",TRUE);
 
 include_once("../admin/cnf/configuracion.cnf.php");
 include_once("cnfg.directorio.php");
+
+$id_usr_actual = NULL;
+if($myAdmin->comprobarSesion()){
+	$id_usr_actual = $myAdmin->obtenerUsr('kid_usr');
+}
 #if(DEBUG){
 
 #}
@@ -146,9 +151,6 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 		$data    = array("codigo"=>$html);#mb_detect_encoding
 		break;				
 		/*****************************************/
-		/******** DEFAULT  **********/
-		/*****************************************/
-		/*****************************************/
 		/******** getDetalle  **********/
 		/*****************************************/
 		case 'getDetalle':
@@ -206,6 +208,62 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 				$data    = array();
 			}			
 		break;				
+		/*****************************************/
+		/******** subirImagenTinyMCE  **********/
+		/*****************************************/
+		case 'subirImagenTinyMCE':
+			$data = array();
+			$now = date("Y-m-d_H-i-s");
+			if($id_usr_actual != NULL){
+				$nombreArchivo = "{$id_usr_actual}_{$now}";
+			}else{
+				$nombreArchivo = "X_{$now}";
+			}
+			
+			if(isset($_FILES)){  
+			    #$error = false;
+			    $files = array();
+
+			    $uploaddir = IMG_PATH;
+			    foreach($_FILES as $file){
+					$extension = explode('.', $file['name']);
+					$extension = end($extension);
+					$rutaServer = $uploaddir.$nombreArchivo.'.'.$extension;
+					$rutaWeb = WEB_IMG_PATH.$nombreArchivo.'.'.$extension;
+					
+			        if(move_uploaded_file($file['tmp_name'], $rutaServer)){
+			            $files[] = $uploaddir .$file['name'];
+
+			            #$datos['fecha_ultima_actualizacion'] = $now;
+			           # $datos['comprobante_pago'] = $nombreArchivo.'.'.$extension;
+			          #  $datos['pago_validado'] = '0';
+						#if($myAdmin->conexion->update(PREFIJO.'registro_adicional',$datos,$condicion=" WHERE fid_registro='$id'",'TEXT',FALSE)){
+								#$buffer = "<div class='bg-success'>Datos guardados </div>";
+								$success = TRUE;
+								$error   = '';
+								$data    = array("location"=>$rutaWeb,);
+						/*}else{
+							$success = FALSE;
+							$error   = "<div class='bg-warning'>Error:".$myAdmin->conexion->error."</div>";
+							$data    = array();	
+						}*/
+			        }else{
+			            $success = FALSE;
+						$error .= 'Problema al subir la imagen';
+						$data    = array();	
+			        }
+			    }
+			   
+			}else{
+				$success = FALSE;
+				$error   = 'No se indicaron archivos: '.count($_FILES);
+				$data    = array();	
+			}
+
+			break;
+		/*****************************************/
+		/******** DEFAULT  **********/
+		/*****************************************/
 		default:
 			$success = FALSE;
 			$error   = 'Error, no existe la action';

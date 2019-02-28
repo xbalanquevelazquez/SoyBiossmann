@@ -33,6 +33,10 @@ a{text-decoration:none;}
 #subMenu a:hover{color:#505050;border:1px solid #b4b4b4;border-bottom-color:#f4f4f4;border-right-color:#f4f4f4;background-color:#ebf3bc;padding:3px 2px 2px 3px;}
 
 #workArea{background-color:#f0f0f0;padding:16px 25px;vertical-align:top;}
+#workArea .row{margin-bottom:10px;}
+.errorHere{border:1px solid red;}
+.setObligatorio{}
+.obligatorioMark{color:red;}
 /*.mapsite{text-align:left}
 .mapsite ul{margin:0px;padding:0px;list-style:none;margin-left:6px;}
 .mapsite ul ul{margin-left:2px;}
