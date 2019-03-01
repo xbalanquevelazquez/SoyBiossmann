@@ -40,8 +40,8 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 			$nombre = (isset($_POST['nombre'])		&&	$_POST['nombre']!='' 	&& 	make_safe($_POST['nombre']))	?normaliza($_POST['nombre'])	:'';
 			$query = "SELECT id_empleado as id,	TRIM(nombre) as nombre, TRIM(paterno) as paterno, TRIM(materno) as materno, company, ext, email, movil, SUBSTRING(TRIM(paterno),1,1) as inicial, foto FROM empleados WHERE baja=0";
 			$detail = '';
-			$queryGroup = "SELECT TRIM(nombre) as nombre, TRIM(paterno) as paterno,SUBSTRING(TRIM(paterno),1,1) as inicial FROM empleados WHERE baja=0";
-
+			$queryGroup = "SELECT SUBSTRING(TRIM(paterno),1,1) as inicial FROM empleados WHERE baja=0";
+			/* TRIM(nombre) as nombre, TRIM(paterno) as paterno, */
 			$arrNombre = explode(' ', $nombre);
 
 			foreach($arrNombre as $nombreFragmento){
@@ -78,7 +78,7 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 						$inicial = $res['inicial'];
 						$imprimirInicial = TRUE;
 						$dataInicial = array("inicial"=>$inicial);
-						$personal .= makeTemplate('_directorio_B_inicial.html', $dataInicial);
+						$personal .= makeTemplate('_directorio_B_inicial.html', $dataInicial, 'directorio');
 					}else{
 						$imprimirInicial = FALSE;
 					}
@@ -98,18 +98,18 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 					$botones = '';
 					if($res['movil'] !== ''){//GENERA CODIGO BOTON SMS
 						$dataBoton = array("clase"=>"mensaje","tipoDeEnlace"=>"sms","info"=>$res['movil'],"tipoIcono"=>"sms");
-						$botones .= makeTemplate('_directorio_C2_boton.html', $dataBoton);
+						$botones .= makeTemplate('_directorio_C2_boton.html', $dataBoton, 'directorio');
 					} 
 					if($res['email'] !== ''){//GENERA CODIGO BOTON EMAIL
 						$dataBoton = array("clase"=>"email","tipoDeEnlace"=>"mailto","info"=>$res['email'],"tipoIcono"=>"envelope");
-						$botones .= makeTemplate('_directorio_C2_boton.html', $dataBoton);
+						$botones .= makeTemplate('_directorio_C2_boton.html', $dataBoton, 'directorio');
 					} 
 					if($res['movil'] !== ''){//GENERA CODIGO BOTON TEL MOVIL
 						$dataBoton = array("clase"=>"phone","tipoDeEnlace"=>"tel","info"=>$res['movil'],"tipoIcono"=>"mobile-alt");
-						$botones .= makeTemplate('_directorio_C2_boton.html', $dataBoton);
+						$botones .= makeTemplate('_directorio_C2_boton.html', $dataBoton, 'directorio');
 					} 
 					$dataPersonaBox['botones'] = $botones;
-					$personal .= makeTemplate('_directorio_C_personabox.html', $dataPersonaBox);
+					$personal .= makeTemplate('_directorio_C_personabox.html', $dataPersonaBox, 'directorio');
 					########END personaBox
 				$zebra++;
 			}
@@ -125,9 +125,9 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 			foreach($alfabeto as $letra){
 				$letraACtual = array("letra"=>$letra);
 				if(in_array(strtoupper($letra), $listadoIniciales)){ 
-					$letras .= makeTemplate('_directorio_D_letra_ancla.html', $letraACtual);
+					$letras .= makeTemplate('_directorio_D_letra_ancla.html', $letraACtual, 'directorio');
 				}else{
-					$letras .= makeTemplate('_directorio_D_letra_bullet.html', $letraACtual);
+					$letras .= makeTemplate('_directorio_D_letra_bullet.html', $letraACtual, 'directorio');
 				}
 			} 
 
@@ -136,7 +136,7 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 
 			$dataListado['personal'] = $personal;
 			$dataListado['letras'] = $letras;
-			$html = makeTemplate('_directorio_A_listado.html', $dataListado);
+			$html = makeTemplate('_directorio_A_listado.html', $dataListado, 'directorio');
 
 
 		}else{
@@ -175,29 +175,29 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 				$dataPersonaBox['foto'] = $res['foto'];
 				$dataPersonaBox['nombreCompleto'] = mb_convert_encoding("{$res['nombre']} {$res['paterno']} {$res['materno']}",'UTF-8');
 				$dataPersonaBox['puesto'] = mb_convert_encoding($res['puesto'],'UTF-8');
-				$dataPersonaBox['area'] =  mb_convert_encoding($res['area']);
+				$dataPersonaBox['area'] =  mb_convert_encoding($res['area'],'UTF-8');
 
 				$botones = '';
 				if($res['email'] !== ''){//GENERA CODIGO BOTON
 					$dataBoton = array("clase"=>"","tipoDeEnlace"=>"mailto","info"=>$res['email'],"tipoIcono"=>"envelope");
-					$botones .= makeTemplate('_directorio_detalle_boton.html', $dataBoton);
+					$botones .= makeTemplate('_directorio_detalle_boton.html', $dataBoton, 'directorio');
 				}
 				if($res['movil'] !== ''){//GENERA CODIGO BOTON
 					$dataBoton = array("clase"=>"","tipoDeEnlace"=>"tel","info"=>$res['movil'],"tipoIcono"=>"mobile-alt");
-					$botones .= makeTemplate('_directorio_detalle_boton.html', $dataBoton);
+					$botones .= makeTemplate('_directorio_detalle_boton.html', $dataBoton, 'directorio');
 				}
 				if($res['ext'] !== ''){//GENERA CODIGO BOTON
 					$dataBoton = array("clase"=>"","tipoDeEnlace"=>"","info"=>"{$edificio['conmutador']} ext. {$res['ext']}","tipoIcono"=>"phone");
-					$botones .= makeTemplate('_directorio_detalle_boton_ext.html', $dataBoton);
+					$botones .= makeTemplate('_directorio_detalle_boton_ext.html', $dataBoton, 'directorio');
 				}
 				if($edificio['direccion'] !== ''){//GENERA CODIGO BOTON
 					$dataBoton = array("clase"=>"","mapa"=>str_replace(';', ',', $edificio['mapa']),"edificio"=>mb_convert_encoding($edificio['nombre'],'UTF-8'),"direccion"=>$edificio['direccion']);
-					$botones .= makeTemplate('_directorio_detalle_boton_mapa.html', $dataBoton);
+					$botones .= makeTemplate('_directorio_detalle_boton_mapa.html', $dataBoton, 'directorio');
 				} 
 
 				$dataPersonaBox['botones'] = $botones;
 			
-				$html = makeTemplate('_directorio_detalle.html', $dataPersonaBox);
+				$html = makeTemplate('_directorio_detalle.html', $dataPersonaBox, 'directorio');
 
 				$success = TRUE;
 				$error   = '';

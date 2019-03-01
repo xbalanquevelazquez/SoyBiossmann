@@ -6,7 +6,7 @@
 .searchBox{padding: 1em;/*width: 250px;*/background:#4d4d4f;box-shadow: 4px 0 6px -2px rgba(0, 0, 0, 0.6);position:relative;z-index: 10;/*height: 300px;*/}
 .searchBox h2{color: #ddd;font-family: ExoDos;font-size: 1.2em;font-weight: 200;/*margin-bottom: 1em;*/}
 
-input, select{background:#FFF;border-radius: 4px;border:1px solid #cbc9c9;font-size:.9em;padding:8px 28px 8px 6px;color:#c6c6c6;}
+input, select{background:#FFF;border-radius: 4px;border:1px solid #cbc9c9;font-size:.9em;padding:8px 28px 8px 6px;}
 select{color:#000;}
 input[type="text"]:focus,
 input[type="email"]:focus,
@@ -14,10 +14,7 @@ input[type="tel"]:focus{border-color:#333;color:#333;}
 input[type="submit"],.btnD1{background:#8d448e;color:#FFF;}
 input[type="submit"]:hover,.btnD1:hover{background:#600c61;color:#FFF;}
 
-
-#directorio form {
-    margin-bottom: 0;
-}
+#directorio form{margin-bottom: 0;}
 
 .searchBox div,
 .searchBox input{position: relative;z-index: 10;}
@@ -62,7 +59,7 @@ input[type="submit"]:hover,.btnD1:hover{background:#600c61;color:#FFF;}
     float: right;
     margin-top: 7px;
 }
-.bloqueResultadoDirectorio{overflow: hidden;height: 300px;}
+.bloqueResultadoDirectorio{overflow: hidden;height: 328px;}
 .resultsBox {
     position: relative;
     z-index: 9;
@@ -278,7 +275,7 @@ input[type="submit"]:hover,.btnD1:hover{background:#600c61;color:#FFF;}
 
 /*.resultados .mensaje a {padding: 12px 10px 6px;}*/
 
-.columnaIzq{width:calc(100% - 30px);float:left;overflow-y:auto;max-height:298px;background: grey;}
+.columnaIzq{width:calc(100% - 30px);float:left;overflow-y:auto;max-height:301px;background: grey;}
 .columnaDer{width: 30px;float:left;background:#52565f;text-align: center;padding: 2px 0;}
 .columnaDer ul{margin:0;padding:0;list-style: none;}
 .columnaDer ul li{font-size: 0.6em;line-height: 1.18em;text-transform: uppercase;color:#BBB;}
@@ -305,7 +302,8 @@ input[type="submit"]:hover,.btnD1:hover{background:#600c61;color:#FFF;}
 	animation: ripple 0.65s linear; 
 	-webkit-animation: ripple 0.65s linear;
 }
-.resultsBox .container{padding:0;}
+.resultsBox .container,.detailBox .container{padding:0 !important;}
+
 
 @keyframes ripple {
 	/*scale the element to 250% to safely cover the entire link and fade it out*/

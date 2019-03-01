@@ -35,9 +35,6 @@ class Admin{
 			$this->conectarBD();
 		}
 	}
-	function test(){
-		echo '--- test ---';
-	}
 	function comprobarUsuario($usrlogin,$pswlogin){
 		$this->comprobar_conexion();
 		$query = "SELECT COUNT(*) as total FROM ".PREFIJO."usuarios WHERE usr_login='$usrlogin' AND AES_DECRYPT(usr_psw,'".AESCRYPT."') = '$pswlogin' AND usr_activo=1";
@@ -83,10 +80,11 @@ class Admin{
 		$this->comprobar_conexion();
 		$limitquery = '';
 		
-		if($returnQuery == 0) $tablesQuery = "*,(SELECT bit_acceso FROM ".PREFIJO."perfil WHERE usr_perfil = kid_perfil) as bit,(SELECT ".PREFIJO."perfil.nombre FROM ".PREFIJO."perfil WHERE usr_perfil = kid_perfil) as perfil"; else  $tablesQuery = "COUNT(*) as total";
+		if($returnQuery == 0) $tablesQuery = "*,(SELECT nombre_perfil FROM ".PREFIJO."perfil WHERE fid_perfil = kid_perfil) as perfil"; else  $tablesQuery = "COUNT(*) as total";
+		#$tablesQuery = "*,(SELECT bit_acceso FROM ".PREFIJO."perfil WHERE usr_perfil = kid_perfil) as bit,(SELECT ".PREFIJO."perfil.nombre FROM ".PREFIJO."perfil WHERE usr_perfil = kid_perfil) as perfil"; else  $tablesQuery = "COUNT(*) as total";
 		if($limit != '') { $limitquery = ' LIMIT '.$limit; }
 
-		$query = "SELECT $tablesQuery FROM ".PREFIJO."usuarios as usr ORDER BY usr_id $limitquery";
+		$query = "SELECT $tablesQuery FROM ".PREFIJO."usuarios as usr ORDER BY kid_usr $limitquery";
 		#echo $query.'<br />';
 		$this->resultado = $this->conexion->query($query);
 		$this->resultado = $this->conexion->fetch($this->resultado);
@@ -126,24 +124,24 @@ class Admin{
 				'admin' => $admin,
 				'kid_usr' => $kid_usr
 			);
-		$_SESSION['site'] = $arrDatos;
+		$_SESSION[SESSION_DATA_SET] = $arrDatos;
 	}
 	function comprobarSesion(){
-		#print_r($_SESSION['site']);
-		if(isset($_SESSION['site']) && is_array($_SESSION['site'])) return true;else return false;
+		#print_r($_SESSION[SESSION_DATA_SET]);
+		if(isset($_SESSION[SESSION_DATA_SET]) && is_array($_SESSION[SESSION_DATA_SET])) return true;else return false;
 	}
 	function salirSesion($pag){
-		unset($_SESSION['site']);
+		unset($_SESSION[SESSION_DATA_SET]);
 		header("Location:".$pag);
 	}
 	function obtenerUsr($dato){
-		return $_SESSION['site'][$dato];
+		return $_SESSION[SESSION_DATA_SET][$dato];
 	}
 	function permisosUsuario(){
-		return $_SESSION['site']['permisos'];
+		return $_SESSION[SESSION_DATA_SET]['permisos'];
 	}
 	function esAdmin(){
-		return $_SESSION['site']['admin'];
+		return $_SESSION[SESSION_DATA_SET]['admin'];
 	}
 }
 $myAdmin = new Admin();

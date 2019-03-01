@@ -80,7 +80,7 @@ function makeIdentificador(text){
 			nuevoValor = nuevoValor.replace(/\u00fa/g, "u");
 			nuevoValor = nuevoValor.replace(/\u00f1/g, "n");
 			//indiceObjeto.value=nuevoValor;
-			console.log(nuevoValor.length);
+			//console.log(nuevoValor.length);
 			if(nuevoValor.length > maxCaracteres){//Máximo de caracteres
 				nuevoValor = nuevoValor.substring(0, 40); 
 			}

@@ -52,19 +52,6 @@ tinymce.init({
 		<?php if(isset($_GET['msg'])){
 		echo  mostrarMensaje($_GET['msg']);
 		} ?>
-		<div class="botones">
-						<?php if($resultado['visible']==1){	?>
-						<a href="?est&change&invisible&fast&id=<?php echo $id ?>" class="btnVisible" title="Hacer invisible"><i class="fa fa-eye-slash"></i></a>
-						<?php }else{ ?>
-						<a href="?est&change&visible&fast&id=<?php echo $id ?>" class="btnInvisible" title="Hacer visible"><i class="fa fa-eye"></i></a>
-						<?php }  if($resultado['publicado']==1){ ?>
-						<a href="?est&change&desactivar&fast&id=<?php echo $id ?>" class="btnActivo" title="Desactivar"><i class="fa fa-minus-circle"></i></a>
-						<?php }else{ ?>
-						<a href="?est&change&activar&fast&id=<?php echo $id ?>" class="btnInactivo" title="Activar"><i class="fa fa-circle"></i></a>
-						<?php }?>
-						
-						<div class="fixed"></div>
-					</div>
 		<form method="POST" action="<?php echo CURRENT_SECCION; ?>save/" name="formPagina">
 						<input name="id" type="hidden" value="<?php echo $resultado['kid_pagina']; ?>" />
 			<div class="row">

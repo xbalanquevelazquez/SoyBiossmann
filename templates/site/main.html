@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>{$pageNombre}Soy Biossmann</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="robots" content="index, follow" />
+    <meta name="description" content="{$pageDescripcion}" />
+    <meta name="keywords" content="{$pageKeywords}" />
+    <meta name="author" content="Biossmann TI" />
+	<link rel="shortcut icon" href="{$APP_URL}img/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="{$APP_URL}js/libs/bootstrap-4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{$APP_URL}css/fontawesome-free-5.7.2-web/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="{$APP_URL}css/basico.css" />
+    {$extraScripts}
+    <link rel="stylesheet" type="text/css" href="{$APP_URL}css/personalizacion.css" />
+    <link rel="stylesheet" type="text/css" href="{$APP_URL}css/menu-horizontal.css" />
+
+	<script type="text/javascript" src="{$APP_URL}js/popper.min.js"></script>
+   	<script type="text/javascript" src="{$APP_URL}js/jquery-3.0.0.min.js"></script>
+ 	<script type="text/javascript" src="{$APP_URL}js/libs/bootstrap-4.1.3/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{$APP_URL}js/cssmenuh.js"></script>
+    <script type="text/javascript">
+        var siteURL = '{$siteURL}';
+        var esIndex = {$esIndex};
+        var pageId = {$pageId};
+        var pageAlias = '{$pageAlias}';
+    </script>
+	<script type="text/javascript" src="{$APP_URL}js/app.js"></script>           <!-- recommended location of your JavaScript code relative to other JS files -->
+</head>
+<body>
+	{$headerCode}
+	<section id="mainContainer" class="container-fluid">
+	{$contentCode}
+	{$footerCode}
+	</section><!--//#mainContainer-->
+</body>
+</html>	

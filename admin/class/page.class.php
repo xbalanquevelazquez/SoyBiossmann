@@ -2,7 +2,6 @@
 $index = TRUE;
 
 $siteURL = WEB_PATH;
-if(HOME_DIR != '') $siteURL .= HOME_DIR;
 
 if(!is_index()) { $page = $data1; $index = FALSE; }
 
@@ -148,50 +147,52 @@ class Page{
 		
 		}
 	}
-	function mostrarMenuPrincipal(){
+	function getMenuPrincipal(){
+		$buffer = '';
 		$menu = $this->myAdmin->fetch($this->myAdmin->query("SELECT * FROM ".PREFIJO."view_estructura WHERE iniPadre=1 AND visible=1 AND publicado=1 ORDER BY clasificacion"));
-		?><ul id="menunav" class="navbar-nav mr-auto menu"><?php
+		$buffer .= '<ul id="menunav" class="navbar-nav mr-auto menu">';
 		foreach($menu as $elem){
 			$childrens='';
-			$menuSub = $this->myAdmin->fetch($this->myAdmin->query("SELECT * FROM ".PREFIJO."view_estructura WHERE iniPadre={$elem['kid_pagina']} AND visible=1 AND publicado=1"));
-			#print_r(count($menuSub)."-->".$menuSub);
+			$menuSub = $this->myAdmin->fetch($this->myAdmin->query("SELECT * FROM ".PREFIJO."view_estructura WHERE iniPadre={$elem['kid_pagina']} AND visible=1 AND publicado=1 ORDER BY clasificacion"));
 			if(count($menuSub)>0){ $childrens.="<ul>"; }
 			foreach($menuSub as $elemSub){
 				$actual = '';
 				if($elemSub['alias'] == $this->nivelSuperior) $actual = ' active';
 
-				$childrens.= '<li class="'.$actual.'"><a href="'.$this->siteURL.'/'.$elemSub['alias'].'">'.$elemSub['nombre'].'</a> </li>';
+				$childrens.= '<li class="'.$actual.'"><a href="'.$this->siteURL.$elemSub['alias'].'">'.$elemSub['nombre'].'</a> </li>';
 			}
 			if(count($menuSub)>0){ $childrens.="</ul>"; }
 
 			$actualMain = '';
 			if($elem['alias'] == $this->nivelSuperior) $actualMain = ' active';
 
-
-
-			?><li class="<?php echo $elem['selector']; ?> <?php echo $actualMain ?>"><a class="nav-link" href="<?php echo $this->siteURL.'/'.$elem['alias']; ?>"><?php echo $elem['nombre']; ?></a> <?php echo $childrens; ?></li>
-			<?php
+				$buffer .= "<li class='{$elem['selector']} {$actualMain}'><a class='nav-link' href='{$this->siteURL}{$elem['alias']}'>{$elem['nombre']}</a> {$childrens}</li>";
 		}
-		?></ul><?php
+		$buffer .= '</ul>';
+		return $buffer;
 	}
 	function mostrarSubsecciones(){
+		$buffer = '';
 		if(!$this->p404){
-			$menu = $this->myAdmin->fetch($this->myAdmin->query("SELECT * FROM ".PREFIJO."view_estructura WHERE iniPadre={$this->id} AND visible=1"));
+			$menu = $this->myAdmin->fetch($this->myAdmin->query("SELECT * FROM ".PREFIJO."view_estructura WHERE iniPadre={$this->id} AND visible=1 AND publicado=1 ORDER BY clasificacion ASC"));
 			if(count($menu)>0){
-				?>
-				<div class="listaLinks listaColorazul">
-				<h2><?php echo $this->pageData['nombre']; ?></h2>
-				<ul class="bold"><?php
+				$buffer .= "<div class='listaLinks listaColorazul material bordeGris'>";
+				$buffer .= "<h2>{$this->pageData['nombre']}</h2>";
+				$buffer .= "<ul class='bold'>";
 				foreach($menu as $elem){
-					?><li><a href="<?php echo $this->siteURL.'/'.$elem['alias']; ?>"><?php echo $elem['nombre']; ?></a> </li>
-					<?php
+					$desc = '';
+					if($elem['descripcion'] != ''){ $desc = "<span class='desc'>{$elem['descripcion']}</span>"; }
+					$buffer .= "<li><a href='{$this->siteURL}/{$elem['alias']}'>{$elem['nombre']} $desc</a></li>";
 				}
-				?></ul>
-				</div><?php
+				$buffer .= "</ul>";
+				$buffer .= "</div>";
 			}
 		}
+		return $buffer;
 	}
 	function mostrarMenuSecundario(){
+		$buffer = "";
+		$firstChild = 1;
 		if(!$this->p404){
 			$menu = array();
 			$menuEncabezado = array();
@@ -220,39 +221,32 @@ class Page{
 					$menu[] = $nodo;
 					//echo "------ ";		
 				} 	
-				//echo $nodo['nombre']." | ".$nodo['padre'].' -vs- '.$idPadre."<br>";
 			}
-			/*echo "<pre>";
-			print_r($menu);
-			echo "</pre>";*/
 			if(count($menu)>0){
-				?>
-			<div class="renglon material espaciar overcontent">
-            	<div class="bloque_subMenu">
-            		<h3><?php echo $menuEncabezado[0]['nombre']; ?></h3>
-				<ul><?php
+				$buffer .= "<div class='renglon material margenPosterior'>";
+            	$buffer .= "<div class='bloque_subMenu'>";
+            		$buffer .= "<h3>{$menuEncabezado[0]['nombre']}</h3>";
+				$buffer .= "<ul>";
 				foreach($menu as $elem){
-					?>
-					<li class="<?php if($elem['definicion']=='actual'){	echo 'selected';} if($elem['definicion']=='hijo'){echo ' indentLevel';} ?>">
-					<?php #echo $elem['definicion'];
-						$setLink = FALSE;
-						if($elem['definicion']!='actual'){ $setLink = TRUE; }
-						if($setLink){
-							?>
-						<a href="<?php echo $this->siteURL.'/'.$elem['alias']; ?>"><?php
-						}
-						echo $elem['nombre'];
-						if($setLink){ ?></a><?php
-						}
-						 ?>
-					</li>
-			<?php } ?>
-						</ul>
-				</div>
-         	 </div>
-				<?php
+					$elemActual = $elem['definicion']=='actual'?' selected':'';
+					$elemHijo = $elem['definicion']=='hijo'?'indentLevel':'';
+					if($elemHijo != '' && $firstChild==1){ $elemHijo .= ' firstChild'; $firstChild=0; }
+					$buffer .= "<li class='{$elemHijo}{$elemActual}'>";
+					$setLink = FALSE;
+					if($elem['definicion']!='actual'){ $setLink = TRUE; }
+					if($setLink){
+						$buffer .= "<a href='{$this->siteURL}/{$elem['alias']}'>";
+					}
+					$buffer .= "{$elem['nombre']}";
+					if($setLink){ $buffer .= "</a>"; }
+					$buffer .= "</li>";
+				}
+				$buffer .= "</ul>";
+				$buffer .= "</div>";
+         	 	$buffer .= "</div>";
 			}
 		}
+		return $buffer;
 	}
 	function mostrarMenuSecundario_OLD(){
 		if(!$this->p404){
@@ -359,6 +353,7 @@ class Page{
 		}
 	}
 	function mostrarBreadcrumb($otroNombre='',$separador='|'){
+		$buffer = '';
 		if(!$this->p404){
 
 			$qBread = "SELECT * FROM ".PREFIJO."view_estructura WHERE kid_pagina={$this->id}";
@@ -380,10 +375,8 @@ class Page{
 			if($bread['padre']!=''){$arrLevels[]=$bread['padre'];}
             //echo "<pre>";
 			//print_r($arrLevels);
-			?>
-			<div class="breadcrumb right">
-			<a href="<?php echo WEB_PATH; ?>">Inicio</a>
-			<?php
+			$buffer .= "<div class='breadcrumb right'>";
+			$buffer .= "<a href='".APP_URL."'>Inicio</a>";
 			#print_r($arrLevels);
 			foreach($arrLevels as $elem){
 				#echo "--$elem--";
@@ -392,14 +385,14 @@ class Page{
 				$tempRes = $this->myAdmin->query($tempQry);
 				$tempFetch = $this->myAdmin->fetch($tempRes);
 				$pageName = $tempFetch[0];
-				?>
-				<span class="separador"><?php echo $separador; ?></span> <a href="<?php echo $this->siteURL.'/'.$pageName['alias']; ?>"><?php echo $pageName['nombre']; ?></a>
-				<?php
+				
+				$buffer .= "<span class='separador'>{$separador}</span> <a href='{$this->siteURL}/{$pageName['alias']}'>{$pageName['nombre']}</a>";
+				
 			}
-			?>
-			<span class="separador"><?php echo $separador; ?></span> <?php echo $otroNombre!=''?$otroNombre:$this->pageData['nombre']; ?>
-			</div><?php
+			$nombrePaginaActual = $otroNombre!=''?$otroNombre:$this->pageData['nombre'];
+			$buffer .= "<span class='separador'>{$separador}</span> {$nombrePaginaActual}</div>";
 		}
+		return $buffer;
 	}
 	function mostrarLista($id){
 		$queryGroup = "SELECT * FROM ".PREFIJO."grupo_links WHERE identificador='$id' AND visible=1";

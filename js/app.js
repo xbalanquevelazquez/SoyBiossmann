@@ -11,7 +11,7 @@ $(document).ready(function(){
   		function(){
   			colorBordeActual = $(this).css("border-color");
   			roundnessBordeActual = $(this).css("border-radius");
-  			console.log(colorBordeActual);
+  			//console.log(colorBordeActual);
   			//In
   			$(this).css({
   				borderRadius: '1px',

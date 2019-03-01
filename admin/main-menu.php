@@ -1,6 +1,9 @@
 <?php
+
 $permisos = $myAdmin->obtenerUsr('permisos');
-$secciones = $myAdmin->obtenerUsr('secciones');
+#print_r($permisos);
+$qSecciones = "SELECT kid_accion,acronimo_accion as acronimo,nombre_accion as nombre FROM cms_acciones";
+$secciones = $myAdmin->conexion->fetch($myAdmin->conexion->query($qSecciones));#$myAdmin->obtenerUsr('secciones');
 ?>
 		<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
 		  <a class="navbar-brand" href="<?php echo APP_URL; ?>">SoyBiossmann</a>
@@ -16,7 +19,7 @@ $secciones = $myAdmin->obtenerUsr('secciones');
 					$acron = $secciones[$s]['acronimo'];
 					$seccName = utf8_encode($secciones[$s]['nombre']);
 					if($acron != 'ADMIN' && $acron != 'VIEW'){//Saltamos la opción de ADMIN porque es un permiso global del sistema
-						if($data1 == $acron){
+						if($page == $acron){
 							$activo = ' active';
 							$tituloDePagina = $seccName;
 						}

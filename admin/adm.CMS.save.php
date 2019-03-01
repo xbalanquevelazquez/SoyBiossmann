@@ -81,7 +81,7 @@ switch($type){
 			
 			/*insert($tabla,$datos,$type='HTML')*/
 			
-			if($myAdmin->conexion->insert(PREFIJO."estructura",$datos)){
+			if($myAdmin->conexion->insert(PREFIJO."estructura",$datos,'TEXT')){
 			   /**
 			  `kid_contenido` int(11) NOT NULL auto_increment,
 			  `fid_estructura` int(11) NOT NULL,
@@ -100,7 +100,7 @@ switch($type){
 				$contenido['fecha_alta'] = date("Y-m-d H:i:s");
 				$contenido['nombre_responsable'] = $myAdmin->obtenerUsr('nombre');
 			
-				if($myAdmin->conexion->insert(PREFIJO."contenido",$contenido)){
+				if($myAdmin->conexion->insert(PREFIJO."contenido",$contenido,'TEXT')){
 					if(isset($_POST['newsite'])){/*es sitio- regresar a la estructura*/
 						header("Location:".CURRENT_SECCION);
 					}else{/*es página normal, regresar al editor*/

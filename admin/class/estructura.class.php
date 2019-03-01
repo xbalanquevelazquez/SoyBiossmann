@@ -22,28 +22,35 @@ class Estructura{
 									$link = 'activar';
 									$title = 'Activar';
 									$icon = 'circle';
+									$colorCSS = 'colorVerde';
 								}else{
 									$link = 'desactivar';
 									$title = 'Desactivar';
 									$icon = 'minus-circle';
+									$colorCSS = 'colorGrisClaro';
 								}
 								$opcionesBox1 .= self::crearBoton($id,$link,$title,$icon,$colorCSS);
+								$colorCSS = 'colorGrisClaro';
 								/*EDITAR*/
 								$link = 'edit';
 								$title = 'Editar';
 								$icon = 'pen';
+								$colorCSS = 'colorAzul';
 								$opcionesBox1 .= self::crearBoton($id,$link,$title,$icon,$colorCSS);
 								/*VISIBLE/INVISIBLE*/
 								if($valor['visible']==0){
 									$link = 'visible';
 									$title = 'Hacer visible';
 									$icon = 'eye';
+									$colorCSS = 'colorAzul';
 								}else{
 									$link = 'invisible';
 									$title = 'Hacer invisible';
 									$icon = 'eye-slash';
+									$colorCSS = 'colorGrisClaro';
 								}
 								$opcionesBox1 .= self::crearBoton($id,$link,$title,$icon,$colorCSS);
+								$colorCSS = 'colorGrisClaro';
 								/*BORRAR*/
 								$link = 'delete';
 								$title = 'Borrar';
@@ -106,12 +113,15 @@ class Estructura{
 									$link = 'activar';
 									$title = 'Activar';
 									$icon = 'circle';
+									$colorCSS = 'colorVerde';
 								}else{
 									$link = 'desactivar';
 									$title = 'Desactivar';
 									$icon = 'minus-circle';
+									$colorCSS = 'colorGrisClaro';
 								}
 								$opcionesBox1 .= self::crearBoton($id,$link,$title,$icon,$colorCSS);
+								$colorCSS = 'colorGrisClaro';
 								/*if($valor['publicado']==0){
 									$opcionesBox1 .= '<a href="?est&change&activar&id='.$valor['kid_pagina'].'" title="Activar"><i class="fa fa-circle colorVerde"></i></a>';
 								}else{
@@ -121,6 +131,7 @@ class Estructura{
 								$link = 'edit';
 								$title = 'Editar';
 								$icon = 'pen';
+								$colorCSS = 'colorAzul';
 								$opcionesBox1 .= self::crearBoton($id,$link,$title,$icon,$colorCSS);
 								#$opcionesBox1 .= '<a href="?est&edit&id='.$valor['kid_pagina'].'" title="Editar"><i class="fa fa-pen colorAzul"></i></a>';
 								/*VISIBLE/INVISIBLE*/
@@ -128,12 +139,15 @@ class Estructura{
 									$link = 'visible';
 									$title = 'Hacer visible';
 									$icon = 'eye';
+									$colorCSS = 'colorAzul';
 								}else{
 									$link = 'invisible';
 									$title = 'Hacer invisible';
 									$icon = 'eye-slash';
+									$colorCSS = 'colorGrisClaro';
 								}
 								$opcionesBox1 .= self::crearBoton($id,$link,$title,$icon,$colorCSS);
+								$colorCSS = 'colorGrisClaro';
 								/*if($valor['visible']==0){
 									$opcionesBox1 .= '<a href="?est&change&visible&id='.$valor['kid_pagina'].'" title="Hacer visible"><i class="fa fa-eye colorAzul"></i></a>';
 								}else{

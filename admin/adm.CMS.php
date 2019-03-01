@@ -72,7 +72,13 @@ else if($data2=='down'){ 	include_once("adm.$data1.change.php");*/
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#terminoBusqueda').keyup(function(){
+		$('body').keypress(function(e){
+		    alert(e.which);
+		    if(e.which == 27){
+		        // Close my modal window
+		    }
+		});
+		/*$('#terminoBusqueda').keyup(function(){
 			var currentValue = $(this).val();
 			currentValue = currentValue.trim();
 			if(currentValue != ''){
@@ -90,10 +96,10 @@ else if($data2=='down'){ 	include_once("adm.$data1.change.php");*/
 				$(".resultBoxRegistros").html('');
 			}
 		});
-		$('[data-toggle="tooltip"]').tooltip();
+		$('[data-toggle="tooltip"]').tooltip();*/
 	});
 	function getRegistros(data,type='CC'){
-		$(".resultBoxRegistros").html("<div class='bg-info'>Obteniendo resultados...</div>");
+		/*$(".resultBoxRegistros").html("<div class='bg-info'>Obteniendo resultados...</div>");
 		var envioData = new FormData();
 		envioData.append("action",'getRegistros');													
 		envioData.append("id",data);
@@ -118,7 +124,7 @@ else if($data2=='down'){ 	include_once("adm.$data1.change.php");*/
 				$(".resultBoxRegistros").html(respuesta.data.codigo);
 				$('[data-toggle="tooltip"]').tooltip();
 			}
-		});
+		});*/
 	}
 </script>
 <?php

@@ -99,45 +99,6 @@ function wsGetMoodleUserData($id){
         echo "Error en get contents: ". $error['message'];
     }
 }
-/*
-function wsComprobarLoginCURL($usuario,$password){
-    $url = WS_LOGIN.'_ws_login.php';
-
-    $postdata = array(
-        'username'  => $usuario,
-        'password'  => $password,
-        'type'      => 'checkpass'
-        );
-
-    return curl_post($url, $postdata);
-
-}
-
-function curl_post($url, array $post = NULL, array $options = array())
-{
-    $defaults = array(
-        CURLOPT_POST => TRUE,
-        CURLOPT_HEADER => 0,
-        CURLOPT_URL => $url,
-        CURLOPT_FRESH_CONNECT => 1,
-        CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_FORBID_REUSE => 1,
-        CURLOPT_TIMEOUT => 4,
-        CURLOPT_POSTFIELDS => http_build_query($post)
-    );
-
-    $ch = curl_init();
-    curl_setopt_array($ch, ($options + $defaults));
-    if( ! $result = curl_exec($ch))
-    {
-        $error = error_get_last();
-        echo "Error en curl_exec: ". $error['message'];
-        trigger_error(curl_error($ch));
-    }
-    curl_close($ch);
-    return $result;
-} 
-*/
 function ssl_encrypt($string){
     $password = ENCRYPT_KEY;
     $method = ENCRYPT_METHOD;
@@ -148,9 +109,6 @@ function ssl_decrypt($encrypted){
     $method = ENCRYPT_METHOD;
     return $decrypted = openssl_decrypt($encrypted, $method, $password);
 }
-function verificaPassword(){}
-
-
 function curl_get_contents($url, $postdata, $location)
 {
     $ch = curl_init();
@@ -385,9 +343,14 @@ function makeTemplate($plantilla, $datos, $dir = '', $rutaEspecial = ''){
     return $html;
 }
 function replaceDirImages($string){
-    $string = str_replace('../../../../webimgs/', WEB_IMG_PATH, $string);
-    $string = str_replace('../../webimgs/', WEB_IMG_PATH, $string);
-    $string = str_replace('../http', 'http', $string);
+    $find = array('../../../../webimgs/','../../webimgs/','../http');
+    $replace = array(WEB_IMG_PATH,WEB_IMG_PATH,'http');
+    return str_replace($find, $replace, $string);
+}
+function replaceStylesDefs($string){
+    $find = array('<strong>','</strong>','<em>','</em>');
+    $replace = array('<span class="strong">','</span>','<span class="italic">','</span>');
+    return str_replace($find, $replace, $string);
     return $string;
 }
 ?>

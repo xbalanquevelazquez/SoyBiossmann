@@ -37,6 +37,9 @@ a{text-decoration:none;}
 .errorHere{border:1px solid red;}
 .setObligatorio{}
 .obligatorioMark{color:red;}
+.tox .tox-form__group--stretched{background:#FFF;}/*FONDO BLANCO PARA PREVIEW TINYMCE*/
+
+
 /*.mapsite{text-align:left}
 .mapsite ul{margin:0px;padding:0px;list-style:none;margin-left:6px;}
 .mapsite ul ul{margin-left:2px;}

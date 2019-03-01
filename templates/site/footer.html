@@ -1,6 +1,3 @@
-<?php 
-if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
-?>
 		<footer>
 			<div class="biossFooter texto-blanco">
 				<nav class="navbar">
@@ -13,6 +10,4 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 				<div class="plecas"></div>
 			</div>
 		</footer>
-    <?php if($index){ ?>
-    <script src="<?php echo APP_URL; ?>js/funcionalidad.home.js"></script>
-    <?php } ?>
+{$script}

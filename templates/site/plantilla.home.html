@@ -1,47 +1,42 @@
-<?php 
-if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
-?>
-		<section id="main">
+<section id="main">
+	<div class="renglonGutter"></div>
+	<div class="row no-gutters">
+		<div class="columnaI gutter" id="primeraColumna">
+
+			<div class="bg-azulgris texto-blanco" id="directorio">
+				<label for="nombre">Directorio biossmann:</label><br />
+				<input type="text" name="nombre" id="nombre" placeholder="Nombre, apellido, correo o celular:" />
+				<button class="btn ixSubmit search texto-blanco bg-verdeagua"><i class="fa fa-search"></i></button>
+				<button class="btn ixSubmit clear bg-grismedio texto-grisclaro"><i class="fa fa-times"></i></button>
+			</div>
+			<div class="bloqueResultadoDirectorio transicionLenta material" style="height: 0px;">
+				<!--DIRECTORIO LISTADO-->
+				<div class="resultsBox transicionLenta columna5F" style="height: 0px;">
+					<div class="container transicionLenta"></div>
+				</div>
+				<!--DIRECTORIO DETALLE-->
+				<div class="detailBox transicionLenta columnaC" style="right: -100%;">
+					<div class="container transicionLenta"></div>
+				</div>
+			</div>
+
 			<div class="renglonGutter"></div>
 
 			<div class="row no-gutters">
-				<div class="columnaI gutter" id="primeraColumna">
-
-					<div class="bg-azulgris texto-blanco" id="directorio">
-						<label for="nombre">Directorio biossmann:</label>
-						<br />
-					    <input type="text" name="nombre" id="nombre" placeholder="Nombre, apellido, correo o celular:" />
-					    <button class="btn ixSubmit search texto-blanco bg-verdeagua efectoRealce"><i class="fa fa-search"></i></button>
-					    <button class="btn ixSubmit clear bg-grismedio texto-grisclaro efectoRealce"><i class="fa fa-times"></i></button>
-					</div>
-					<div class="bloqueResultadoDirectorio transicionLenta material" style="height: 0px;">
-						<!--DIRECTORIO LISTADO-->
-						<div class="resultsBox transicionLenta columna5F" style="height: 0px;">
-							<div class="container transicionLenta"></div>
+				<div class="col">
+					<!--div class="material bordeGris aleft" id="contenedorBanners">
+						<button class="material btn bg-azulgris texto-blanco positionLeft positionTop">Consulta el... </button>
+						<div class="apuntador">
+		           			<ul>
+			                    <li id="bannLink1"><a href="" style="background-color: rgba(206, 231, 2, 0.4);">&nbsp;</a></li>
+			                    <li id="bannLink2"><a href="" style="background-color: rgba(206, 231, 2, 0.8);">&nbsp;</a></li>
+			                    <li id="bannLink3"><a href="" style="background-color: rgba(206, 231, 2, 0.4);">&nbsp;</a></li>
+		                    </ul> 
+		          		</div>
+						<div class="banner">
+						<img src="img/banner/bann-dias-festivos.png" alt="Calendario de días festivos" />
 						</div>
-						<!--DIRECTORIO DETALLE-->
-						<div class="detailBox transicionLenta columnaC" style="right: -100%;">
-							<div class="container transicionLenta"></div>
-						</div>
-					</div>
-
-					<div class="renglonGutter"></div>
-
-					<div class="row no-gutters">
-						<div class="col">
-							<!--div class="material bordeGris aleft" id="contenedorBanners">
-								<button class="material btn bg-azulgris texto-blanco positionLeft positionTop">Consulta el... </button>
-								<div class="apuntador">
-		           					<ul>
-			                            <li id="bannLink1"><a href="" style="background-color: rgba(206, 231, 2, 0.4);">&nbsp;</a></li>
-			                            <li id="bannLink2"><a href="" style="background-color: rgba(206, 231, 2, 0.8);">&nbsp;</a></li>
-			                            <li id="bannLink3"><a href="" style="background-color: rgba(206, 231, 2, 0.4);">&nbsp;</a></li>
-		                          	</ul> 
-		          				</div>
-								<div class="banner">
-									<img src="img/banner/bann-dias-festivos.png" alt="Calendario de días festivos" />
-								</div>
-							</div-->
+					</div-->
 		<div class="columna columna2C margenIzq rightAlign material" id="contenedorBanners">
           
           <div class="apuntador" style="">
@@ -54,7 +49,7 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
           <div class="banner transicion 3 naranja" banner="3">
             <a href="/talento-humano"><!--banner link-->
               <div class="img">
-                <img src="<?php echo APP_URL; ?>img/banner/bann-valor-innovacion_v2.png" alt="Valores Biossmann">
+                <img src="{$APP_URL}img/banner/bann-valor-innovacion_v2.png" alt="Valores Biossmann">
               </div>
               <div class="texto">
                 Banner de prueba                <br>
@@ -65,18 +60,18 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
           <div class="banner transicion 2 verde" banner="2">
             <a href="#"><!--banner link-->
               <div class="img">
-                <img src="<?php echo APP_URL; ?>img/banner/bann-valor-pasion_v2.png" alt="Valores Biossmann">
+                <img src="{$APP_URL}img/banner/bann-valor-pasion_v2.png" alt="Valores Biossmann">
               </div>
               <div class="texto">
                 Felicidades a todos los que cumplen años!                <br>
                 <span>Mayo, 2017</span>
               </div>
-            </a><!- -//banner link-->
-          </div><!- -//b anner-->
+            </a><!--//banner link-->
+          </div><!--//banner-->
           <div class="banner transicion 1 morado" banner="1">
             <a href="/corporativo"><!--banner link-->
               <div class="img">
-                <img src="<?php echo APP_URL; ?>img/banner/bann-dias-festivos_v2.png" alt="Calendario de días festivos">
+                <img src="{$APP_URL}img/banner/bann-dias-festivos_v2.png" alt="Calendario de días festivos">
               </div>
               <div class="texto">
                 Nuestro trabajo tiene sentido                <br>
@@ -85,49 +80,6 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
             </a><!--//banner link-->
           </div><!--//banner-->
         </div>
-
-							        <!--div class="columna columna2C margenIzq rightAlign material" id="contenedorBanners">
-          
-          <?php 
-         /* $banners = $page->obtenerBanners('banners-inicio');
-          $zTop = $banners['count']+3;
-         // echo $banners['query']."<br>";
-         // echo $banners['count']."<br>";
-         // print_r($banners);
-           ?>
-          <div class="apuntador" style="z-index: <?php  echo $zTop+1; ?>">
-            <ul>
-              <?php 
-              for($b=0;$b<$banners['count'];$b++){
-                $style = '';
-                if($b==0) $style = 'style="background-color: rgba(0,0,0,0.8)"';
-              ?>
-              <li id="bannLink<?php  echo $b+1; ?>"><a href="" <?php  echo $style; ?>>&nbsp;</a></li>
-              <?php } ?>
-            </ul> 
-          </div>
-              <?php 
-              for($b=0;$b<$banners['count'];$b++){
-                $style = '';
-                if($b==0) $style = 'style="background-color: rgba(0,0,0,0.8)"';
-                $bannerColorData = getColor($banners['data'][$b]['color']);
-              ?>
-          <div class="banner transicion <?php echo $banners['data'][$b]['color'].' '.$bannerColorData['colorName']; ?>" id="bann<?php  echo $b+1; ?>" style="z-index: <?php  echo $zTop-$b; ?>" >
-            <a href="<?php echo $banners['data'][$b]['link']; ?>"><!--banner link-->
-              <div class="img">
-                <img src="<?php  echo WEB_BANNER_PATH.$banners['data'][$b]['img']; ?>" />
-              </div>
-              <div class="texto">
-                <?php  echo $banners['data'][$b]['titulo']; ?>
-                <br />
-                <span><?php  echo $banners['data'][$b]['alt']; ?></span>
-              </div>
-            </a><!--//banner link-->
-          </div>
-              <?php }*/ ?>
-        </div-->
-
-
 						</div>
 					</div>
 
@@ -223,7 +175,7 @@ if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 					<div class="row no-gutters">
 						<div class="col">
 							<div class="bordeGris galeriaContainer efectoRealce">
-								<a href="<?php echo APP_URL; ?>galeria-biossmann"><img src="img/img-galeria-biossmann-vert.png" alt="Galería Biossmann"></a>
+								<a href="{$APP_URL}galeria-biossmann"><img src="img/img-galeria-biossmann-vert.png" alt="Galería Biossmann"></a>
 							</div>
 						</div>
 					</div>					

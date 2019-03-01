@@ -90,6 +90,9 @@ body {
     text-decoration: none;
     font-family:"ExoDos";
 }
+.menu_principal #menunav li li a{
+  line-height: 1.2em;
+}
 
 .menu_principal li a:hover{
     text-decoration: none;

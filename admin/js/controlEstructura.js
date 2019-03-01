@@ -39,4 +39,9 @@ function activarEnlaces(){
 }
 $(document).ready(function(){
 	activarEnlaces();
+	$('body').keyup(function(e){
+	    if(e.which == 27){//apretando ESC
+	    	ocultarOpciones();
+	    }
+	});
 });

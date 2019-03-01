@@ -32,7 +32,7 @@ else{
 <div class="paginador">
 <?php echo $paginacion['HTML']; ?>
 </div>
-<a href="<?php echo APP_URL.$data1 ?>/new<?php echo $pager ?>" class="btn btn-primary"><i class="fa fa-plus"></i> &nbsp;Nuevo perfil</a>
+<a href="<?php echo CURRENT_SECCION ?>/new<?php echo $pager ?>" class="btn btn-primary"><i class="fa fa-plus"></i> &nbsp;Nuevo perfil</a>
 <div class="fixed espaciador"></div>
 <table class="table table-bordered table-striped table-hover">
 	<thead class="bg-secondary text-white">
@@ -69,8 +69,8 @@ else{
 				<td><?php echo $res['nombre_perfil']; ?></td>
 				<td><?php echo $res['seccion_inicial']; ?></td>
 				<td><?php echo $permisos ?></td>
-				<td><a href="<?php echo APP_URL.$data1 ?>/edit/<?php echo $res['kid_perfil'] ?><?php echo $pager ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
-				<td><a href="<?php echo APP_URL.$data1 ?>/delete/<?php echo $res['kid_perfil'] ?><?php echo $pager ?>" onclick="return confirmar();" class="btn btn-danger"><i class="fa fa-trash-alt"></i></a></td>
+				<td><a href="<?php echo ADMIN_URL.$data1 ?>/edit/<?php echo $res['kid_perfil'] ?><?php echo $pager ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
+				<td><a href="<?php echo ADMIN_URL.$data1 ?>/delete/<?php echo $res['kid_perfil'] ?><?php echo $pager ?>" onclick="return confirmar();" class="btn btn-danger"><i class="fa fa-trash-alt"></i></a></td>
 			</tr>
 			<?php
 			$i++;

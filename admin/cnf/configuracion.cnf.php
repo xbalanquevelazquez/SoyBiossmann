@@ -13,10 +13,9 @@ if(!defined('VIEWABLE')) {
 	if($debug) { error_reporting(E_ALL); ini_set('display_errors', 1); ini_set('error_reporting', E_ALL); }
 
 	if($thisserver == 'localhost'){
-		define('WEB_PATH',			'http://localhost/');
+		define('WEB_PATH',			'http://localhost/soybiossmann/');
 		define('APP_PATH',			'D:\PoisonStinger\wamp64\www\soybiossmann/');
-		define('HOME_DIR',			'soybiossmann/');
-		define('APP_URL',			WEB_PATH.HOME_DIR.'/');
+		define('APP_URL',			WEB_PATH);
 		define('COOKIE_DOMAIN',		'localhost/soybiossmann');
 		define('BD_HOST', 			'localhost');
 		define('DB_USER', 			'root');
@@ -51,7 +50,7 @@ if(!defined('VIEWABLE')) {
 	$prefijo = PREFIJO;
 
 	define('ADMIN_PATH',		APP_PATH.'admin/');
-	define('ADMIN_URL',			WEB_PATH.HOME_DIR.'admin/');
+	define('ADMIN_URL',			WEB_PATH.'admin/');
 	
 	define('APP_NAME', 		'IntranetSoyBiossmann');
 	define('AESCRYPT',		'$0y.Bios5m4n');
@@ -69,18 +68,18 @@ if(!defined('VIEWABLE')) {
 		define('LIB_PATH',			APP_PATH.'admin/librerias/');
 		define('CONF_PATH',			APP_PATH.'admin/cnf/');
 		define('FILE_PATH',			APP_PATH.'webfiles/');
-		define('WEB_FILE_PATH',		WEB_PATH.HOME_DIR.'webfiles/');
+		define('WEB_FILE_PATH',		WEB_PATH.'webfiles/');
 		define('TEMPLATE_PATH',		APP_PATH.'templates/');
 		define('NEWS_PATH',			APP_PATH.'webimgs/noticias/');
-		define('WEB_NEWS_PATH',		WEB_PATH.HOME_DIR.'webimgs/noticias/');
+		define('WEB_NEWS_PATH',		WEB_PATH.'webimgs/noticias/');
 		define('BANNER_PATH',		APP_PATH.'webimgs/banners/');
-		define('WEB_BANNER_PATH',	WEB_PATH.HOME_DIR.'webimgs/banners/');
+		define('WEB_BANNER_PATH',	WEB_PATH.'webimgs/banners/');
 
 		define('APP_IMG_PATH',		APP_PATH.'webimgs/');
 		define('APP_LOGO_PATH',		APP_IMG_PATH.'empresas/');
 		
 		define('IMG_PATH',			APP_PATH.'webimgs/');
-		define('WEB_IMG_PATH',		WEB_PATH.HOME_DIR.'webimgs/');
+		define('WEB_IMG_PATH',		WEB_PATH.'webimgs/');
 
 		define('BORRADO',			1);
 		
@@ -103,7 +102,7 @@ if(!defined('VIEWABLE')) {
 
 	#header('Content-Type: text/html; charset=UTF-8');
 
-	$referer = WEB_PATH.'/'.HOME_DIR;
+	$referer = WEB_PATH;
 
 	#include_once(LIB_PATH.'sesiones.php');
 	include_once(LIB_PATH.'Mobile_Detect_2.8.17.php');

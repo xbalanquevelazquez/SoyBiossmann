@@ -17,6 +17,7 @@ $(document).ready(function(){
 
 	$('.ixSubmit.clear').click(function(e){
 		e.preventDefault();
+		$("#nombre").val('');
 		$(".detailBox").css({right:"-100%"});
 		$(".resultsBox").css({height:'0px',opacity:0});
 		$(".bloqueResultadoDirectorio").css({height:'0px'});
@@ -92,16 +93,19 @@ function activarLinksIniciales(){
 }
 function activarResultados(forzar){
 	var contador = 0;
+	var cadena = '';
 	$("#nombre").each(function(){
-		var cadena = $(this).val();
+		cadena = $(this).val();
+		cadena = cadena.trim();
 		if(cadena != '' && cadena.length > 2){
 			contador++;
 		}
 	});
 	if(forzar==true) contador++;
+	if(cadena==''){ contador = 0; $('.ixSubmit.clear').click(); }//vacío, no pasa
 	if(contador>0) {
-		$(".resultsBox").css({height:"301px",background:"#FFF url(img/loader.gif) no-repeat center center"});
-		$(".bloqueResultadoDirectorio").css({height:'301px'});
+		$(".resultsBox").css({height:"328px",background:"#FFF url(img/loader.gif) no-repeat center center"});
+		$(".bloqueResultadoDirectorio").css({height:'328px'});
 		$(".detailBox").css({right:"-100%"});
 		busquedaResultados();
 	}else{
@@ -214,9 +218,13 @@ function abrirDetalle(id){
 		contentType: false,
 		data:dataDetail, 	
 		cache:false,
-		dataType:"html",
-		success: function(data){
-			$(".detailBox").html(data);
+		dataType:"json",
+		success: function(response){
+			if(response.success){
+				$(".detailBox .container").html(response.data.codigo);
+			}else{
+				$(".detailBox .container").html(response.error);
+			}
 		}
 	});
 }

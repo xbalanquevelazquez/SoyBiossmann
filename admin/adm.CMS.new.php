@@ -69,11 +69,11 @@ tinymce.init({
 		#echo  mostrarMensaje($_GET['msg']);
 		#} ?>
 		<form method="POST" action="<?php echo CURRENT_SECCION; ?>save/new" name="formPagina">
-							<input type="hidden" name="nivel" value="<?php echo $nivel; ?>" />
-							<input type="hidden" name="padre" value="<?php echo $padre ;?>" />
-							<input type="hidden" name="orden" value="<?php echo $orden; ?>" />
-							<input type="hidden" name="type" value="<?php echo $type; ?>" />
-							<input type="hidden" name="oldId" value="<?php echo $id; ?>" />
+			<input type="hidden" name="nivel" value="<?php echo $nivel; ?>" />
+			<input type="hidden" name="padre" value="<?php echo $padre ;?>" />
+			<input type="hidden" name="orden" value="<?php echo $orden; ?>" />
+			<input type="hidden" name="type" value="<?php echo $type; ?>" />
+			<input type="hidden" name="oldId" value="<?php echo $id; ?>" />
 
 			<div class="row">
 				<div class="col-1 label"><label for="titulo">Título:</label></div>
