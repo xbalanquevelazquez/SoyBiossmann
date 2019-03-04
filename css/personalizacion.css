@@ -215,13 +215,25 @@ header{background:transparent url('../img/back-header.gif') repeat-x center bott
 .bloque_subMenu a{color:#32384a;display:block;}
 .listaLinks a:hover,
 .bloque_subMenu a:hover{color:#f68429;}
-.bloque_subMenu .selected{font-weight:bold;color:#8ccd02;background:transparent url("../img/bullet-ver-k.png") no-repeat 6px 8px;padding-left: 18px;cursor:default;}
+.bloque_subMenu .selected{color:#77ab11;background:transparent url("../img/bullet-ver-k.png") no-repeat 6px 8px;padding-left: 18px;cursor:default;}
 .indentLevel{padding-left: 2rem !important;color: #999999;font-size: .9rem;}
 .indentLevel a{color:#999999;}
 
 .bloque_subMenu li.indentLevel{background: #EEE;}
 .bloque_subMenu .indentLevel.firstChild{background: #EEE url('../img/grad-submenu-firstchild.png') repeat-x top center;padding-top: 0.6rem;}
 .listaLinks a span.desc{display:block;font-size:.9em;color:#888888;padding-left:10px;}
+
+.setpadding5{padding:0.5rem;}
+
+.calidadModule{}
+.calidadModule h2{margin:1rem 0;color:#E4500A;}
+.calidadModule .bloqueArchivos a{color:#E4500A;margin-bottom:1em;display:block;}
+.calidadModule .info{font-size:.8em;color:#888;}
+.calidadModule .espaciar{margin-bottom:1.5rem;}
+
+.bannersISO{text-align:center;}
+.bannersISO div{display:inline-block;padding:1rem;}
+
 /*
 Desktop First
 max-width

@@ -351,6 +351,10 @@ function replaceStylesDefs($string){
     $find = array('<strong>','</strong>','<em>','</em>');
     $replace = array('<span class="strong">','</span>','<span class="italic">','</span>');
     return str_replace($find, $replace, $string);
-    return $string;
+}
+function normalizarNuke($string){
+    $find = array('Do*****ento','do*****ento','*****ple');
+    $replace = array('Documento','documento','cumple');
+    return str_replace($find, $replace, $string);
 }
 ?>

@@ -52,7 +52,10 @@ $(document).ready(function(){
 			activarResultados();
 		}
 	}); // focus && blur
-	
+	$('#enviarComentarios').click(function(e){
+		e.preventDefault();
+		votarEncuesta();
+	});
 	activarResultados();
 	crearLinksBanners();
 });
@@ -312,6 +315,28 @@ function generarMatrizDeBanners(numero){
 	$('.apuntador li[bannLink='+arrBanners[0]+'] a').css({backgroundColor:'rgba('+btnRColor+', '+btnGColor+', '+btnBColor+',0.8)'});
 
 	return arrBanners;
+}
+function votarEncuesta(){
+	var valor = $('.encuestaOpcion:checked').val();
+	var envioDatos = new FormData();
+	envioDatos.append('action','votarEncuesta');
+	envioDatos.append("valor",valor);
+	$.ajax({
+		url: siteURL+"/webservice/acciones.php",
+		type:"POST",
+		processData: false,//tanto processData como contentType deben estar en false para que funcione FormData
+		contentType: false,
+		data:envioDatos, 	
+		cache:false,
+		dataType:"json",
+		success: function(response){
+			if(response.success){
+				$(".encuestaHome").html(response.data.codigo);
+			}else{
+				$(".encuestaHome").html(response.error);
+			}
+		}
+	});
 }
 /*function abrirEnlace(e){
 	e.preventDefault();

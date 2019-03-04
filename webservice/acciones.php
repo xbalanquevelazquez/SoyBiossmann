@@ -262,6 +262,84 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 
 			break;
 		/*****************************************/
+		/******** votarEncuesta  **********/
+		/*****************************************/
+		case 'subirImagenTinyMCE':
+				$now = date("Y-m-d H:i:s");
+				$valor = isset($_POST['valor']) && trim($_POST['valor']) != '' && is_numeric($_POST['valor']) && $_POST['valor']>0 && $_POST['valor']<=3?trim($_POST['valor']):'Sin especificar';
+				$comentario = isset($_POST['comentario']) && trim($_POST['comentario']) != ''?trim($_POST['valor']):'Sin especificar';
+				$datos = array();
+				$alerta = '';
+				if($valor == 'Sin especificar'){
+					$success = FALSE;
+					$error   = "<div class='bg-warning'>Necesita indicar el valor correcto para votar</div>";
+					$data    = array();	
+				}else{
+					$datos['fid_encuesta'] = 1;//ENCUESTA ID 1, aún no terminado de implementar
+					$datos['opcion'] = $valor;
+					//PROTEGER
+					$datos['comentario'] = htmlentities((addslashes($comentario));
+					//$datos['datos_dhl'] = htmlentities($datos['datos_dhl']);
+					if($myAdmin->conexion->insert(PREFIJO.'encuesta',$datos,$condicion=" WHERE fid_registro='$id'",'TEXTO',FALSE)){
+						$queryConsentimiento = "SELECT * FROM ".PREFIJO."registro_adicional WHERE fid_registro='$id'";
+						if($resConsentimiento = $myAdmin->conexion->query($queryConsentimiento)){
+							$infoFaltante = 0;
+							$consentimientoData = $myAdmin->conexion->fetch($resConsentimiento);
+							$consentimientoData = $consentimientoData[0];
+
+							//if($consentimientoData['envio_a_dhl'] != 0){ //HAY INFORMACIÓN DE DHL, USAR ESTO
+								/*if(trim($consentimientoData['datos_dhl']) == ''){
+									$alerta .="<span class=restriccion>Seleccionó el envío a oficina de DHL, pero no ha indicado los datos de la sucursal</span><br/>";
+								}*/
+							//}else{
+								if($consentimientoData['nombre_recibe'] == ''){ $infoFaltante++; }
+								if($consentimientoData['calle'] == ''){ $infoFaltante++; }
+								if($consentimientoData['num_exterior'] == ''){ $infoFaltante++; }
+								if($consentimientoData['cp'] == '' || strlen($consentimientoData['cp'])<=4){ $infoFaltante++; }
+								if($consentimientoData['fid_entidad'] == '99'){ $infoFaltante++; }
+								if($consentimientoData['fid_municipio'] == '999'){ $infoFaltante++; }
+								if($consentimientoData['fid_localidad'] == '0'){ $infoFaltante++; }
+							//}
+
+							if($infoFaltante > 0){
+								$s = $infoFaltante>1?'s':'';
+								$alerta .="<span class=restriccion>Faltan $infoFaltante dato$s que completar</span><br/>";
+							}
+							// Pide consentimiento sólo si no es una Acompañante o Referida
+							$deboConsentimiento = true;
+							$queryRegistro = "SELECT * FROM ".PREFIJO."registros WHERE nip='$id'";
+							if($resRegistro = $myAdmin->conexion->query($queryRegistro)){
+								$registroData = $myAdmin->conexion->fetch($resRegistro);
+								$registroData = $registroData[0];
+								if ($registroData['fid_acompanante'] > 0){
+									$deboConsentimiento = false;
+								}
+							}
+							if ($deboConsentimiento){
+								if($consentimientoData['consentimiento'] == '0'){
+									$alerta .= "<span class=restriccion>Tiene que aceptar el consentimiento informado</span><br/>";
+								}
+							}
+							if($consentimientoData['comprobante_pago'] == ''){
+								$alerta .= "<span class=restriccion>No ha enviado comprobante de pago</span><br/>";
+							}
+							$buffer = "<div class='bg-success'>Datos guardados </div>";
+							$success = TRUE;
+							$error   = '';
+							$data    = array("mensaje"=>'Ok',"codigo"=>$buffer,"consentimiento"=>$consentimiento,"alerta"=>$alerta);
+						}else{
+							$success = FALSE;
+							$error   = "<div class='bg-warning'>Error:".$myAdmin->conexion->error."</div>";
+							$data    = array();	
+						}
+					}else{
+						$success = FALSE;
+						$error   = "<div class='bg-warning'>Error:".$myAdmin->conexion->error."</div>";
+						$data    = array();	
+					}
+				}
+			break;
+		/*****************************************/
 		/******** DEFAULT  **********/
 		/*****************************************/
 		default:

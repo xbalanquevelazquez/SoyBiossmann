@@ -228,6 +228,16 @@ CREATE TABLE cms_page_comments(
   PRIMARY KEY(kid_comment)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS cms_encuesta;
+CREATE TABLE cms_encuesta(
+  kid_votacion INT AUTO_INCREMENT,
+  fid_encuesta INT NOT NULL,
+  opcion INT NOT NULL,
+  comentario VARCHAR(300),
+  fecha_votacion DATETIME NOT NULL DEFAULT NOW(),
+  activo INT NOT NULL DEFAULT 1,
+  PRIMARY KEY(kid_votacion)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP VIEW IF EXISTS cms_view_base_estructura;
 CREATE VIEW cms_view_base_estructura AS

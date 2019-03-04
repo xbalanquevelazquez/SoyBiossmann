@@ -3,6 +3,7 @@ define('VIEWABLE',TRUE);
 include_once("admin/cnf/configuracion.cnf.php");
 include_once(CLASS_PATH."page.class.php");
 $page = new Page($page);
+define('CURRENT_SECCION',APP_URL.$data1.'/');
 /*echo "<pre>";
 print_r($page);
 echo "</pre>";*/
@@ -68,18 +69,35 @@ switch($plantilla_filepath) {
 		//VARS
 		$plantillaData['menuSecundario'] = '';
 		#$plantillaData['subsecciones'] = $plantilla_filepath=='sinsubsecciones'?'':$page->mostrarSubsecciones();//NO MOSTRAR EN SINSUBSECCIONES
-		$plantillaData['breadcrumb'] = $page->mostrarBreadcrumb($otroNombre='',$separador='<i class="fa fa-caret-right"></i>');
+		if($page->page=='calidad'){
+			include(APP_PATH.'bloques/module.calidad.breadcrumb.php');
+			$plantillaData['breadcrumb'] = $bufferBread;
+		}else{
+			$plantillaData['breadcrumb'] = $page->mostrarBreadcrumb($otroNombre='',$separador='<i class="fa fa-caret-right"></i>');
+		}
 		$plantillaData['pageNombre'] = $page->pageData['nombre'];
 		if($plantilla_filepath=='landingpage'){//Mostrar subsecciones en area de contenido
 			$plantillaData['contenido'] = $page->mostrarSubsecciones();
 		}else{//MOSTRAR CONTENIDO EN CUALQUIER OTRO CASO
-			$plantillaData['contenido'] = replaceStylesDefs(replaceDirImages($page->contenido['contenido']));
+			if($page->page=='calidad'){//MOSTRAR MODULO DE CALIDAD SI ES LA SECCION
+				include(APP_PATH.'bloques/module.calidad.php');
+				$plantillaData['contenido'] = $buffer;
+			}else{
+				$plantillaData['contenido'] = replaceStylesDefs(replaceDirImages($page->contenido['contenido']));	
+			}
+
 			//$plantillaData['menuSecundario'] .= $page->mostrarSubsecciones();//MUESTRO SUBSECCIONES EN MENU, SI NO ES LANDINGPAGE, solo niveles superiores a 1
 			if($page->pageData['nivel'] > 1){
 				$plantillaData['menuSecundario'] .= $page->mostrarMenuSecundario();
 			}
 		}
-		$plantillaData['ultimaActualizacion'] = formatFechaEspaniol($page->ultimaActualizacion);
+		if($page->page=='calidad'){//NO MUESTRO ULTIMA ACT EN CALIDAD PORQUE LA INFO ES EXTERBNA
+			$plantillaData['ultimaActualizacion'] = '';
+			$plantillaData['menuSecundario'] .= makeTemplate('banners_iso.html', array('siteURL' => $page->siteURL), 'site');
+		}else{
+			$plantillaData['ultimaActualizacion'] = "Última actualización: ".formatFechaEspaniol($page->ultimaActualizacion);
+		}
+
 		if($plantilla_filepath=='sinsubsecciones' || $plantilla_filepath=='landingpage'){//FORZAR PLANTILLA SUBSECCIONES, PERO SIN DATOS PARA SUBSECCIONES
 			$plantilla_nombre = 'plantilla.subseccion.html';
 		}
