@@ -225,6 +225,7 @@ header{background:transparent url('../img/back-header.gif') repeat-x center bott
 .listaLinks a span.desc{display:block;font-size:.9em;color:#888888;padding-left:10px;}
 
 .setpadding5{padding:0.5rem;}
+.redondear{border-radius: 5px;}
 
 .calidadModule{}
 .calidadModule h2{margin:1rem 0;color:#E4500A;}

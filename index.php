@@ -124,6 +124,7 @@ $main['contentCode'] = makeTemplate($plantilla_nombre, $plantillaData, 'site');
 #include_once(APP_PATH.'plantilla.'.$plantilla_filepath.'.php');
 /***************** DATOS DE FOOTER ******************/
 $footer['script'] = $index?'<script src="'.APP_URL.'js/funcionalidad.home.js"></script>':'';
+$footer['script'] .= '<script src="'.APP_URL.'js/funcionalidad.encuesta.js"></script>';
 /**************************************************/
 $main['footerCode'] = makeTemplate('footer.html', $footer, 'site');
 #include_once(APP_PATH."footer.inc.php");

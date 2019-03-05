@@ -25,17 +25,18 @@
 					<div class="renglonGutter"></div>
 					<div class="material bordeGris bg-gris13">
 						<div class="barraTitulo texto-blanco  bg-azulgris ico ico-compromiso">Opina</div>
+						<div id="graphOpina" class="d3graph transicionLenta"></div>
 						<div class="innerContent encuestaHome">
 							<p>¿Te parece útil la información de este sitio web?</p>
 							<div class="opciones">
-								<div><input type="radio" name="opinion" id="op1"> <label for="op1">Sí</label></div>
-								<div><input type="radio" name="opinion" id="op2"> <label for="op2">Sí, pero podría mejorarse</label></div>
-								<div><input type="radio" name="opinion" id="op3"> <label for="op3">No</label></div>
+								<div><input type="radio" name="opinion" id="op1" class="encuestaOpcion" value="1" /> <label for="op1">Sí</label></div>
+								<div><input type="radio" name="opinion" id="op2" class="encuestaOpcion" value="2"  /> <label for="op2">Sí, pero podría mejorarse</label></div>
+								<div><input type="radio" name="opinion" id="op3" class="encuestaOpcion" value="3" /> <label for="op3">No</label></div>
 							</div>
 							<div>Comentarios</div>
-							<textarea name="opiniontext" id="opiniontext" rows="3"></textarea>
+							<textarea name="opiniontext" id="opiniontext" rows="2"></textarea>
 							<div class="aright">
-								<button id="enviarComentarios" class="material btn bg-verdeagua texto-blanco">Enviar</button>
+								<button id="enviarComentarios" class="btn bg-verdeagua texto-blanco efectoRealce">Enviar</button>
 							</div>
 						</div>
 					</div>

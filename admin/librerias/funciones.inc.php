@@ -357,4 +357,65 @@ function normalizarNuke($string){
     $replace = array('Documento','documento','cumple');
     return str_replace($find, $replace, $string);
 }
+function getEstatusColor($num){
+
+        /**************************
+        1 = Si
+        2 = Si, pero podria mejorarse
+        3 = No
+        ***************************/
+
+        switch($num){
+
+            case '1':
+                $color = '194,212,0';
+                break;
+
+            case '2':
+                $color = '246,132,41';
+                break;
+
+            case '3':
+                $color = '193,39,186';
+                break;
+
+            case '-':
+            case '':
+            case NULL:
+            default:
+                $color = '191,191,191';
+                break;
+        }
+    return $color;
+}
+function getLabelXOpcion($num){
+
+        /**************************
+        1 = Si
+        2 = Si, pero podria mejorarse
+        3 = No
+        ***************************/
+
+        switch($num){
+            case '1':
+                $label = "Si";
+                break;
+
+            case '2':
+                $label = "Si, pero podria mejorarse";
+                break;
+
+            case '3':
+                $label = "No";
+                break;
+
+            case '-':
+            case '':
+            case NULL:
+            default:
+                $label = "erroneo";
+                break;
+        }
+    return $label;
+}
 ?>
