@@ -81,7 +81,7 @@ tinymce.init({
 								foreach($plantillas as $plantilla){ 
 									$selected = '';
 									if($plantilla['kid_plantilla'] == $resultado['plantilla']){ $selected = 'selected="selected"'; }
-									$descipcionPlantilla = utf8_encode($plantilla['descripcion']);
+									$descipcionPlantilla = $plantilla['descripcion'];
 									echo "<option value='{$plantilla['kid_plantilla']}' id='{$plantilla['filepath']}' $selected>{$descipcionPlantilla}</option>";
 								 } ?>
 								</select></div>

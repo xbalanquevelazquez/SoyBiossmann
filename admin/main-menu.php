@@ -17,7 +17,8 @@ $secciones = $myAdmin->conexion->fetch($myAdmin->conexion->query($qSecciones));#
 				for($s=0; $s < count($secciones); $s++){
 					$activo = '';
 					$acron = $secciones[$s]['acronimo'];
-					$seccName = utf8_encode($secciones[$s]['nombre']);
+					#echo mb_detect_encoding($secciones[$s]['nombre']);
+					$seccName = mb_convert_encoding($secciones[$s]['nombre'],'UTF-8');
 					if($acron != 'ADMIN' && $acron != 'VIEW'){//Saltamos la opción de ADMIN porque es un permiso global del sistema
 						if($page == $acron){
 							$activo = ' active';

@@ -264,7 +264,7 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 		/*****************************************/
 		/******** votarEncuesta  **********/
 		/*****************************************/
-		case 'subirImagenTinyMCE':
+		/*case 'subirImagenTinyMCE':
 				$now = date("Y-m-d H:i:s");
 				$valor = isset($_POST['valor']) && trim($_POST['valor']) != '' && is_numeric($_POST['valor']) && $_POST['valor']>0 && $_POST['valor']<=3?trim($_POST['valor']):'Sin especificar';
 				$comentario = isset($_POST['comentario']) && trim($_POST['comentario']) != ''?trim($_POST['valor']):'Sin especificar';
@@ -290,7 +290,7 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 							//if($consentimientoData['envio_a_dhl'] != 0){ //HAY INFORMACIÓN DE DHL, USAR ESTO
 								/*if(trim($consentimientoData['datos_dhl']) == ''){
 									$alerta .="<span class=restriccion>Seleccionó el envío a oficina de DHL, pero no ha indicado los datos de la sucursal</span><br/>";
-								}*/
+								}* /
 							//}else{
 								if($consentimientoData['nombre_recibe'] == ''){ $infoFaltante++; }
 								if($consentimientoData['calle'] == ''){ $infoFaltante++; }
@@ -338,7 +338,7 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 						$data    = array();	
 					}
 				}
-			break;
+			break;*/
 		/*****************************************/
 		/******** DEFAULT  **********/
 		/*****************************************/
