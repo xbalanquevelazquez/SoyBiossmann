@@ -126,7 +126,7 @@ switch($type){
 			$datos['keywords'] = $_POST['keywords'];
 			$datos['publicado'] = isset($_POST['publicado'])?$_POST['publicado']:0;
 			$datos['visible'] = isset($_POST['visible'])?$_POST['visible']:0;
-			print_r($_POST);
+			#print_r($_POST);
 
 			#$datos['grupodestacados'] = $_POST['grupodestacados'];
 			/*function update($tabla,$datos,$condicion='',$type='HTML')*/

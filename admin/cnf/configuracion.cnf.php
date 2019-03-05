@@ -52,7 +52,7 @@ if(!defined('VIEWABLE')) {
 	define('ADMIN_PATH',		APP_PATH.'admin/');
 	define('ADMIN_URL',			WEB_PATH.'admin/');
 	
-	define('APP_NAME', 		'IntranetSoyBiossmann');
+	define('APP_NAME', 		'SoyBiossmann');
 	define('AESCRYPT',		'$0y.Bios5m4n');
 
 	define('COOKIE_DEF',		'soyBiossmann');

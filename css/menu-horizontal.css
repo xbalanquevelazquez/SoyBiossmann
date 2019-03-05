@@ -6,7 +6,10 @@ ul.menu li{
    z-index: 800;
 }
 ul.menu li:hover{
-  background:#f2f0f0 url('../img/grad-btn-gris-hover.png ') repeat-x center top;color: #3b3f4b;
+  background:#3a3e49 url('../img/grad-btn-oscuro-hover.png') repeat-x center top;color: #d6d6d7;
+}
+.menu_principal #menunav li:hover a{
+  color: #d6d6d7;
 }
 ul.menu ul li{width:100%}
 ul.menu ul{
@@ -94,8 +97,9 @@ body {
   line-height: 1.2em;
 }
 
-.menu_principal li a:hover{
+.menu_principal #menunav li a:hover{
     text-decoration: none;
+    color:#d6d6d7;
 }
 .menu_principal li ul{
     background: none repeat scroll 0 0 #737373;
@@ -104,7 +108,7 @@ body {
     width: 10em;
 }
 .menu_principal li ul{
-  background:#f2f0f0 /*url('../img/back-header.gif') repeat-x center bottom*/;
+  background:#3a3e49 /*url('../img/back-header.gif') repeat-x center bottom*/;
 	width: 100%;/*12.5em*/
 }
 .menu_principal li ul li{
@@ -124,7 +128,7 @@ body {
   text-align: left;
 	line-height: 1.2em;
 }
-.menu_principal li ul a:hover{
+.menu_principal #menunav li ul li a:hover{
     /*text-decoration: underline;*/
     text-align: left;
     background: #3CC;

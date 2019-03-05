@@ -31,8 +31,10 @@ CREATE TABLE cms_contenido (
   fecha_alta datetime NOT NULL,
   fecha_modificacion datetime default NULL,
   nombre_responsable varchar(70) NOT NULL default 'Administrador del Soy Biossmann',
+  imagen_seccion VARCHAR(200),
   PRIMARY KEY  (`kid_contenido`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*ALTER TABLE cms_contenido ADD imagen_seccion VARCHAR(200) AFTER nombre_responsable;*/
 
 INSERT INTO cms_contenido VALUES (1, 1, 'Soy Biossmann', NOW(), NULL, 'Administrador de Soy Biossmann');
 INSERT INTO cms_contenido VALUES (2, 2, 'Biossmann', NOW(), NULL, 'Administrador de Soy Biossmann');

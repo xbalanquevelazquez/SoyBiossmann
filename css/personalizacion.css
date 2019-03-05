@@ -202,20 +202,21 @@ header{background:transparent url('../img/back-header.gif') repeat-x center bott
 .margenPosterior{margin-bottom: 12px;}
 .cajaContenido .listaLinks h2{display:none;}
 .cajaContenido .listaLinks.material{padding:2rem;box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.1);border: 1px solid #eee;}
-
+.cajaContenido{line-height: 1.4rem;text-align: justify;padding-right: 2rem;}
+.cajaContenido p{line-height: 1.4rem;}
 
 .bloque_subMenu{border: 1px solid #cac9c9;}
 .cajaSubmenu .listaLinks h2,
-.bloque_subMenu h3{background: #3b3f4b;color: #FFF;font-size: 1rem;padding: .5rem .7rem;font-family: "ExoDos";margin:0;}
+.bloque_subMenu h3{background: #3b3f4b;color: #FFF;font-size: 1rem;padding: .5rem .7rem;font-family: "ExoDos";margin:0;font-weight: 200 !important;}
 .listaLinks ul,
 .bloque_subMenu ul{list-style: none;margin:0;padding:0;}
 .listaLinks ul li{background:transparent url("../img/bullet-nar.png") no-repeat left 3px;padding-left:16px;margin-bottom:1rem;}
-.bloque_subMenu ul li{padding:.4rem .8rem;margin:0;}
+.bloque_subMenu ul li{padding:.4rem .2rem .4rem 22px;margin:0;}
 .listaLinks a,
 .bloque_subMenu a{color:#32384a;display:block;}
 .listaLinks a:hover,
 .bloque_subMenu a:hover{color:#f68429;}
-.bloque_subMenu .selected{color:#77ab11;background:transparent url("../img/bullet-ver-k.png") no-repeat 6px 8px;padding-left: 18px;cursor:default;}
+.bloque_subMenu .selected{color:#77ab11;background:transparent url("../img/bullet-ver-k.png") no-repeat 9px 9px;padding-left: 21px;cursor:default;}
 .indentLevel{padding-left: 2rem !important;color: #999999;font-size: .9rem;}
 .indentLevel a{color:#999999;}
 
@@ -234,6 +235,22 @@ header{background:transparent url('../img/back-header.gif') repeat-x center bott
 .bannersISO{text-align:center;}
 .bannersISO div{display:inline-block;padding:1rem;}
 
+.biossmann {
+    font-family: "ExoDos";
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #555;
+}
+.btn-biossmann{
+    background:#33CCCC;
+    color:#FFF;
+}
+.imagenSeccion{height: 88px;width: 100%;border-top:26px solid #3b3f4b;i}
+.imagenSeccion .innerTitular{border-top:2px solid #b9d800;}
+.imagenSeccion h1{
+    margin: 28px 28px 0px 28px;
+    color: #FFF;
+    text-align: right;}
 /*
 Desktop First
 max-width

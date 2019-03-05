@@ -69,13 +69,7 @@ switch($plantilla_filepath) {
 		//VARS
 		$plantillaData['menuSecundario'] = '';
 		#$plantillaData['subsecciones'] = $plantilla_filepath=='sinsubsecciones'?'':$page->mostrarSubsecciones();//NO MOSTRAR EN SINSUBSECCIONES
-		if($page->page=='calidad'){
-			include(APP_PATH.'bloques/module.calidad.breadcrumb.php');
-			$plantillaData['breadcrumb'] = $bufferBread;
-		}else{
-			$plantillaData['breadcrumb'] = $page->mostrarBreadcrumb($otroNombre='',$separador='<i class="fa fa-caret-right"></i>');
-		}
-		$plantillaData['pageNombre'] = $page->pageData['nombre'];
+		
 		if($plantilla_filepath=='landingpage'){//Mostrar subsecciones en area de contenido
 			$plantillaData['contenido'] = $page->mostrarSubsecciones();
 		}else{//MOSTRAR CONTENIDO EN CUALQUIER OTRO CASO
@@ -85,7 +79,6 @@ switch($plantilla_filepath) {
 			}else{
 				$plantillaData['contenido'] = replaceStylesDefs(replaceDirImages($page->contenido['contenido']));	
 			}
-
 			//$plantillaData['menuSecundario'] .= $page->mostrarSubsecciones();//MUESTRO SUBSECCIONES EN MENU, SI NO ES LANDINGPAGE, solo niveles superiores a 1
 			if($page->pageData['nivel'] > 1){
 				$plantillaData['menuSecundario'] .= $page->mostrarMenuSecundario();
@@ -107,6 +100,25 @@ switch($plantilla_filepath) {
 		# code...
 		break;
 }
+/*PROCESA INFORMACION DE TITULAR/IMAGEN*/
+#echo $page->contenido['imagen_seccion'];
+$titularData = array();
+$titularPage = 'page.titular.normal.html';
+if($page->contenido['imagen_seccion'] != ''){
+	$titularPage = 'page.titular.imagen.html';
+	$titularData['imagenSeccion'] = $page->contenido['imagen_seccion'];
+	$titularData['siteURL'] = $page->siteURL;
+}
+$titularData['pageNombre'] = $page->pageData['nombre'];
+
+if($page->page=='calidad'){
+	include(APP_PATH.'bloques/module.calidad.breadcrumb.php');
+	$plantillaData['breadcrumb'] = $bufferBread;
+}else{
+	$plantillaData['breadcrumb'] = $page->mostrarBreadcrumb($otroNombre='',$separador='<i class="fa fa-caret-right"></i>');
+}
+$titularCode = $plantillaData['titular'] = makeTemplate($titularPage, $titularData, 'site');
+
 /**************************************************/
 $main['contentCode'] = makeTemplate($plantilla_nombre, $plantillaData, 'site');
 #include_once(APP_PATH.'plantilla.'.$plantilla_filepath.'.php');
