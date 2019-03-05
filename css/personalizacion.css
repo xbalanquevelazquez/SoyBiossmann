@@ -245,7 +245,7 @@ header{background:transparent url('../img/back-header.gif') repeat-x center bott
     background:#33CCCC;
     color:#FFF;
 }
-.imagenSeccion{height: 88px;width: 100%;border-top:26px solid #3b3f4b;i}
+.imagenSeccion{height: 88px;width: 100%;border-top:26px solid #3b3f4b;margin-bottom:2rem;}
 .imagenSeccion .innerTitular{border-top:2px solid #b9d800;}
 .imagenSeccion h1{
     margin: 28px 28px 0px 28px;
