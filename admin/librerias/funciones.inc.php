@@ -418,4 +418,60 @@ function getLabelXOpcion($num){
         }
     return $label;
 }
+
+function validar($string,$kind,$nombreCampo){
+    $error = '';
+    if(trim($string) != ''){
+        switch($kind) {
+            case 'normal':
+            break;
+            case 'text':
+                if(!preg_match("/^[a-zA-Z ]*$/",$string)) {
+                  $error .= "Sólo se permiten letras y espacios en el campo '$nombreCampo'. ";
+                }
+                break;
+            case 'mail':
+                if(!filter_var($string, FILTER_VALIDATE_EMAIL)) {
+                  $error .= "Formato de correo incorrecto en el campo '$nombreCampo'. ";
+                }
+                break;
+            case 'number':
+                if(!is_numeric($string)){
+                    $error .= "Debe indicar un número en el campo '$nombreCampo'. ";
+                }
+                break;
+            default:
+                $error .= "Indique el tipo de validación para el campo '$nombreCampo'. ";
+                break;
+        }
+    }else{
+        $error .= "El campo '$nombreCampo' está vacío. ";
+    }
+    return $error;
+}
+function enviarMensaje($tituloMensaje, $templateName, $datosMensaje){
+    global $mail;
+    $mensaje = makeTemplate($templateName, $datosMensaje, 'correos');
+
+    // Envía el correo
+        $dataMail = array(
+            'sender_mail'=>SENDER_MAIL,
+            'sender_name'=>SENDER_MAIL_NAME,
+            'destinatarios' => array(SAE_MAIL),
+#           'destinatarios_bcc' =>array('alfredo.zamarripa@mariestopes.org.mx', 'info@proteccionysalud.com'),
+            'isHTML'=>TRUE,
+            'titulo'=>utf8_encode($tituloMensaje),
+            'mensaje'=>$mensaje,
+            'alt_mensaje'=>'',
+        );
+        $mail->debug(FALSE);
+        if ($mail->send_mail($dataMail)){ 
+            $success = TRUE;
+            $error = '';
+        } else { 
+            $success = FALSE;
+            $error = 'Error de envío:' . $mail->error;
+        }
+    return array('success'=>$success,'error'=>$error);
+}
 ?>

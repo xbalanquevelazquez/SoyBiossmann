@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Mensaje</title>
+	<style>
+	.label{color:#666;font-family: Arial, Helvetica Neue, Helvetica, sans-serif;margin-right:10px;}
+	p{font-family: Arial, Helvetica Neue, Helvetica, sans-serif;}
+	table{border-collapse: collapse;width: 100%;}
+	.aleft{text-align: left;}
+	.aright{text-align: right;}
+	</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<td class="aleft" width="15%"><img src="{$siteURL}img/logo-sae.png" alt="SAE" /></td>
+			<td width="65%"></td>
+			<td class="aright" width="20%"><img src="{$siteURL}img/logo-soy-biossmann.png" alt="Biossmann" /></td>
+		</tr>
+		<tr>
+			<td colspan="3">&nbsp;<br /></td>
+		</tr>
+		<tr>
+			<td class="aright label">Fecha/hora: &nbsp; &nbsp;</td>
+			<td colspan="2" class="aleft"><p>{$now}</p></td>
+		</tr>
+		<tr>
+			<td class="aright label">Nombre: &nbsp; &nbsp;</td>
+			<td colspan="2" class="aleft"><p>{$sae_nombre}</p></td>
+		</tr>
+		<tr>
+			<td class="aright label">Correo electrónico: &nbsp; &nbsp;</td>
+			<td colspan="2" class="aleft"><p>{$sae_mail}</p></td>
+		</tr>
+		<tr>
+			<td class="aright label">Teléfono: &nbsp; &nbsp;</td>
+			<td colspan="2" class="aleft"><p>{$sae_telefono}</p></td>
+		</tr>
+		<tr>
+			<td class="aright label">Área: &nbsp; &nbsp;</td>
+			<td colspan="2" class="aleft"><p>{$sae_area}</p></td>
+		</tr>
+		<tr>
+			<td class="aright label">Sitio de trabajo: &nbsp; &nbsp;</td>
+			<td colspan="2" class="aleft"><p>{$sae_sitiotrabajo}</p></td>
+		</tr>
+		<tr>
+			<td class="aright label">Comentarios: &nbsp; &nbsp;</td>
+			<td colspan="2" class="aleft"><p>{$sae_comentario}</p></td>
+		</tr>
+	</table>	
+</body>
+</html>

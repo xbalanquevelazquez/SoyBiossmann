@@ -25,9 +25,10 @@ if(!defined('VIEWABLE')) {
 		define('SENDER_MAIL',		'noreply@biossmann.com');
 		define('SENDER_PASS',		'');
 		define('SENDER_MAIL_HOST',	'192.168.4.1');
-		define('SENDER_MAIL_PORT',	'');
-		define('SENDER_MAIL_SECURE','');
-		define('SENDER_MAIL_NAME',	'Intranet SoyBiossmann');
+		define('SENDER_MAIL_PORT',	'25');
+		define('SENDER_MAIL_SECURE', FALSE);
+		define('SENDER_MAIL_NAME',	'SoyBiossmann');
+		define('SAE_MAIL',	'xbalanque.velazquez@biossmann.com');
 	}else if($thisserver=='soy.biossmann.com'){
 		define('WEB_PATH',			'https://soy.biossmann.com/');
 		define('APP_PATH',			'/usr/local/apache/htdocs_ssl/');
@@ -42,15 +43,17 @@ if(!defined('VIEWABLE')) {
 		define('SENDER_MAIL',		'noreply@biossmann.com');
 		define('SENDER_PASS',		'');
 		define('SENDER_MAIL_HOST',	'192.168.4.1');
-		define('SENDER_MAIL_PORT',	'');
-		define('SENDER_MAIL_SECURE','');
-		define('SENDER_MAIL_NAME',	'Intranet SoyBiossmann');
+		define('SENDER_MAIL_PORT',	'25');
+		define('SENDER_MAIL_SECURE', FALSE);
+		define('SENDER_MAIL_NAME',	'SoyBiossmann');
+		define('SAE_MAIL',	'xbalanque.velazquez@biossmann.com');//sae@biossmann.com
 	}
 
 	$prefijo = PREFIJO;
 
 	define('ADMIN_PATH',		APP_PATH.'admin/');
 	define('ADMIN_URL',			WEB_PATH.'admin/');
+	define('INIT_PAGE',			'index');
 	
 	define('APP_NAME', 		'SoyBiossmann');
 	define('AESCRYPT',		'$0y.Bios5m4n');
@@ -60,7 +63,7 @@ if(!defined('VIEWABLE')) {
 	define('AES_ENCRYPT',		'$0y.Bios5m4n');
 	define('DEBUG',				$debug);
 
-	
+
 	if(!defined('SYS_NAME')){
 		define('SYS_NAME',	'Administración de websites');
 		
@@ -80,8 +83,6 @@ if(!defined('VIEWABLE')) {
 		
 		define('IMG_PATH',			APP_PATH.'webimgs/');
 		define('WEB_IMG_PATH',		WEB_PATH.'webimgs/');
-
-		define('BORRADO',			1);
 		
 		define('DEFAULT_DATE',		'2019-01-01 00:00:00');
 		define('SITE',				'intranet');
@@ -125,7 +126,7 @@ if(!defined('VIEWABLE')) {
 	if(DEBUG) $myAdmin->debug=1;
 
 	$data1 = NULL;
-	if(isset($_GET['data1']) && $_GET['data1'] != ''){ $data1 = $_GET['data1']; }else{ $data1 = 'index'; }
+	if(isset($_GET['data1']) && $_GET['data1'] != ''){ $data1 = $_GET['data1']; }else{ $data1 = INIT_PAGE; }
 	$data2 = NULL;
 	if(isset($_GET['data2']) && $_GET['data2'] != ''){ $data2 = $_GET['data2']; }
 	$data3 = NULL;

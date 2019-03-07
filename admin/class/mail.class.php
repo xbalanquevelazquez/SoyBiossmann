@@ -33,10 +33,10 @@ class PHPMailSender{
 		if($this->debug)	$this->PHPMailer->SMTPDebug = 2;             // Enable verbose debug output
 		$this->PHPMailer->IsSMTP();                                      // Set mailer to use SMTP
 		$this->PHPMailer->Host = $this->host;  // Specify main and backup SMTP servers
-		$this->PHPMailer->SMTPAuth = true;                               // Enable SMTP authentication
+		$this->PHPMailer->SMTPAuth = $this->SMPTSecure;                               // Enable SMTP authentication
 		$this->PHPMailer->Username = $this->username;                 // SMTP username
 		$this->PHPMailer->Password = $this->password;                           // SMTP password
-		if($this->SMPTSecure != '')	$this->PHPMailer->SMTPSecure = $this->SMPTSecure;                            // Enable TLS encryption, `ssl` also accepted
+		#if($this->SMPTSecure != '')	$this->PHPMailer->SMTPSecure = $this->SMPTSecure;                            // Enable TLS encryption, `ssl` also accepted
 		$this->PHPMailer->Port = $this->port;                                    // TCP port to connect to
 	}
 	function debug($activar){
@@ -47,32 +47,45 @@ class PHPMailSender{
 		}
 	}
 	function send_mail($data = array('sender_mail'=>'','sender_name'=>'','destinatarios' => array(),'isHTML'=>TRUE,'titulo'=>'','mensaje'=>'','alt_mensaje'=>'')){
+		if($this->debug)	$this->PHPMailer->SMTPDebug = 2;
 		try {
-			    $this->PHPMailer->setFrom($data['sender_mail'], utf8_decode($data['sender_name']));
-			    foreach($data['destinatarios'] as $destinatario){
-			    	$this->PHPMailer->addAddress($destinatario); 
-			    }
-			    #$this->PHPMailer->addReplyTo('info@example.com', 'Information');
-			    #$this->PHPMailer->addCC('cc@example.com');
-			    #$this->PHPMailer->addBCC('bcc@example.com');
+				$this->PHPMailer->setFrom($data['sender_mail'], utf8_decode($data['sender_name']));
+				foreach($data['destinatarios'] as $destinatario){
+					$this->PHPMailer->addAddress($destinatario); 
+				}
+				if (isset($data['destinatarios_bcc'])){
+					if (count($data['destinatarios_bcc']) > 0){
+						foreach($data['destinatarios_bcc'] as $destinatario){
+							$this->PHPMailer->addBCC($destinatario); 
+						}
+					}
+				}
+				#$this->PHPMailer->addReplyTo('info@example.com', 'Information');
+				#$this->PHPMailer->addCC('cc@example.com');
+				#$this->PHPMailer->addBCC('bcc@example.com');
 
-			    //Attachments
-			    #$this->PHPMailer->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-			    #$this->PHPMailer->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+				//Attachments
+				#$this->PHPMailer->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+				#$this->PHPMailer->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+				//$from = SENDER_FROM;
+				//$fname = SENDER_FNAME;
+				#$reply = SENDER_REPLY;
+				//Content
+				$this->PHPMailer->isHTML($data['isHTML']);                                  // Set email format to HTML
+				$this->PHPMailer->Subject = utf8_decode($data['titulo']);
+				$this->PHPMailer->Body    = utf8_decode($data['mensaje']);
 
-			    //Content
-			    $this->PHPMailer->isHTML($data['isHTML']);                                  // Set email format to HTML
-			    $this->PHPMailer->Subject = utf8_decode($data['titulo']);
-			    $this->PHPMailer->Body    = utf8_decode($data['mensaje']);
-			    if($data['alt_mensaje'] != ''){
-				    $this->PHPMailer->AltBody = $data['alt_mensaje'];
-			    }
+				$this->PHPMailer->setFrom(SENDER_MAIL, utf8_decode(SENDER_MAIL_NAME));
+				#$this->PHPMailer->addReplyTo($reply, utf8_decode($fname));
 
-			    $this->PHPMailer->send();
-			    return TRUE;
+				if($data['alt_mensaje'] != ''){
+					$this->PHPMailer->AltBody = $data['alt_mensaje'];
+				}
+				$this->PHPMailer->send();
+				return TRUE;
 			} catch (Exception $e) {
 				$this->error = $this->PHPMailer->ErrorInfo;
-			    return FALSE;
+				return FALSE;
 			}
 	}
 }

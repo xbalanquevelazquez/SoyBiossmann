@@ -261,8 +261,6 @@ function change(data) {
 	
 	polyline.exit()
 		.remove();
-
-
 };
 function getData(){
 	var envioData = new FormData();
@@ -276,15 +274,11 @@ function getData(){
         cache:false,
         dataType:"json",
         success: function(respuesta){
-
 	          	if(respuesta.success){
 						change(respuesta.data.info);
-						//setInformacion(respuesta);
-						//buscar('',1,filterDireccion,filterArea,'-',filterFamilia,filterResponsabilidad);
 				}else{
 				       	texto = respuesta.error;
 				       	$(".encuestaHome").append(texto);
-				      
 				}
 			}
 		});

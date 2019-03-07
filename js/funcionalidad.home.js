@@ -9,6 +9,8 @@ var numeroBanners;
 var btnRColor = 198;
 var btnGColor = 214;
 var btnBColor = 68;
+var anchoModuloOriginal = $('.mesaayudaSection').width();
+var altoModuloOriginal = $('.mesaayudaSection').height();
 
 $(document).ready(function(){
 
@@ -52,6 +54,28 @@ $(document).ready(function(){
 			activarResultados();
 		}
 	}); // focus && blur
+	activarEnlaces();
+	$('#btnCancelarSAE').click(function(e){
+		e.preventDefault();
+		ocultarFormularioSAE();
+	});
+	$('#btnEnviarSAE').click(function(e){
+		e.preventDefault();
+		enviarFormularioSAE();
+	});
+	$('#sae_comentario').change(function(){
+		contarPalabrasMax($(this),'sae_comentario');
+	}).keyup(function(e){
+		contarPalabrasMax($(this),'sae_comentario');
+	});
+
+	$(document).on('keyup',function(evt) {
+	    if (evt.keyCode == 27) {
+	    	ocultarFormularioSAE();
+	   		$('.ixSubmit.clear').click();
+	    }
+	});
+
 	activarResultados();
 	crearLinksBanners();
 });
@@ -311,6 +335,77 @@ function generarMatrizDeBanners(numero){
 	$('.apuntador li[bannLink='+arrBanners[0]+'] a').css({backgroundColor:'rgba('+btnRColor+', '+btnGColor+', '+btnBColor+',0.8)'});
 
 	return arrBanners;
+}
+function mostrarFormularioSAE(){
+	$('.mesaayudaSection').off("click");
+	$('.mesaayudaSection').removeClass('clickeable');
+	var anchoVentana = $(window).width();
+	var altoVentana = $(window).height();
+	var coverPosition = $('.covertura').offset();
+	var posicionMesaLeft = coverPosition.left*-1;
+	var posicionMesaTop = coverPosition.top*-1;
+	$('.mesaayudaSection').css({width:anchoVentana+'px',marginLeft:posicionMesaLeft+'px',marginTop:posicionMesaTop+'px',zIndex:2500});//position:'fixed',
+	$('.covertura').css({width:anchoVentana+'px',height:altoVentana+'px'});
+	$('.mesaayudaSection .innerContent').css({height:'680px',opacity:1});
+}
+function ocultarFormularioSAE(){
+	$('.mesaayudaSection .innerContent').css({height:'0px',opacity:0});
+	$('.covertura').css({width:anchoModuloOriginal+'px',height:altoModuloOriginal+'px'});
+	$('.mesaayudaSection').css({width:anchoModuloOriginal+'px',marginLeft:'0px',marginTop:'0px',zIndex:1});
+	setTimeout(function(){
+		$('.mesaayudaSection').addClass('clickeable');
+		activarEnlaces();
+	},400);
+}
+function activarEnlaces(){
+	$('.mesaayudaSection').click(function(e){
+		e.preventDefault();
+		mostrarFormularioSAE();
+	});
+}
+function enviarFormularioSAE(){
+	//$(".resultsBox .container").html('');
+	var myFormData = new FormData();
+	myFormData.append('action','enviarFormularioSAE');
+	myFormData.append("sae_nombre",$("#sae_nombre").val());
+	myFormData.append("sae_mail",$("#sae_mail").val());
+	myFormData.append("sae_telefono",$("#sae_telefono").val());
+	myFormData.append("sae_area",$("#sae_area").val());
+	myFormData.append("sae_sitiotrabajo",$("#sae_sitiotrabajo").val());
+	myFormData.append("sae_comentario",$("#sae_comentario").val());
+	$.ajax({
+		url: siteURL+"/webservice/acciones.php",
+		type:"POST",
+		processData: false,//tanto processData como contentType deben estar en false para que funcione FormData
+		contentType: false,
+		data:myFormData,
+		cache:false,
+		dataType:"json",
+		success: function(response){
+			if(response.success){
+				$(".boxResponseSAE").html('<div class="bg-success redondear setpadding5 text-white">'+response.data.mensaje+'</div>');
+				setTimeout(function(){
+					$(".boxResponseSAE").html('');
+					$('#btnCancelarSAE').click();
+				},2000);
+			}else{
+				$(".boxResponseSAE").html('<div class="bg-warning redondear setpadding5">'+response.error+'</div><div class="espaciador"></div>');
+				setTimeout(function(){
+					$(".boxResponseSAE").html('');
+				},5000);
+			}
+		}
+	});
+}
+function contarPalabrasMax(obj,selector){
+	var comentario = obj.val();
+	var maxWords = obj.attr('data-max-words');
+	var mostrador = $('.miniCounter[for='+selector+']');
+	mostrador.text('Caracteres: '+comentario.length+' de '+maxWords);
+	if(comentario.length > maxWords){
+		var newComment = comentario.substring(0,200);
+		obj.val(newComment);
+	}
 }
 /*function abrirEnlace(e){
 	e.preventDefault();

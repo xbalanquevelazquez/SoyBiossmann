@@ -264,6 +264,59 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 		/*****************************************/
 		/******** votarEncuesta  **********/
 		/*****************************************/
+		case 'enviarFormularioSAE':
+				$now = date("Y-m-d H:i:s");
+				$sae_nombre = isset($_POST['sae_nombre']) && trim($_POST['sae_nombre']) != ''?trim($_POST['sae_nombre']):'';
+				$sae_mail = isset($_POST['sae_mail']) && trim($_POST['sae_mail']) != ''?trim($_POST['sae_mail']):'';
+				$sae_telefono = isset($_POST['sae_telefono']) && trim($_POST['sae_telefono']) != ''?trim($_POST['sae_telefono']):'';
+				$sae_area = isset($_POST['sae_area']) && trim($_POST['sae_area']) != ''?trim($_POST['sae_area']):'';
+				$sae_sitiotrabajo = isset($_POST['sae_sitiotrabajo']) && trim($_POST['sae_sitiotrabajo']) != ''?trim($_POST['sae_sitiotrabajo']):'';
+				$sae_comentario = isset($_POST['sae_comentario']) && trim($_POST['sae_comentario']) != ''?trim($_POST['sae_comentario']):'';
+
+				$datos = array();
+				$alerta = '';
+
+				$alerta .= validar($sae_nombre,'normal','Nombre');
+				$alerta .= validar($sae_mail,'mail','Correo electrónico');
+				$alerta .= validar($sae_telefono,'normal','Teléfono');
+				$alerta .= validar($sae_area,'normal','Área');
+				$alerta .= validar($sae_sitiotrabajo,'normal','Sitio de trabajo');
+				$alerta .= validar($sae_comentario,'normal','Comentarios');
+
+				$alerta = str_replace('. ', '.<br />', $alerta);
+
+				if($alerta != ''){
+					$success = FALSE;
+					$error   = "<div class='bg-warning setpadding5 redondear'>$alerta</div>";
+					$data    = array();	
+				}else{
+					
+					$datosMensaje = array();
+					
+					$datosMensaje['siteURL'] = APP_URL;
+					$datosMensaje['now'] = formatoFechaTextual($now);
+					$datosMensaje['sae_nombre'] = $sae_nombre;
+					$datosMensaje['sae_mail'] = $sae_mail;
+					$datosMensaje['sae_telefono'] = $sae_telefono;
+					$datosMensaje['sae_area'] = $sae_area;
+					$datosMensaje['sae_sitiotrabajo'] = $sae_sitiotrabajo;
+					$datosMensaje['sae_comentario'] = $sae_comentario;				
+
+					$mailer = enviarMensaje('Contacto con SAE', 'correo_contacto_SAE.html', $datosMensaje);
+					if($mailer['success']){
+						$success = TRUE;
+						$error   = '';
+						$data    = array("mensaje"=>'Se envió correctamente su solicitud.');
+					}else{
+						$success = FALSE;
+						$error   = "<div class='bg-warning setpadding5 redondear'>Error:".$myAdmin->conexion->error."</div>";
+						$data    = array();	
+					}
+				}
+			break;	
+		/*****************************************/
+		/******** votarEncuesta  **********/
+		/*****************************************/
 		case 'votarEncuesta':
 				$now = date("Y-m-d H:i:s");
 				$valor = isset($_POST['valor']) && trim($_POST['valor']) != '' && is_numeric($_POST['valor']) && $_POST['valor']>0 && $_POST['valor']<=3?trim($_POST['valor']):'Sin especificar';

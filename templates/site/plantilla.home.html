@@ -51,10 +51,10 @@
               <div class="img">
                 <img src="{$APP_URL}img/banner/bann-valor-innovacion_v2.png" alt="Valores Biossmann">
               </div>
-              <div class="texto">
+              <!--div class="texto">
                 Banner de prueba                <br>
                 <span>Grupo Biossmann palabras palabras Grupo Biossmann palabras palabras Grupo Biossmann palabras palabras Grupo Biossmann palabras palabras Grupo Biossmann pn pax ax ax axxx</span>
-              </div>
+              </div-->
             </a><!--//banner link-->
           </div><!--//banner-->
           <div class="banner transicion 2 verde" banner="2">
@@ -62,10 +62,10 @@
               <div class="img">
                 <img src="{$APP_URL}img/banner/bann-valor-pasion_v2.png" alt="Valores Biossmann">
               </div>
-              <div class="texto">
+              <!--div class="texto">
                 Felicidades a todos los que cumplen años!                <br>
                 <span>Mayo, 2017</span>
-              </div>
+              </div-->
             </a><!--//banner link-->
           </div><!--//banner-->
           <div class="banner transicion 1 morado" banner="1">
@@ -73,10 +73,10 @@
               <div class="img">
                 <img src="{$APP_URL}img/banner/bann-dias-festivos_v2.png" alt="Calendario de días festivos">
               </div>
-              <div class="texto">
-                Nuestro trabajo tiene sentido                <br>
+              <!--div class="texto">
+                Nuestro trabajo tiene sentido<br>
                 <span>Grupo Biossmann</span>
-              </div>
+              </div-->
             </a><!--//banner link-->
           </div><!--//banner-->
         </div>
@@ -90,20 +90,20 @@
 							
 							<div class="row no-gutters">
 								<div class="col gutter">
-									<div class="bordeGris bg-azulgris efectoRealce"><a href="">
+									<div class="bordeGris bg-azulgris efectoRealce"><a href="{$siteURL}portales-y-tableros">
 										<div class="img"><img src="img/img-prosperidad.png" alt="prosperidad"></div>
 										<div class="texto">Tableros de control</div>
 									</a></div>
 								</div>
 								<div class="col gutter">
-									<div class="bordeGris bg-azulgris efectoRealce"><a href="">
+									<div class="bordeGris bg-azulgris efectoRealce"><a href="{$siteURL}portales-y-tableros">
 										<div class="ico-restringido-float"><i class="fa fa-key"></i></div>
 										<div class="img"><img src="img/img-innovacion.png" alt="innovacion"></div>
 										<div class="texto">Apps biossmann</div>
 									</a></div>
 								</div>
 								<div class="col gutter">
-									<div class="bordeGris bg-azulgris efectoRealce"><a href="">
+									<div class="bordeGris bg-azulgris efectoRealce"><a href="{$siteURL}preguntas-frecuentes">
 										<div class="img"><img src="img/img-pasion.png" alt="pasion"></div>
 										<div class="texto">Preguntas frecuentes</div>
 									</a></div>
@@ -132,14 +132,105 @@
 				</div><!--//#primeraColumna-->
 
 				<div class="columnaF gutter" id="segundaColumna">
-					<div class="bordeGris mesaayudaSection clickeable efectoRealce">
-						<div class="barraTitulo texto-blanco bg-azulgris"><i class="fa fa-headset shadowed"></i> Solicita <span class="strong">Ayuda</span></div>
-						<div class="innerContent bg-gris13 bordeGris hidden">
-							<ul class="optionsButtons">
-								<li><a href=""><img src="img/ico-new-ticket.png" alt="">Levantar ticket</a></li>
-								<li><a href=""><img src="img/ico-search-ticket.png" alt="">Estatus de tu ticket</a></li>
-								<!--li><a href=""><img src="img/ico-statistics-ticket.png" alt="">Estadística de servicio</a></li-->
-							</ul>
+					<div class="bordeGris mesaayudaSection clickeable transicion">
+						<div class="covertura transicion">
+							<div class="barraTitulo texto-blanco bg-azulgris transicion"><i class="fa fa-headset shadowed"></i> Solicita <span class="strong">Ayuda</span></div>
+							<div class="innerContent bg-gris13 bordeGris transicion">
+								<div class="row">
+									<div class="col-3"></div>
+									<div class="col-6 bg-blanco redondear setpadding5 formSection">
+										<div class="acenter setpadding5"><img src="{$siteURL}img/logo-sae.png" alt="SAE" /></div>
+										<div class="espaciador"></div>
+										<p>Déjanos tus datos para que alguien del SAE atienda tu solicitud:</p>
+										<div class="form-row">
+											<div class="col-3">
+												<div class="form-group">
+													<label for="sae_nombre">Nombre:</label>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<input type="text" class="form-control" id="sae_nombre" name="sae_nombre" />
+												</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="col-3">
+												<div class="form-group">
+													<label for="sae_mail">Correo electrónico:</label>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<input type="email" class="form-control" id="sae_mail" name="sae_mail" />
+												</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="col-3">
+												<div class="form-group">
+													<label for="sae_telefono">Teléfono:</label>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<input type="text" class="form-control" id="sae_telefono" name="sae_telefono" />
+												</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="col-3">
+												<div class="form-group">
+													<label for="sae_area">Área:</label>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<input type="text" class="form-control" id="sae_area" name="sae_area" />
+												</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="col-3">
+												<div class="form-group">
+													<label for="sae_sitiotrabajo">Sitio de Trabajo:</label>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<input type="text" class="form-control" id="sae_sitiotrabajo" name="sae_sitiotrabajo" placeholder="Por ejemplo: Hospital, Mixcoac o Ándes" />
+												</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="col-3">
+												<div class="form-group">
+													<label for="sae_comentario">Comenta brevemente cuál es tu problema:</label>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<textarea class="form-control" id="sae_comentario" name="sae_comentario" data-max-words="200"></textarea>
+													<div class="miniCounter" for="sae_comentario"></div>
+												</div>
+											</div>
+										</div>
+										<div class="boxResponseSAE"></div>
+										<div class="row">
+											<div class="col">
+												<button class="btn btn-success" id="btnEnviarSAE">Enviar</button> <button class="btn btn-secondary" id="btnCancelarSAE">Cancelar</button>
+											</div>
+										</div>
+										
+									</div>
+									<div class="col-3"></div>
+								</div>
+								<!--ul class="optionsButtons">
+									<li><a href=""><img src="img/ico-new-ticket.png" alt="">Levantar ticket</a></li>
+									<li><a href=""><img src="img/ico-search-ticket.png" alt="">Estatus de tu ticket</a></li>
+									<!- -li><a href=""><img src="img/ico-statistics-ticket.png" alt="">Estadística de servicio</a></li- ->
+								</ul-->
+							</div>
 						</div>
 					</div>
 

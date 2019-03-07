@@ -185,12 +185,14 @@ header{background:transparent url('../img/back-header.gif') repeat-x center bott
 .ico-restringido-float{position:absolute;top:4px;right:4px;padding:3px;border:1px solid #FFF;border-radius: 2px;}
 
 .shadowed{text-shadow: 2px 2px 3px rgba(0,0,0,1)}
-.mesaayudaSection{}
-.mesaayudaSection .barraTitulo{font-size:1.4rem;padding:0;}
+.mesaayudaSection{position:relative;}
+.mesaayudaSection .barraTitulo{font-size:1.4rem;padding:0;position: relative;}
 .mesaayudaSection .barraTitulo i{margin:0 10px 0 0;background-color: #282c36;border-radius:0 30px 30px 0;padding:21px 16px 21px 10px;font-size:1.2rem;}
 .mesaayudaSection .optionsButtons li a{background-image: url('../img/grad-btn-azulgris.png');background-color: #3c4249;color:#FFF;background-position: center top;}
 .mesaayudaSection .optionsButtons li a:hover{background-image: url('../img/grad-btn-azulgris-hover.png');background-color: #6b7782;}
 .mesaayudaSection:hover .barraTitulo{background:#224b5e;}
+.mesaayudaSection .covertura{background-color: rgba(0,0,0,0.95);position:relative}
+.mesaayudaSection .innerContent{overflow: hidden;height: 0px;padding:0px;position: relative;position:relative}
 
 .galeriaContainer{height: 20rem;}
 
@@ -251,7 +253,11 @@ header{background:transparent url('../img/back-header.gif') repeat-x center bott
 .imagenSeccion h1{
     margin: 28px 28px 0px 28px;
     color: #FFF;
-    text-align: right;}
+    text-align: right;
+}
+
+.miniCounter{font-size:.7rem;color:#444;}
+
 /*
 Desktop First
 max-width
