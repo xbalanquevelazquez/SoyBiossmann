@@ -9,11 +9,12 @@ var numeroBanners;
 var btnRColor = 198;
 var btnGColor = 214;
 var btnBColor = 68;
-var anchoModuloOriginal = $('.mesaayudaSection').width();
-var altoModuloOriginal = $('.mesaayudaSection').height();
+var anchoModuloOriginal = 0;$('.mesaayudaSection').width();
+var altoModuloOriginal = 0;$('.mesaayudaSection').height();
 
 $(document).ready(function(){
-
+	anchoModuloOriginal = $('.mesaayudaSection').width();
+	altoModuloOriginal = $('.mesaayudaSection').height();
 	numeroBanners = $("#contenedorBanners .banner").length;
 	console.log('Banners: '+numeroBanners);
 

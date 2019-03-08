@@ -53,6 +53,7 @@ $main['headerCode'] = makeTemplate('header.html', $headerData, 'site');
 $plantilla_filepath = 'home';
 $plantilla_nombre = 'plantilla';
 $plantillaData['APP_URL'] = APP_URL;
+$plantillaData['siteURL'] = $page->siteURL;
 if(isset($page->pageData['plantilla_filepath']) && $page->pageData['plantilla_filepath'] != ''){
 	$plantilla_filepath = $page->pageData['plantilla_filepath'];
 }else{
@@ -62,6 +63,37 @@ $plantilla_nombre .= '.'.$plantilla_filepath.'.html';
 switch($plantilla_filepath) {
 	case 'home':
 		//VARS
+		$bufferImg = '';
+		$directorio = APP_IMG_PATH.'galerias/universidad/';
+		$directorioWEB = WEB_IMG_PATH.'galerias/universidad/';
+		$ficheros  = scandir($directorio);
+		$arrNoFiles = array('.','..');
+		$arrExtensionesPermitidas = array('jpg','png','gif');
+		$arrImages = array();
+		$arrMedidas = array();
+		foreach ($ficheros as $file) {
+			if(!in_array($file, $arrNoFiles)){
+				$imgInfo = pathinfo($directorio.$file);
+				if( in_array( strtolower($imgInfo['extension']),$arrExtensionesPermitidas ) ){//ES IMAGEM
+					//print_r($imgInfo);
+					$imgSize = getimagesize($directorio.$file);
+					$arrMedidas['width'] = $imgSize[0];
+					$arrMedidas['height'] = $imgSize[1];
+					$arrImages[] = array_merge($imgInfo,$arrMedidas);
+				}
+			}
+		}
+		foreach($arrImages as $foto){
+			#print_r($foto);
+			$fotoNombre = $foto['basename'];
+			$datosFoto = array('directorioWEB'=>$directorioWEB,'nombreImagen'=>$fotoNombre,'width'=>200,'height'=>150,'originalWidth'=>$foto['width'],'originalHeight'=>$foto['height']);
+			$bufferImg .= makeTemplate('galeria.foto.html',$datosFoto,'site');
+		}
+
+		$plantillaData['imagesGaleria'] = $bufferImg;
+ 
+//print_r($ficheros);
+
 		break;
 	case 'subseccion':
 	case 'sinsubsecciones':
@@ -124,6 +156,7 @@ $main['contentCode'] = makeTemplate($plantilla_nombre, $plantillaData, 'site');
 #include_once(APP_PATH.'plantilla.'.$plantilla_filepath.'.php');
 /***************** DATOS DE FOOTER ******************/
 $footer['script'] = $index?'<script src="'.APP_URL.'js/funcionalidad.home.js"></script>':'';
+$footer['script'] .= $index?'<script src="'.APP_URL.'js/funcionalidad.galeria.js"></script>':'';
 $footer['script'] .= '<script src="'.APP_URL.'js/funcionalidad.encuesta.js"></script>';
 /**************************************************/
 $main['footerCode'] = makeTemplate('footer.html', $footer, 'site');

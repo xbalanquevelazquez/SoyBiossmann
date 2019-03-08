@@ -51,7 +51,7 @@ textarea:focus{border-color:#333;color:#333;}
 h1{font-size:1.45rem;color:#3b3f4b;font-family: "ExoDos";font-weight: 200;line-height: 1.4rem;margin:1.4rem 0rem 2rem;}
 h2{font-size:1.30rem;color:#3b3f4b;font-family: "ExoDos";font-weight: 200;}
 h3{font-size:1.15rem;color:#3b3f4b;font-family: "ExoDos";font-weight: 200;}
-h3 a{font-family: "ExoDos";font-weight: bold;}
+h3 a{font-family: "ExoDos";font-weight: 200;}
 
 .breadcrumb{background: #f9f9f9;font-size:.9rem;color:#8ccd02;font-weight: 200;}
 .breadcrumb a,

@@ -114,13 +114,13 @@
 
 							<div class="row no-gutters">
 								<div class="col gutter">
-									<div class="bordeGris bg-gris-biossmann efectoRealce"><a href="" class="acenter"><img src="img/img-transformacion.png" alt=""></a></div>
+									<div class="bordeGris bg-gris-biossmann efectoRealce"><a href="https://universidadbiossmann.com/transformacion/" target="_blank" class="acenter"><img src="img/img-transformacion.png" alt=""></a></div>
 								</div>
 								<div class="col gutter">
-									<div class="bordeGris bg-blanco efectoRealce"><a href="" class="acenter"><img src="img/img-universidad-biossmann.png" alt=""></a></div>
+									<div class="bordeGris bg-blanco efectoRealce"><a href="https://universidadbiossmann.com" target="_blank" class="acenter"><img src="img/img-universidad-biossmann.png" alt=""></a></div>
 								</div>
 								<div class="col gutter">
-									<div class="bordeGris bg-blanco efectoRealce"><a href="" class="acenter"><img src="img/img-portal-biossmann.png" alt=""></a></div>
+									<div class="bordeGris bg-blanco efectoRealce"><a href="http://www.biossmann.com/" target="_blank" class="acenter"><img src="img/img-portal-biossmann.png" alt=""></a></div>
 								</div>
 							</div>
 
@@ -261,7 +261,7 @@
 						</div>
 					</div>
 
-					<div class="renglonGutter"></div>
+					<!--div class="renglonGutter"></div>
 
 					<div class="row no-gutters">
 						<div class="col">
@@ -269,7 +269,24 @@
 								<a href="{$APP_URL}galeria-biossmann"><img src="img/img-galeria-biossmann-vert.png" alt="Galería Biossmann"></a>
 							</div>
 						</div>
-					</div>					
+					</div-->	
+					<!--NEW GALERIA-->
+					<div class="renglonGutter"></div>
+
+					<div class="row no-gutters">
+						<div class="col">
+							<div id="zoomFoto"></div>
+							<div class="bordeGris galeriaContainer">
+								{$imagesGaleria}
+								<div class="botonera">
+									<button class="btn" id="btnPrevFoto"><i class="fa fa-chevron-left"></i></button>
+									<button class="btn" id="btnViewFoto"><i class="fa fa-eye"></i></button>
+									<button class="btn" id="btnNextFoto"><i class="fa fa-chevron-right"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--//END NEW GALERIA-->				
 				</div><!--//#segundaColumna-->
 				<div class="columnaF gutter" id="terceraColumna">
 					<div class="bordeGris bg-gris13">

@@ -194,7 +194,22 @@ header{background:transparent url('../img/back-header.gif') repeat-x center bott
 .mesaayudaSection .covertura{background-color: rgba(0,0,0,0.95);position:relative}
 .mesaayudaSection .innerContent{overflow: hidden;height: 0px;padding:0px;position: relative;position:relative}
 
-.galeriaContainer{height: 20rem;}
+.galeriaContainer{height: 20rem;background:#FFF url('../img/titulo-galeria-biossmann.png') no-repeat center 10px;overflow: hidden;position: relative;}
+.galeriaContainer .foto{
+    width: 150px;height: 180px;position:absolute;padding: 10px;background:#FFF;border: 1px solid #888;box-shadow:3px 6px 10px rgba(0,0,0,0.3);
+    /*INIT*/transform: scale(.45) rotate(6deg);left: 191px;top: 120px;
+}
+.galeriaContainer .botonera{position:absolute;bottom:0px;width: 100%;text-align: center;padding:15px 10px;}
+.galeriaContainer .botonera .btn{background: #6ab2ae;color:#FFF;}
+.galeriaContainer .botonera .btn:hover{background: #02bad5;}
+.desenfocar{filter: blur(4px); opacity:.6; }/*brightness(80%) grayscale(1)*/
+#zoomFoto .foto{ width: 150px;height: 180px;position:absolute;padding: 10px;background:#FFF;border: 1px solid #888;box-shadow:3px 6px 10px rgba(0,0,0,0.3);
+    /*INIT*/transform: scale(.45) rotate(6deg);left: 191px;top: 120px;}
+#zoomFoto .foto .marco,
+.galeriaContainer .foto .marco{width: 129px;height:139px;border:1px solid #BBB;overflow: hidden;}
+#zoomFoto .foto .marco img,
+.galeriaContainer .foto .marco img{height: 150px; width:auto;margin:0 auto;text-align:center;}
+#zoomFoto{position: absolute;}
 
 .mainSections .icon{background:#119db1 url("../img/ico-biossmann.png") no-repeat center center;}
 .mainSections .icon-biossmann{background-image: url("../img/ico-biossmann.png");}
@@ -218,7 +233,7 @@ header{background:transparent url('../img/back-header.gif') repeat-x center bott
 .bloque_subMenu a{color:#32384a;display:block;}
 .listaLinks a:hover,
 .bloque_subMenu a:hover{color:#f68429;}
-.bloque_subMenu .selected{color:#77ab11;background:transparent url("../img/bullet-ver-k.png") no-repeat 9px 9px;padding-left: 21px;cursor:default;}
+.bloque_subMenu .selected{color: #FFF;background: #15aabf;padding-left: 21px;cursor:default;}
 .indentLevel{padding-left: 2rem !important;color: #999999;font-size: .9rem;}
 .indentLevel a{color:#999999;}
 
