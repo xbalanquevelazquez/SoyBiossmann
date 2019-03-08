@@ -8,7 +8,7 @@ if(isset($data3) && is_numeric($data3)) {
 	if(isset($data4) && $data4 == 'pag'){ $pager = '/pag/'.$data5; }
 
 	if($myAdmin->conexion->delete(PREFIJO."usuarios","kid_usr=$id")){
-		header("Location: ".APP_URL.$data1.$pager);
+		header("Location: ".ADMIN_URL.$data1.$pager);
 	}else{
 		die("Error: eliminar registro");
 	}

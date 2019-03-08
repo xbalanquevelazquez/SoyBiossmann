@@ -34,7 +34,7 @@ if(isset($_POST['cmp'])) {
 		print_r($datos);
 		die();*/
 		if($myAdmin->conexion->update(PREFIJO."usuarios",$datos,"WHERE kid_usr='$kid_usr'",'')){
-			header("Location: ".APP_URL.$data1.$pager.$msg);
+			header("Location: ".ADMIN_URL.$data1.$pager.$msg);
 		}else{
 			die("Error: al actualizar registro");
 		}		
@@ -111,12 +111,10 @@ $usr = $usr[0];
 		</select>
 	</div>
 	<input type="submit" value="Aceptar" class="btn btn-primary" /> 
-	<a href="<?php echo APP_URL.$data1; ?><?php echo $pager ?>" class="btn btn-secondary text-white">Cancelar</a>
+	<a href="<?php echo ADMIN_URL.$data1; ?><?php echo $pager ?>" class="btn btn-secondary text-white">Cancelar</a>
 </form>
 <script type="text/javascript">
-	$.validate({
-		lang: 'es'
-	});
+
 	$('#formsubmit').submit(function(e){
 		//alert('enviando');
 	});

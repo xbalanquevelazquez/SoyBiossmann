@@ -30,7 +30,7 @@ if(isset($_POST['cmp'])) {
 					if($errorsTemp != ''){
 						die($errorsTemp);
 					}else{
-						header("Location: ".APP_URL.$data1.$pager);
+						header("Location: ".ADMIN_URL.$data1.$pager);
 					}
 
 				}else{
@@ -79,7 +79,7 @@ crs_permisos
 		$acciones =	$myAdmin->conexion->fetch($myAdmin->conexion->query($queryA));
 		foreach($acciones as $acc){
 		?>
-		<option value="<?php echo $acc['kid_accion']; ?>"><?php echo utf8_encode($acc['nombre_accion']); ?></option>
+		<option value="<?php echo $acc['kid_accion']; ?>"><?php echo mb_convert_encoding($acc['nombre_accion'],'UTF-8'); ?></option>
 		<?php
 		}
 		?>
@@ -96,7 +96,7 @@ crs_permisos
 	    			$perfiles =	$myAdmin->conexion->fetch($myAdmin->conexion->query($queryT));
 	    			foreach($perfiles as $perf){
 	    			?>
-	    			<option value="<?php echo $perf['kid_perfil']; ?>"><?php echo $perf['nombre_perfil']; ?></option>
+	    			<option value="<?php echo $perf['kid_perfil']; ?>"><?php echo mb_convert_encoding($perf['nombre_perfil'],'UTF-8'); ?></option>
 	    			<?php
 	    			}
 	    			?>
@@ -104,14 +104,10 @@ crs_permisos
 	    </div>
 	</div>
 	<input type="submit" value="Aceptar" class="btn btn-primary" /> 
-	<a href="<?php echo APP_URL.$data1; ?><?php echo $pager ?>" class="btn btn-secondary text-white">Cancelar</a>
+	<a href="<?php echo ADMIN_URL.$data1; ?><?php echo $pager ?>" class="btn btn-secondary text-white">Cancelar</a>
 </form>
 <script type="text/javascript">
 	var seccionInicial = false;
-	$.validate({
-		lang: 'es'
-	});
-
 	$('#permisos').change(function(){
 		var datos = $(this).val();
 		if(datos != ''){
@@ -130,7 +126,7 @@ crs_permisos
 			envioData.append("action",'getSeccionesPInicial');													
 			envioData.append("secciones",datos);													
 			$.ajax({
-				url: "<?php echo APP_URL; ?>webservices/acciones.php",												
+				url: "<?php echo APP_URL; ?>webservice/acciones.php",												
 				type:"POST",
 				processData: false,//tanto processData como contentType deben estar en false para que funcione FormData
 				contentType: false,

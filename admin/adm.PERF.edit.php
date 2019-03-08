@@ -44,7 +44,7 @@ if(isset($_POST['cmp'])) {
 					if($errorsTemp != ''){
 						die($errorsTemp);
 					}else{
-						header("Location: ".APP_URL.$data1.$pager);
+						header("Location: ".ADMIN_URL.$data1.$pager);
 					}
 
 				}else{
@@ -112,7 +112,7 @@ foreach($permisos as $permiso){
 			$selected = '';
 			if(in_array($acc['kid_accion'], $arrPermisosIds)) $selected = 'selected="selected"';
 		?>
-		<option value="<?php echo $acc['kid_accion']; ?>" <?php echo $selected; ?>><?php echo utf8_encode($acc['nombre_accion']); ?></option>
+		<option value="<?php echo $acc['kid_accion']; ?>" <?php echo $selected; ?>><?php echo mb_convert_encoding($acc['nombre_accion'],'UTF-8'); ?></option>
 		<?php
 		}
 		?>
@@ -127,13 +127,10 @@ foreach($permisos as $permiso){
 	    </div>
 	</div>
 	<input type="submit" value="Aceptar" class="btn btn-primary" /> 
-	<a href="<?php echo APP_URL.$data1; ?><?php echo $pager ?>" class="btn btn-secondary text-white">Cancelar</a>
+	<a href="<?php echo ADMIN_URL.$data1; ?><?php echo $pager ?>" class="btn btn-secondary text-white">Cancelar</a>
 </form>
 <script type="text/javascript">
 	var seccionInicial = false;
-	$.validate({
-		lang: 'es'
-	});
 
 	$('#permisos').change(function(){
 		var datos = $(this).val();
@@ -154,7 +151,7 @@ foreach($permisos as $permiso){
 			envioData.append("secciones",datos);
 			envioData.append("seccion_inicial",'<?php echo $perfil['seccion_inicial']; ?>');													
 			$.ajax({
-				url: "<?php echo APP_URL; ?>webservices/acciones.php",												
+				url: "<?php echo APP_URL; ?>webservice/acciones.php",												
 				type:"POST",
 				processData: false,//tanto processData como contentType deben estar en false para que funcione FormData
 				contentType: false,

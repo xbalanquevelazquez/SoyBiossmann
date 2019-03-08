@@ -120,7 +120,7 @@ switch($plantilla_filepath) {
 			$plantillaData['ultimaActualizacion'] = '';
 			$plantillaData['menuSecundario'] .= makeTemplate('banners_iso.html', array('siteURL' => $page->siteURL), 'site');
 		}else{
-			$plantillaData['ultimaActualizacion'] = "Última actualización: ".formatFechaEspaniol($page->ultimaActualizacion);
+			$plantillaData['ultimaActualizacion'] = "Última actualización: ".formatFechaEspaniol($page->ultimaActualizacion).", por ".$page->contenido['nombre_responsable'];
 		}
 
 		if($plantilla_filepath=='sinsubsecciones' || $plantilla_filepath=='landingpage'){//FORZAR PLANTILLA SUBSECCIONES, PERO SIN DATOS PARA SUBSECCIONES
@@ -129,7 +129,7 @@ switch($plantilla_filepath) {
 		break;
 	
 	default:
-		# code...
+		$page->contenido['imagen_seccion'] = '';
 		break;
 }
 /*PROCESA INFORMACION DE TITULAR/IMAGEN*/

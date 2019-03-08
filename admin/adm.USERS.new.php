@@ -16,7 +16,7 @@ if(isset($_POST['cmp'])) {
 			$usr_perfil = $_POST['cmp']['fid_perfil'];
 			
 			if($myAdmin->conexion->query("INSERT INTO ".PREFIJO."usuarios VALUES(NULL,'$usr_login',AES_ENCRYPT('$usr_psw','".AESCRYPT."'),'$usr_nombre','$usr_correo',$usr_activo,$usr_perfil)")){
-				header("Location: ".APP_URL.$data1.$pager);
+				header("Location: ".ADMIN_URL.$data1.$pager);
 			}else{
 				die("Error: al insertar registro");
 			}	
@@ -86,10 +86,8 @@ fid_perfil	| INT(11)
 		</select>
 	</div>
 	<input type="submit" value="Aceptar" class="btn btn-primary" /> 
-	<a href="<?php echo APP_URL.$data1; ?><?php echo $pager ?>" class="btn btn-secondary text-white">Cancelar</a>
+	<a href="<?php echo ADMIN_URL.$data1; ?><?php echo $pager ?>" class="btn btn-secondary text-white">Cancelar</a>
 </form>
 <script type="text/javascript">
-	$.validate({
-		lang: 'es'
-	});
+
 </script>

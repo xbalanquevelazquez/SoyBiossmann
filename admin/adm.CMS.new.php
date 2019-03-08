@@ -65,9 +65,6 @@ tinymce.init({
 	<tr>
 		<td valign="top">
 		<div id="workArea">
-		<?php #if(isset($_GET['msg'])){
-		#echo  mostrarMensaje($_GET['msg']);
-		#} ?>
 		<form method="POST" action="<?php echo CURRENT_SECCION; ?>save/new" name="formPagina">
 			<input type="hidden" name="nivel" value="<?php echo $nivel; ?>" />
 			<input type="hidden" name="padre" value="<?php echo $padre ;?>" />

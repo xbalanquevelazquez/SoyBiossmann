@@ -5,7 +5,8 @@ a{text-decoration:none;}
 
 .label{text-align:right;color:#666;}
 .readonly{background:#DEDEDE;border:1px solid #7f9db9;}
-
+.setpadding5{padding:5px;}
+.setpadding20{padding:20px;}
 #toolBox{background:#19364d url("../img/back-toolbox.gif") repeat-x left top;color:#cdcdcd;width:50%;float:right;text-align:right;padding:0px;}
 #toolBox .info{padding-top:0px;float:right;}
 #toolBox .info div{float:left;}

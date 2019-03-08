@@ -148,7 +148,7 @@ switch($type){
 		
 			#print_r($contenido);
 			#die();
-			if($myAdmin->conexion->update(PREFIJO."contenido",$contenido,"WHERE fid_estructura=".$id)){
+			if($myAdmin->conexion->update(PREFIJO."contenido",$contenido,"WHERE fid_estructura=".$id,'TEXT')){
 				if($myAdmin->conexion->update(PREFIJO."estructura",$datos,"WHERE kid_pagina=".$id,'TEXT')){
 					header("Location:".CURRENT_SECCION."edit/".$id."?msg=k1");
 				}else{

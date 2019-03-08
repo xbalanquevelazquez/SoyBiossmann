@@ -56,7 +56,7 @@ else{
 <div class="paginador">
 <?php echo $paginacion['HTML']; ?>
 </div>
-<a href="<?php echo APP_URL.$data1 ?>/new<?php echo $pager ?>" class="btn btn-primary"><i class="fa fa-user-plus"></i> &nbsp;Nuevo usuario</a>
+<a href="<?php echo ADMIN_URL.$data1 ?>/new<?php echo $pager ?>" class="btn btn-primary"><i class="fa fa-user-plus"></i> &nbsp;Nuevo usuario</a>
 <div class="fixed espaciador"></div>
 <table class="table table-bordered table-striped table-hover">
 	<thead class="bg-secondary text-white">
@@ -88,12 +88,12 @@ else{
 				<?php if($res['fid_perfil'] == 1){ ?>
 				<td><span title="Este usuario no puede desactivarse"><i class="fa fa-toggle-on text-success"></i></span></td>
 				<?php }else{ ?>
-				<td><a href="<?php echo APP_URL.$data1 ?>/fast/<?php echo $res['usr_activo']==1?'invisible':'visible'; ?>/<?php echo $res['kid_usr'] ?><?php echo $pager ?>" title="<?php echo $res['usr_activo']==1?'Desactivar':'Activar'; ?>"><?php if($res['usr_activo'] == 1){ ?><i class="fa fa-toggle-on text-success"></i><?php }else{ ?><i class="fa fa-toggle-off text-muted"></i><?php } ?></a></td>
+				<td><a href="<?php echo ADMIN_URL.$data1 ?>/fast/<?php echo $res['usr_activo']==1?'invisible':'visible'; ?>/<?php echo $res['kid_usr'] ?><?php echo $pager ?>" title="<?php echo $res['usr_activo']==1?'Desactivar':'Activar'; ?>"><?php if($res['usr_activo'] == 1){ ?><i class="fa fa-toggle-on text-success"></i><?php }else{ ?><i class="fa fa-toggle-off text-muted"></i><?php } ?></a></td>
 				<?php } ?>
 				<td><?php if($res['fid_perfil'] == 1){ ?><i class="fa fa-toggle-on text-success"></i><?php }else{ ?><i class="fa fa-toggle-off text-muted"></i><?php } ?></td>
 				<td><?php echo $res['perfil'] ?></td>
-				<td><a href="<?php echo APP_URL.$data1 ?>/edit/<?php echo $res['kid_usr'] ?><?php echo $pager ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
-				<td><?php if($res['fid_perfil'] != 1){ ?><a href="<?php echo APP_URL.$data1 ?>/delete/<?php echo $res['kid_usr'] ?><?php echo $pager ?>" onclick="return confirmar();" class="btn btn-danger"><i class="fa fa-trash-alt"></i></a><?php } ?></td>
+				<td><a href="<?php echo ADMIN_URL.$data1 ?>/edit/<?php echo $res['kid_usr'] ?><?php echo $pager ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
+				<td><?php if($res['fid_perfil'] != 1){ ?><a href="<?php echo ADMIN_URL.$data1 ?>/delete/<?php echo $res['kid_usr'] ?><?php echo $pager ?>" onclick="return confirmar();" class="btn btn-danger"><i class="fa fa-trash-alt"></i></a><?php } ?></td>
 			</tr>
 			<?php
 			$i++;

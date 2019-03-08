@@ -95,7 +95,7 @@ class Admin{
 	function obtenerUsuario($id=0){
 		$this->comprobar_conexion();
 
-		$query = "SELECT * FROM ".PREFIJO."usuarios as usr WHERE usr_id='$id'";
+		$query = "SELECT * FROM ".PREFIJO."usuarios as usr WHERE kid_usr='$id'";
 		#echo $query.'<br />';
 		$this->resultado = $this->conexion->query($query);
 		$this->resultado = $this->conexion->fetch($this->resultado);

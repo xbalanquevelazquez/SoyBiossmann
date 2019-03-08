@@ -28,3 +28,4 @@
 			include_once(ADMIN_PATH."main-menu.php");
 		}
 		?>
+		<div class="setpadding20">	

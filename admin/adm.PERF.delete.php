@@ -13,7 +13,7 @@ if(isset($data3) && is_numeric($data3)) {
 			die("<div class='bg-warning'>Error: Hay ".$res[0]['total']." usuario$s usando este perfil, no puede eliminarlo</div>");
 		}else{
 			if($myAdmin->conexion->delete(PREFIJO."perfil","kid_perfil=$id")){
-				header("Location: ".APP_URL.$data1.$pager);
+				header("Location: ".ADMIN_URL.$data1.$pager);
 			}else{
 				die("Error: eliminar registro");
 			}	

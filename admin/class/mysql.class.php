@@ -64,6 +64,9 @@ class Conexion{
 	function num_fields(){
 		return mysqli_field_count($this->id);
 	}
+	function last_id(){
+		return mysqli_insert_id ($this->id);
+	}	
 	function fetch($resultado,$opcion = 'ASSOC'){
 		if(empty($resultado)) die("El identificador no tiene datos.");
 		$this->numfilas = $this->num_rows($resultado);

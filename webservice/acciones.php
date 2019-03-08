@@ -375,6 +375,45 @@ if(isset($_POST['action']) && $_POST['action']!=''){
 			}
 		break;
 		/*****************************************/
+		/******** getSeccionesPInicial  **********/
+		/*****************************************/
+		case 'getSeccionesPInicial':
+			$secciones = isset($_POST['secciones']) && trim($_POST['secciones']) != ''?trim($_POST['secciones']):'Sin especificar';
+			$seccion_inicial = isset($_POST['seccion_inicial']) && trim($_POST['seccion_inicial']) != ''?trim($_POST['seccion_inicial']):'';
+
+			if($secciones == 'Sin especificar'){
+				$success = FALSE;
+				$error   = "<div class='bg-warning'>Necesita seleccionar al menos una sección</div>";
+				$data    = array();	
+			}else{
+				$buffer = '';
+				/*$temp = explode(",", $secciones);
+				$secciones = '';
+				for($t=0; $t < count($temp); $t++){
+					if($t > 0) $secciones .= ',';
+					$secciones .= "'{$temp[$t]}'";
+				}*/
+				$query = "SELECT * FROM ".PREFIJO."acciones WHERE kid_accion in ($secciones)";
+				$resSecciones = $myAdmin->conexion->fetch($myAdmin->conexion->query($query));
+
+				if($myAdmin->conexion->numfilas >= 1){
+					$buffer = "<select name='cmp[seccion_inicial]' class='form-control'>";
+					foreach($resSecciones as $perf){
+						$selected = "";
+						if($seccion_inicial != '' && $seccion_inicial == $perf['acronimo_accion']){
+							$selected = " selected='selected'";
+						}
+						$buffer .= "<option value='{$perf['acronimo_accion']}'$selected>".mb_convert_encoding($perf['nombre_accion'],'UTF-8')."</option>";
+					}
+					$buffer .= "</select>";
+				}
+				
+				$success = TRUE;
+				$error   = '';
+				$data    = array("mensaje"=>'Ok',"codigo"=>$buffer);
+			}
+		break;
+		/*****************************************/
 		/******** DEFAULT  **********/
 		/*****************************************/
 		default:

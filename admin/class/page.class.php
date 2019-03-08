@@ -78,7 +78,7 @@ class Page{
 			$this->id = 99999;
 			$this->p404 = TRUE;
 			$this->pageData = array("nombre"=>"P&aacute;gina no encontrada","plantilla"=>1,"alias"=>'404',"descripcion"=>"No existe la página","keywords"=>"404,página no encontrada");
-			$this->contenido = array("contenido"=>"La p&aacute;gina que esta intentando ver no existe.","nombre_responsable"=>"Administrador de la Intranet");
+			$this->contenido = array("contenido"=>"La p&aacute;gina que esta intentando ver no existe.","nombre_responsable"=>"Administrador de Soy Biossmann");
 		}
 		$this->withSubs = $this->getSubsecciones();
 	}
@@ -174,7 +174,7 @@ class Page{
 	function mostrarSubsecciones(){
 		$buffer = '';
 		if(!$this->p404){
-			$menu = $this->myAdmin->fetch($this->myAdmin->query("SELECT * FROM ".PREFIJO."view_estructura WHERE iniPadre={$this->id} AND visible=1 AND publicado=1 ORDER BY clasificacion ASC"));
+			$menu = $this->myAdmin->fetch($this->myAdmin->query("SELECT * FROM ".PREFIJO."view_estructura WHERE iniPadre={$this->id} AND publicado=1 ORDER BY clasificacion ASC"));
 			if(count($menu)>0){
 				$buffer .= "<div class='listaLinks listaColorazul material bordeGris'>";
 				$buffer .= "<h2>{$this->pageData['nombre']}</h2>";

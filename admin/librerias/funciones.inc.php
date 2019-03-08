@@ -11,53 +11,29 @@ function make_safe($char) {
     }
     return $ban;
 }
-
 function encuentraCoincidencia($arrCoincidencia, $texto){
     $buffer = '';
     $textoTemp = $texto;
-    #echo ">>$textoTemp<<";
-    //$inicial = TRUE;
-    //if(stripos($texto, $coincidencia) !== FALSE){
-        
-        //$buffer .= separarPalabras($texto,$coincidencia);
-
-   // }else{
-        //$buffer .= $texto;
-   // }
     foreach ($arrCoincidencia as $coincid) {
         if(stripos($textoTemp, $coincid) !== FALSE){
-            //if($inicial){
-                $textoTemp = separarPalabras($textoTemp,$coincid); $inicial = FALSE;   
-            //}else{
-            //    $textoTemp = separarPalabras($textoTemp,$coincid); 
-            //}
+            $textoTemp = separarPalabras($textoTemp,$coincid); $inicial = FALSE;   
         }else{
             $textoTemp = $textoTemp;
         }
     }
-    
     return str_replace(array("[","]"), array("<span>","</span>"), $textoTemp);
 }
-
 function separarPalabras($texto,$coincidencia){
     $resultado = '';
     $posicionInicio = stripos($texto,$coincidencia);
-    #echo "[$texto][$posicionInicio]";
     $longitud = strlen($coincidencia);
     $end='';
-    //$first = $middle = $end = '';
-
     if($posicionInicio !== FALSE){
         $first = substr($texto, 0, $posicionInicio);
-        #echo "|";
         $middle = substr($texto,$posicionInicio,$longitud);
-        #echo "|";
         $end = substr($texto, ($posicionInicio + $longitud));
-        #echo "]";
-        #echo "($first | $middle | $end)";
         $resultado .= $first."[".$middle."]";
     }
-
     if(stripos($end,$coincidencia) !== FALSE){
         $resultado .= separarPalabras($end,$coincidencia);
     }else{
@@ -65,14 +41,11 @@ function separarPalabras($texto,$coincidencia){
     }
     return $resultado;
 }
-
 function normaliza ($ch){
     $originales = array("á","é","í","ó","ú","ñ","Á","É","Í","Ó","Ú","Ñ","ä","ë","ï","ö","ü","Ä","Ë","Ï","Ö","Ü");
     $modificada = array("a","e","i","o","u","n","A","E","I","O","U","N","a","e","i","o","u","A","E","I","O","U");
     return strtoupper(str_replace($originales, $modificada, $ch));
 }
-
-
 function wsComprobarLogin($usuario,$password){
     $url = WS_PROTOCOL.WS_DOMAIN.WS_LOGIN.'_ws_login.php';
     $location = WS_DOMAIN;
@@ -112,7 +85,6 @@ function ssl_decrypt($encrypted){
 function curl_get_contents($url, $postdata, $location)
 {
     $ch = curl_init();
-
     curl_setopt($ch, CURLOPT_URL,$url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS,$postdata);
@@ -121,7 +93,6 @@ function curl_get_contents($url, $postdata, $location)
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
     $data = curl_exec ($ch);
-
     curl_close ($ch);
     return $data;
 }

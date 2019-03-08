@@ -17,7 +17,7 @@ else{
 </nav>
 <script type="text/javascript">
 	$(document).ready(function(){
-		var webpage = '<?php echo APP_URL; ?>';
+		var webpage = '<?php echo ADMIN_URL; ?>';
 		$('#btnEDOS').click(function(){
 			document.location.href=webpage+'CATS/EDOS/';
 		});

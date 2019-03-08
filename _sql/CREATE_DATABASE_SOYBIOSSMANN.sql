@@ -66,8 +66,6 @@ CREATE TABLE cms_usuarios (
   usr_login varchar(50) NOT NULL UNIQUE,
   usr_psw BLOB NOT NULL,
   usr_nombre varchar(255) NOT NULL,
-  usr_apaterno varchar(255) NOT NULL,
-  usr_amaterno varchar(255) NOT NULL,
   usr_correo VARCHAR(255),
   usr_activo INT(11) NOT NULL default '1',
   fid_perfil INT(11) NOT NULL default '1',

@@ -105,7 +105,7 @@ else if($data2=='down'){ 	include_once("adm.$data1.change.php");*/
 		envioData.append("id",data);
 		envioData.append("type",type);
 		$.ajax({
-			url: "<?php echo APP_URL; ?>webservices/acciones.php",
+			url: "<?php echo ADMIN_URL; ?>webservices/acciones.php",
 			type:"POST",
 			processData: false,//tanto processData como contentType deben estar en false para que funcione FormData
 			contentType: false,

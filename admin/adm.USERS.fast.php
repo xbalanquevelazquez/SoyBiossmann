@@ -14,7 +14,7 @@ if(isset($id) && is_numeric($id) && $id > 0) {
 		$res['usr_activo'] = '0';
 	}
 	if($myAdmin->conexion->update(PREFIJO."usuarios",$res,"WHERE kid_usr=$id")){
-			header("Location: ".APP_URL.$data1.$pager);
+			header("Location: ".ADMIN_URL.$data1.$pager);
 	}else{
 		die("Error: cambiar registro");
 	}
