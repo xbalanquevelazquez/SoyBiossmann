@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 define("VIEWABLE",TRUE);
 
 include_once("../admin/cnf/configuracion.cnf.php");
-include_once("cnfg.directorio.php");
+include_once("../admin/cnf/cnfg.directorio.php");
 
 $id_usr_actual = NULL;
 if($myAdmin->comprobarSesion()){

@@ -3,7 +3,7 @@ if(!defined('VIEWABLE')) {
 	die('Inaccesible');
 }
 $thisserver = $_SERVER['SERVER_NAME'];
-if($thisserver == 'localhost'){
+if($thisserver == 'localhost' || $thisserver == '192.168.3.7'){
 	define('CALIDAD_BD_HOST', 		'localhost');
 	define('CALIDAD_DB_NAME', 		'intranetbiossmann_old');//medicas2_nuke1
 }else if($thisserver=='soy.biossmann.com'){

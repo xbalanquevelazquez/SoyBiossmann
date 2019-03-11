@@ -29,6 +29,23 @@ if(!defined('VIEWABLE')) {
 		define('SENDER_MAIL_SECURE', FALSE);
 		define('SENDER_MAIL_NAME',	'SoyBiossmann');
 		define('SAE_MAIL',	'xbalanque.velazquez@biossmann.com');
+	}if($thisserver == '192.168.3.7'){
+		define('WEB_PATH',			'http://192.168.3.7/soybiossmann/');
+		define('APP_PATH',			'D:\PoisonStinger\wamp64\www\soybiossmann/');
+		define('APP_URL',			WEB_PATH);
+		define('COOKIE_DOMAIN',		'192.168.3.7/soybiossmann');
+		define('BD_HOST', 			'localhost');
+		define('DB_USER', 			'root');
+		define('DB_PSW', 			'arkan');
+		define('DB_NAME', 			'soybiossmann');
+		define('PREFIJO',			'cms_');
+		define('SENDER_MAIL',		'noreply@biossmann.com');
+		define('SENDER_PASS',		'');
+		define('SENDER_MAIL_HOST',	'192.168.4.1');
+		define('SENDER_MAIL_PORT',	'25');
+		define('SENDER_MAIL_SECURE', FALSE);
+		define('SENDER_MAIL_NAME',	'SoyBiossmann');
+		define('SAE_MAIL',	'xbalanque.velazquez@biossmann.com');
 	}else if($thisserver=='soy.biossmann.com'){
 		define('WEB_PATH',			'https://soy.biossmann.com/');
 		define('APP_PATH',			'/usr/local/apache/htdocs_ssl/');
@@ -46,7 +63,7 @@ if(!defined('VIEWABLE')) {
 		define('SENDER_MAIL_PORT',	'25');
 		define('SENDER_MAIL_SECURE', FALSE);
 		define('SENDER_MAIL_NAME',	'SoyBiossmann');
-		define('SAE_MAIL',	'xbalanque.velazquez@biossmann.com');//sae@biossmann.com
+		define('SAE_MAIL',	'sae@biossmann.com');//sae@biossmann.com
 	}
 
 	$prefijo = PREFIJO;
@@ -106,7 +123,7 @@ if(!defined('VIEWABLE')) {
 	$referer = WEB_PATH;
 
 	#include_once(LIB_PATH.'sesiones.php');
-	include_once(LIB_PATH.'Mobile_Detect_2.8.17.php');
+	include_once(LIB_PATH.'Mobile_Detect_2.8.33.php');
 	$detect = new Mobile_Detect;
 	$deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
 

@@ -28,23 +28,10 @@ switch($data2){
 }
 if($getPage!=''){
 	include_once("adm.$data1.$getPage.php");
-/*if(		$data2=='new'){ 	include_once("adm.$data1.new.php");}
-else if($data2=='edit'){ 	include_once("adm.$data1.edit.php");}
-else if($data2=='delete'){ 	include_once("adm.$data1.delete.php");}
-else if($data2=='fast'){ 	include_once("adm.$data1.fast.php");}
-else if($data2=='concluir'){ 	include_once("adm.$data1.concluir.php");}
-else if($data2=='view'){ 	include_once("adm.$data1.view.php");}
-else if($data2=='desactivar'){ 	include_once("adm.$data1.change.php");}
-else if($data2=='activar'){ 	include_once("adm.$data1.change.php");}
-else if($data2=='visible'){ 	include_once("adm.$data1.change.php");}
-else if($data2=='invisible'){ 	include_once("adm.$data1.change.php");}
-else if($data2=='up'){ 	include_once("adm.$data1.change.php");}
-else if($data2=='down'){ 	include_once("adm.$data1.change.php");*/
 }else{
 	if(isset($_GET['msg'])) echo mostrarMensaje($_GET['msg']);
 ?>
 <script type="text/javascript" src="<?php echo ADMIN_URL; ?>js/controlEstructura.js?<?php echo rand(10, 15); ?>"></script>
-
 <div class="espaciador"></div>
 <div class="fixed espaciador"></div>
 <div class="row">
@@ -55,7 +42,6 @@ else if($data2=='down'){ 	include_once("adm.$data1.change.php");*/
 		<?php } ?>
 	</div>
 	<div class="col" id="workArea">
-
 		<?php 
 		foreach($sites as $site){
 			$id = $site['kid_pagina'];
@@ -64,12 +50,9 @@ else if($data2=='down'){ 	include_once("adm.$data1.change.php");*/
 		?>
 		<div class="mapsite"><?php $estructura->crearEstructura($resultado); ?></div>
 		<?php }	?>
-		
-
 </div><!--//END: col contenido estructura -->
 </div>
 <div class="resultBoxRegistros"></div>
-
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('body').keypress(function(e){
@@ -78,56 +61,8 @@ else if($data2=='down'){ 	include_once("adm.$data1.change.php");*/
 		        // Close my modal window
 		    }
 		});
-		/*$('#terminoBusqueda').keyup(function(){
-			var currentValue = $(this).val();
-			currentValue = currentValue.trim();
-			if(currentValue != ''){
-				getRegistros(currentValue);
-			}else{
-				$(".resultBoxRegistros").html('');
-			}
-			
-		});
-		$('#btnSearch').click(function(){
-			var currentValue = $('#terminoBusqueda').val();
-			if(currentValue != ''){
-				getRegistros(currentValue);
-			}else{
-				$(".resultBoxRegistros").html('');
-			}
-		});
-		$('[data-toggle="tooltip"]').tooltip();*/
 	});
-	function getRegistros(data,type='CC'){
-		/*$(".resultBoxRegistros").html("<div class='bg-info'>Obteniendo resultados...</div>");
-		var envioData = new FormData();
-		envioData.append("action",'getRegistros');													
-		envioData.append("id",data);
-		envioData.append("type",type);
-		$.ajax({
-			url: "<?php echo ADMIN_URL; ?>webservices/acciones.php",
-			type:"POST",
-			processData: false,//tanto processData como contentType deben estar en false para que funcione FormData
-			contentType: false,
-			data:envioData,
-			cache:false,
-			dataType:"json",
-			success: function(respuesta){
-				var texto = '';
-				if(respuesta.success){
-					$(".resultBoxRegistros").html('');
-					texto = '';
-				}else{
-					texto = "<div class='bg-warning'>"+respuesta.error+"</div>";
-				}
-				$(".messageBox").html(texto);
-				$(".resultBoxRegistros").html(respuesta.data.codigo);
-				$('[data-toggle="tooltip"]').tooltip();
-			}
-		});*/
-	}
 </script>
 <?php
-
 }
 ?>

@@ -1,14 +1,9 @@
 <?php
 if(!defined('VIEWABLE')){ header('HTTP/1.0 404 Not Found'); exit; }
 
-include("plantilla.inc.php");
-
 $sites = $myAdmin->conexion->fetch(	$myAdmin->conexion->query("SELECT * FROM ".PREFIJO."estructura WHERE nivel=0")	);
 $siteTarget=isset($_GET['site'])?$_GET['site']:'';
-/*echo "<pre>";
-print_r($arrProcesados);
-echo "</pre>";*/
-
+echo $data3;
 ?>
 <script type="text/javascript" src="js/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript">

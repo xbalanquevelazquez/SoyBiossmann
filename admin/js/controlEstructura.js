@@ -10,7 +10,7 @@ function ocultarOpciones(){
 	$('.opciones').hide();
 }
 function confirmarBorrar(){
-	var wcnf = confirm("¿Está seguro de querer borrar la página?\nTodas las páginas contenidas en ésta se borrarán también, junto con los contenidos asociados.");
+	var wcnf = confirm("Â¿EstÃ¡ seguro de querer borrar la pÃ¡gina?\nTodas las pÃ¡ginas contenidas en Ã©sta se borrarÃ¡n tambiÃ©n, junto con los contenidos asociados.");
 	if(wcnf){
 		return true;
 	}else{
@@ -23,13 +23,15 @@ function activarEnlaces(){
 			e.preventDefault();
 			mostrarNueva($(this).attr('data-id'));
 		}
-		if($(this).children('i.fa-times').length > 0){ //tiene ícono de cerrar
+		if($(this).children('i.fa-times').length > 0){ //tiene Ã­cono de cerrar
 			e.preventDefault();
 			ocultarOpciones();
 		}
-		if($(this).children('i.fa-eraser').length > 0){ //tiene ícono de cerrar
+		if($(this).children('i.fa-eraser').length > 0){ //tiene Ã­cono de cerrar
 			e.preventDefault();
-			confirmarBorrar();
+			if(confirmarBorrar()){
+				document.location.href=siteURL+'CMS/delete/'+$(this).attr('data-id');
+			}
 		}
 	});
 	$('.btnPagina').click(function(e){
